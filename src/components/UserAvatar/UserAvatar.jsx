@@ -1,10 +1,10 @@
-import css from './Image.module.css'
+import css from './UserAvatar.module.css'
 import Avatar from '../../assets/Images/Avatar.png'
 import Avatar2x from '../../assets/Images/Avatar-2x.png'
 import Mac from '../../assets/Images/Mac.png'
 import Mac2x from '../../assets/Images/Mac-2x.png'
 
-export function Image() {
+export function UserAvatar() {
   return (
     <div className={css.imageSection}>
       <div className={css.imageWrapper}>
