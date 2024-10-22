@@ -1,0 +1,31 @@
+.statSection {
+  border: 1.5px dashed #f4c550;
+  border-radius: 30px;
+}
+
+.statList {
+  display: flex;
+  padding: 40px 122px;
+  gap: 100px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.statNumber {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+}
+
+.statText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+}

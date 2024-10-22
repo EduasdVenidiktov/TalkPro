@@ -1,4 +1,52 @@
 .infoSection {
   background: #f8f8f8;
   border-radius: 30px;
+  padding-left: 64px;
+}
+
+.title {
+  padding: 98px 108px 32px 0;
+  max-width: 648px;
+
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 56px;
+  /* letter-spacing: -0.02em; */
+}
+
+.spanWord {
+  font-size: 48px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 56px;
+  /* letter-spacing: -0.02em; */
+  background: #fbe9ba;
+  border-radius: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.infoText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  padding-right: 185px;
+  padding-bottom: 64px;
+  max-width: 470px;
+}
+
+.buttonStyle {
+  padding: 16px 88px;
+  background: #f4c550;
+  border-radius: 12px;
+  border: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #121417;
+  cursor: pointer;
+  margin-bottom: 56px;
 }
