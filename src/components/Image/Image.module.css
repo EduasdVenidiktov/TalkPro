@@ -1,4 +1,21 @@
 .imageSection {
   background: #fbe9ba;
   border-radius: 30px;
+  padding-left: 114px;
+  padding-right: 114px;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.avatarStyle {
+  padding-top: 80px;
+}
+
+.macStyle {
+  position: absolute;
+  top: 86%;
+  left: -12%;
+  max-width: 360px;
 }

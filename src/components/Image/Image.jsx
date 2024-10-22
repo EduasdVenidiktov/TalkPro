@@ -7,12 +7,20 @@ import Mac2x from '../../assets/Images/Mac-2x.png'
 export function Image() {
   return (
     <div className={css.imageSection}>
-      <img
-        src={Avatar}
-        srcSet={`${Avatar} 1x, ${Avatar2x} 2x`}
-        alt="avatar image"
-      />
-      <img src={Mac} srcSet={`${Mac} 1x, ${Mac2x} 2x`} alt="apple logo" />
+      <div className={css.imageWrapper}>
+        <img
+          className={css.avatarStyle}
+          src={Avatar}
+          srcSet={`${Avatar} 1x, ${Avatar2x} 2x`}
+          alt="avatar image"
+        />
+        <img
+          className={css.macStyle}
+          src={Mac}
+          srcSet={`${Mac} 1x, ${Mac2x} 2x`}
+          alt="apple logo"
+        />
+      </div>
     </div>
   )
 }
