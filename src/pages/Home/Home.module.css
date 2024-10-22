@@ -1,0 +1,9 @@
+.container {
+  margin-left: 64px;
+  margin-right: 64px;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 24px;
+}
