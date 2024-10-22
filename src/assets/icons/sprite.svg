@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="book" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M29.333 8.267c0-1.493 0-2.24-.291-2.811a2.666 2.666 0 0 0-1.165-1.165C27.306 4 26.56 4 25.066 4h-.533c-2.987 0-4.48 0-5.621.581a5.331 5.331 0 0 0-2.331 2.331C16 8.053 16 9.546 16 12.533V28l.133-.2c.926-1.389 1.389-2.084 2.001-2.587a5.345 5.345 0 0 1 1.837-.983c.758-.23 1.593-.23 3.262-.23h1.833c1.494 0 2.24 0 2.811-.291.502-.256.91-.664 1.165-1.165.291-.57.291-1.317.291-2.811V8.266zm-26.666 0c0-1.493 0-2.24.291-2.811.256-.502.664-.91 1.165-1.165C4.693 4 5.44 4 6.934 4h.533c2.987 0 4.48 0 5.621.581a5.331 5.331 0 0 1 2.331 2.331C16 8.053 16 9.546 16 12.533V28l-.133-.2c-.926-1.389-1.389-2.084-2.001-2.587a5.345 5.345 0 0 0-1.837-.983C11.271 24 10.436 24 8.767 24H6.934c-1.493 0-2.24 0-2.811-.291a2.666 2.666 0 0 1-1.165-1.165c-.291-.57-.291-1.317-.291-2.811V8.266z"/>
+    </symbol>
+    <symbol id="heart" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.462" d="M27.787 6.147a7.345 7.345 0 0 0-5.187-2.15 7.33 7.33 0 0 0-5.187 2.15L16 7.56l-1.413-1.413a7.333 7.333 0 0 0-10.374 0 7.333 7.333 0 0 0 0 10.374L16 28.308l11.787-11.787a7.326 7.326 0 0 0 0-10.373z"/>
+    </symbol>
+    <symbol id="heartHover" viewBox="0 0 32 32">
+      <path fill="#f4c550" stroke="#f4c550" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.231" d="M27.787 6.147a7.326 7.326 0 0 0-10.373 0L16.001 7.56l-1.413-1.413a7.333 7.333 0 0 0-10.374 0 7.333 7.333 0 0 0 0 10.374l11.787 11.787 11.787-11.787a7.326 7.326 0 0 0 0-10.373z" style="fill:var(--color1, #f4c550);stroke:var(--color1, #f4c550)"/>
+    </symbol>
+    <symbol id="logIn" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2" d="M20 4h1.6c2.24 0 3.36 0 4.216.436a3.996 3.996 0 0 1 1.748 1.748C28 7.04 28 8.16 28 10.4v11.2c0 2.24 0 3.36-.436 4.216a4.001 4.001 0 0 1-1.748 1.748C24.96 28 23.84 28 21.6 28H20M13.333 9.333 20 16m0 0-6.667 6.667M20 16H4" />
+    </symbol>
+    <symbol id="star" viewBox="0 0 32 32">
+      <path fill="#ffc531" stroke="#ffc531" stroke-width="2.4" d="M12.4 10.394 16 3.572l3.6 6.822a2.2 2.2 0 0 0 1.571 1.141l7.601 1.315-5.376 5.532a2.2 2.2 0 0 0-.6 1.846l1.098 7.635-6.922-3.404a2.199 2.199 0 0 0-1.941 0l-6.922 3.404 1.098-7.635a2.2 2.2 0 0 0-.6-1.846L3.231 12.85l7.601-1.315a2.202 2.202 0 0 0 1.571-1.141zm16.635 2.185zM7.767 28.031z" style="fill:var(--color3, #ffc531);stroke:var(--color3, #ffc531)"/>
+    </symbol>
+    <symbol id="ukraine" viewBox="0 0 32 32">
+      <path fill="#ffda44" d="M16 32c8.837 0 16-7.163 16-16S24.837 0 16 0 0 7.163 0 16s7.163 16 16 16z" style="fill:var(--color4, #ffda44)"/>
+      <path fill="#338af3" d="M0 16C0 7.164 7.163 0 16 0s16 7.163 16 16z" style="fill:var(--color5, #338af3)"/>
+    </symbol>
+    <symbol id="x" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M24 8 8 24M8 8l16 16"/>
+    </symbol>
+    <symbol id="burger" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-width="2.909" d="M5.818 7.273h20.364M5.818 14.545h20.364M5.818 21.818h20.364"/>
+    </symbol>
+    <symbol id="close" viewBox="0 0 32 32">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.909" d="M24 8 8 24M8 8l16 16"/>
+    </symbol>
+  </defs>
+</svg>
