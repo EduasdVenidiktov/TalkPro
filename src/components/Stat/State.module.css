@@ -1,6 +1,7 @@
 .statSection {
   border: 1.5px dashed #f4c550;
   border-radius: 30px;
+  margin-bottom: 32px;
 }
 
 .statList {
