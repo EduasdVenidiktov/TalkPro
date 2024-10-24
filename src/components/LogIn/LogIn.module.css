@@ -5,6 +5,7 @@
   padding: 64px;
   color: #121417cc;
   position: relative;
+  background-color: white;
 }
 
 .closeIcon {
@@ -66,4 +67,29 @@
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+}
+
+.passwordContainer {
+  position: relative; /* Батьківський елемент для позиціонування іконки */
+}
+
+.inputField {
+  width: 100%;
+  padding-right: 40px; /* Простір для іконки праворуч */
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eyeIcon svg {
+  width: 20px;
+  height: 20px;
+  padding: 18px;
 }
