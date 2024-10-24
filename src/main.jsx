@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 
 import { initializeApp } from 'firebase/app'
-import { getDatabase } from 'firebase/database'
+import { getDatabase, ref, get } from 'firebase/database'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCPA9oF26HyhwskD8CNDauOE7kzE1lzfbQ',
@@ -16,7 +16,27 @@ const firebaseConfig = {
   appId: '1:255413950810:web:0b152b3d7c10f36dae3b63',
 }
 const app = initializeApp(firebaseConfig)
-getDatabase(app)
+const database = getDatabase(app)
+console.log(database)
+
+// Функція для перевірки підключення до бази даних
+export function checkDatabaseConnection() {
+  const dbRef = ref(database, '/someTestPath') // використовуйте будь-який існуючий шлях або створіть тестовий
+  get(dbRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('Дані з бази:', snapshot.val())
+      } else {
+        console.log('Дані не знайдено')
+      }
+    })
+    .catch((error) => {
+      console.error('Помилка при отриманні даних:', error)
+    })
+}
+
+// Виклик функції для перевірки підключення
+checkDatabaseConnection()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
