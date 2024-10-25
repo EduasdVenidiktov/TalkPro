@@ -55,6 +55,12 @@
   color: #121417;
 }
 
+.inputField:focus {
+  border: 1px solid #5081f4; /* Цвет рамки при фокусе */
+  outline: none; /* Убираем стандартное выделение */
+  box-shadow: 0 0 5px rgba(80, 129, 244, 0.5); /* Добавляем тень для выделения */
+}
+
 .btnLogin {
   width: 100%;
   background-color: #f4c550;
@@ -71,11 +77,6 @@
 
 .passwordContainer {
   position: relative; /* Батьківський елемент для позиціонування іконки */
-}
-
-.inputField {
-  width: 100%;
-  padding-right: 40px; /* Простір для іконки праворуч */
 }
 
 .eyeIcon {
