@@ -1,0 +1,11 @@
+.langSwitcherSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.textLabel {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #8a8a89;
+}
