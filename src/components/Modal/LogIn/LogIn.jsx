@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { loginValidationSchema } from '../../validation/validationSchema'
-import { handleEscapeKey, handleBackdropClick } from '../../utils/utils'
+import { loginValidationSchema } from '../../../validation/validationSchema'
 import css from './LogIn.module.css'
-import close from '../../assets/icons/sprite.svg'
+import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
+import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
 
 export function LogIn({ onClose }) {
   const auth = getAuth()

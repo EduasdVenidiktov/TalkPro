@@ -5,10 +5,10 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { registrationValidationSchema } from '../../validation/validationSchema' // Import your validation schema here
-import { handleEscapeKey, handleBackdropClick } from '../../utils/utils'
+import { registrationValidationSchema } from '../../../validation/validationSchema' // Import your validation schema here
+import { handleEscapeKey, handleBackdropClick } from '../../../utils/utils'
 import css from './Registration.module.css'
-import close from '../../assets/icons/sprite.svg'
+import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 
 export function Registration({ onClose }) {

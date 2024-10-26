@@ -1,0 +1,130 @@
+.lessonSection {
+  max-width: 565px;
+  background-color: white;
+  border-radius: 30px;
+  padding: 64px;
+  color: #121417cc;
+  position: relative;
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 20px; /* Расстояние от верхнего края */
+  right: 20px; /* Расстояние от правого края */
+  cursor: pointer;
+  stroke: #121417;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #121417cc;
+}
+
+.teacherBox {
+  display: flex;
+}
+
+.titleTeacher {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #8a8a89;
+}
+
+.tacherInfo {
+  display: flex;
+  align-items: center;
+}
+
+.nameTeacher {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #121417;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 40px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box; /* Чтобы padding не влиял на общую ширину input */
+  border: 1px solid #1214171a;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #121417;
+}
+
+.inputField:focus {
+  border: 1px solid #5081f4; /* Цвет рамки при фокусе */
+  outline: none; /* Убираем стандартное выделение */
+  box-shadow: 0 0 5px rgba(80, 129, 244, 0.5); /* Добавляем тень для выделения */
+}
+
+.btnSignIn {
+  width: 100%;
+  background-color: #f4c550;
+  border-radius: 12px;
+  padding: 16px 0; /* Выровнял паддинг */
+  border: none;
+  color: #121417;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.passwordContainer {
+  position: relative; /* Батьківський елемент для позиціонування іконки */
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eyeIcon svg {
+  width: 20px;
+  height: 20px;
+  padding: 18px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* значення, що вище за інші елементи */
+}
+
+.error {
+  color: red;
+}
