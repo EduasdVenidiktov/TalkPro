@@ -4,6 +4,7 @@ import { Info } from '../../components/Info/Info'
 import { UserAvatar } from '../../components/UserAvatar/UserAvatar'
 import { Stat } from '../../components/Stat/Stat'
 import { Filters } from '../../components/Filters/Filters'
+import { Lesson } from '../../components/Modal/Lesson/Lesson'
 
 export function Home() {
   return (
@@ -16,6 +17,7 @@ export function Home() {
       <Stat />
 
       <Filters />
+      <Lesson />
     </div>
   )
 }

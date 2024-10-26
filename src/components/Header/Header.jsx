@@ -2,8 +2,8 @@ import { useState } from 'react'
 import css from './Header.module.css'
 import ukraine from '../../assets/icons/sprite.svg'
 import logIn from '../../assets/icons/sprite.svg'
-import { LogIn } from '../LogIn/LogIn' // Імпортуємо компонент LogIn
-import { Registration } from '../Registration/Registration' // Імпортуємо компонент Registration
+import { LogIn } from '../Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
+import { Registration } from '../Modal/Registration/Registration' // Імпортуємо компонент Registration
 
 export function Header() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)

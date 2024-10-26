@@ -29,6 +29,13 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.909" d="M24 8 8 24M8 8l16 16"/>
     </symbol>
 
+<symbol id="RadioButtonBefor" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" fill="#fff" stroke="#8a8a89" stroke-miterlimit="4" stroke-width="2.6667" d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12c-6.627 0-12-5.373-12-12s5.373-12 12-12z"></path>
+</symbol>
 
+<symbol id="radioButton" viewBox="0 0 32 32">
+<path fill="none" stroke="#f4c550" style="stroke: var(--color1, #f4c550)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="2.6667" d="M16 4c6.627 0 12 5.373 12 12s-5.373 12-12 12c-6.627 0-12-5.373-12-12s5.373-12 12-12z"></path>
+<path fill="#f4c550" style="fill: var(--color1, #f4c550)" d="M16 9.333c3.682 0 6.667 2.985 6.667 6.667s-2.985 6.667-6.667 6.667c-3.682 0-6.667-2.985-6.667-6.667s2.985-6.667 6.667-6.667z"></path>
+</symbol>
   </defs>
 </svg>
