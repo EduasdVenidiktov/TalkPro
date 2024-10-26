@@ -14,6 +14,7 @@ export function LangSwitcher() {
         id="languages"
         value={selectedLanguage}
         onChange={(e) => setSelectedLanguage(e.target.value)}
+        className={css.selectValue}
       >
         <option value="" disabled>
           Select a language

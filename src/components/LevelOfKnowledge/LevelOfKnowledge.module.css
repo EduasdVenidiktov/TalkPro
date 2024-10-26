@@ -1,5 +1,6 @@
 .LevelOfKnowledgeSection {
   display: flex;
+  gap: 8px;
   flex-direction: column;
 }
 
@@ -8,4 +9,11 @@
   font-weight: 500;
   line-height: 18px;
   color: #8a8a89;
+}
+
+.selectValue {
+  color: #121417;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 14px;
 }

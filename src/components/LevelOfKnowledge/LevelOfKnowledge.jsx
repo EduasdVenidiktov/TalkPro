@@ -19,6 +19,7 @@ export function LevelOfKnowledge() {
         id="levelOfKnowledge"
         value={selectedLevel}
         onChange={(e) => setSelectedLevel(e.target.value)}
+        className={css.selectValue}
       >
         <option value="" disabled>
           Select a level
