@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import css from './Info.module.css' // Імпортуєш модульні стилі для інших елементів
+import css from './HomeInfo.module.css' // Імпортуєш модульні стилі для інших елементів
 import { Lesson } from '../Modal/Lesson/Lesson' // Імпорт компоненту Lesson
 
 export function Info() {

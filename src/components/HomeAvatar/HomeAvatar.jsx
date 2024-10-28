@@ -1,4 +1,4 @@
-import css from './UserAvatar.module.css'
+import css from './HomeAvatar.module.css'
 import Avatar from '../../assets/Images/Avatar.png'
 import Avatar2x from '../../assets/Images/Avatar-2x.png'
 import Mac from '../../assets/Images/Mac.png'

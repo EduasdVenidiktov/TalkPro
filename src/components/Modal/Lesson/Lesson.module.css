@@ -5,6 +5,7 @@
   padding: 64px;
   color: #121417cc;
   position: relative;
+  margin-top: 20px;
 }
 
 .closeIcon {
@@ -23,6 +24,7 @@
   line-height: 48px;
   letter-spacing: -0.02em;
   color: #121417;
+  padding-bottom: 20px;
 }
 
 .text {
@@ -30,10 +32,12 @@
   font-weight: 400;
   line-height: 22px;
   color: #121417cc;
+  padding-bottom: 20px;
 }
 
 .teacherBox {
   display: flex;
+  padding-bottom: 40px;
 }
 
 .titleTeacher {
@@ -91,6 +95,11 @@
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+}
+
+.btnSignIn:hover,
+.btnSignIn:active {
+  background: #fbe9ba;
 }
 
 .passwordContainer {

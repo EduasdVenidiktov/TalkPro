@@ -11,11 +11,12 @@
 
 .avatarStyle {
   padding-top: 80px;
+  width: 540px;
 }
 
 .macStyle {
   position: absolute;
-  top: 86%;
+  top: 89%;
   left: -12%;
-  max-width: 360px;
+  max-width: 392px;
 }

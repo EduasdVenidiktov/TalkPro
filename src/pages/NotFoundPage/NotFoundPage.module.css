@@ -1,0 +1,14 @@
+.containerNotFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Центрування по вертикалі на весь екран */
+  flex-direction: column;
+  text-align: center;
+}
+
+.titleNotFound {
+  font-size: 64px;
+  color: #333;
+  padding-bottom: 24px;
+}

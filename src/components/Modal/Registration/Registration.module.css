@@ -42,16 +42,12 @@
 .inputField {
   width: 100%;
   padding: 16px;
-
   box-sizing: border-box; /* Чтобы padding не влиял на общую ширину input */
-
   border: 1px solid #1214171a;
   border-radius: 12px;
-
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-
   color: #121417;
 }
 
@@ -67,12 +63,16 @@
   border-radius: 12px;
   padding: 16px 194px;
   border: none;
-
   color: #121417;
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+}
+
+.btnSignIn:hover,
+.btnSignIn:active {
+  background: #fbe9ba;
 }
 
 .passwordContainer {
