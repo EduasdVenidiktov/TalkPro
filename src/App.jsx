@@ -1,12 +1,20 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Home } from './pages/Home/Home'
+import { HomePage } from './pages/HomePage/HomePage'
+import { TeachersPage } from './pages/TeachersPage/TeachersPage'
+import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
 
-function App() {
+export default function App() {
   return (
     <div>
-      <Home />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/teachers" element={<TeachersPage />} />
+        <Route path="/favorite" element={<FavoritesPage />} />
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   )
 }
-
-export default App

@@ -1,6 +1,5 @@
 .LoginSection {
   max-width: 565px;
-
   border-radius: 30px;
   padding: 64px;
   color: #121417cc;
@@ -44,14 +43,11 @@
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
-
   border: 1px solid #1214171a;
   border-radius: 12px;
-
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-
   color: #121417;
 }
 
@@ -67,12 +63,16 @@
   border-radius: 12px;
   padding: 16px 194px;
   border: none;
-
   color: #121417;
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+}
+
+.btnLogin:hover,
+.btnLogin:active {
+  background: #fbe9ba;
 }
 
 .passwordContainer {
