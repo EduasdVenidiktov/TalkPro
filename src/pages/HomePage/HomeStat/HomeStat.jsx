@@ -1,6 +1,6 @@
-import css from './State.module.css'
+import css from './HomeStat.module.css'
 
-export function Stat() {
+export function HomeStat() {
   return (
     <div className={css.statSection}>
       <div className={css.statList}>

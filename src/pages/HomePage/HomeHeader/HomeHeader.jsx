@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import css from './Header.module.css'
-import ukraine from '../../assets/icons/sprite.svg'
-import logIn from '../../assets/icons/sprite.svg'
-import { LogIn } from '../Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
-import { Registration } from '../Modal/Registration/Registration' // Імпортуємо компонент Registration
+import css from './HomeHeader.module.css'
+import ukraine from '../../../assets/icons/sprite.svg'
+import logIn from '../../../assets/icons/sprite.svg'
+import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
+import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
 import { Link } from 'react-router-dom' // Імпорт Link для навігації
 
-export function Header() {
+export function HomeHeader() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
 

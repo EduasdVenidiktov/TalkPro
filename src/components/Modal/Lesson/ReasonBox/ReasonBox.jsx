@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import radioButton from '../../assets/icons/sprite.svg'
-import css from './reasonBox.module.css'
+import radioButton from '/src/assets/icons/sprite.svg'
+import css from './ReasonBox.module.css'
 
 const options = [
   { value: 'career', label: 'Career and business' },

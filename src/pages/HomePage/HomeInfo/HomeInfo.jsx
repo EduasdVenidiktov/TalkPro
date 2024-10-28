@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import css from './HomeInfo.module.css' // Імпортуєш модульні стилі для інших елементів
-import { Lesson } from '../Modal/Lesson/Lesson' // Імпорт компоненту Lesson
+import { Lesson } from '../../../components/Modal/Lesson/Lesson' // Імпорт компоненту Lesson
 
-export function Info() {
+export function HomeInfo() {
   const [isLessonOpen, setLessonOpen] = useState(false) // Створюємо стан для контролю видимості модального вікна
 
   const handleGetStartedClick = () => {
