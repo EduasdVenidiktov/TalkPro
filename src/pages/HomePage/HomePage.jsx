@@ -1,19 +1,19 @@
 import css from './HomePage.module.css'
-import { Header } from '../../components/Header/Header'
-import { Info } from '../../components/HomeInfo/HomeInfo'
-import { UserAvatar } from '../../components/HomeAvatar/HomeAvatar'
-import { Stat } from '../../components/Stat/Stat'
+import { HomeInfo } from './HomeInfo/HomeInfo'
+import { HomeAvatar } from './HomeAvatar/HomeAvatar'
+import { HomeStat } from './HomeStat/HomeStat'
+import { HomeHeader } from './HomeHeader/HomeHeader'
 // import { Filters } from '../../components/Filters/Filters'
 
 export function HomePage() {
   return (
     <div className={css.container}>
-      <Header />
+      <HomeHeader />
       <div className={css.contentWrapper}>
-        <Info />
-        <UserAvatar />
+        <HomeInfo />
+        <HomeAvatar />
       </div>
-      <Stat />
+      <HomeStat />
 
       {/* <Filters /> */}
     </div>

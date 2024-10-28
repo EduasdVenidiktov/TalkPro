@@ -10,8 +10,8 @@ import * as yup from 'yup'
 import { handleEscapeKey } from '../../../utils/utils'
 import css from './Lesson.module.css'
 import { LuEyeOff } from 'react-icons/lu'
-import { ReasonBox } from '../../reasonBox/reasonBox'
-import close from '../../../assets/icons/sprite.svg'
+import close from '/src/assets/icons/sprite.svg'
+import { ReasonBox } from './ReasonBox/reasonBox'
 
 // Валідаційна схема
 const lessonValidationSchema = yup.object().shape({
