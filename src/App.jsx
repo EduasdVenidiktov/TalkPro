@@ -40,17 +40,16 @@ import { HomePage } from './pages/HomePage/HomePage'
 import { TeachersPage } from './pages/TeachersPage/TeachersPage'
 import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
-import { TeacherDetail } from 'pages/TeachersPage/TeacherDetail/TeacherDetail'
+import { TeacherDetail } from './pages/TeachersPage/TeacherDetail/TeacherDetail'
 
 export default function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/teachers" element={<TeachersPage />}>
-          <Route path=":id" element={<TeacherDetail />} />{' '}
-          {/* Вложенный маршрут */}
-        </Route>
+        <Route path="/teachers" element={<TeachersPage />} />
+        {/* <Route path=":id" element={<TeacherDetail />} />{' '} */}
+        <Route path="/teachers/:id" element={<TeacherDetail />} />
         <Route path="/favorite" element={<FavoritesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
