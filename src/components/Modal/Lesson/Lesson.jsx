@@ -11,7 +11,7 @@ import { handleEscapeKey } from '../../../utils/utils'
 import css from './Lesson.module.css'
 import { LuEyeOff } from 'react-icons/lu'
 import close from '/src/assets/icons/sprite.svg'
-import { ReasonBox } from './ReasonBox/reasonBox'
+import { ReasonBox } from './ReasonBox/ReasonBox'
 
 // Валідаційна схема
 const lessonValidationSchema = yup.object().shape({
