@@ -16,12 +16,13 @@
   border: none;
   padding: 14px 18px;
   border-radius: 14px;
+  cursor: pointer;
 }
 
-.selectValue:hover {
+/* .selectValue:hover {
   border: 1px solid rgb(0, 255, 30);
-  color: black; /* черный цвет текста при hover */
-}
+  color: black; 
+} */
 
 /* Скрываем разделитель между значением и значком */
 [class*='indicator-separator'] {

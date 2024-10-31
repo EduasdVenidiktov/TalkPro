@@ -14,8 +14,6 @@ export function HomePage() {
         <HomeAvatar />
       </div>
       <HomeStat />
-
-      {/* <Filters /> */}
     </div>
   )
 }
