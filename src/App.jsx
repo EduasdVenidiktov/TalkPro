@@ -38,9 +38,9 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import { HomePage } from './pages/HomePage/HomePage'
 import { TeachersPage } from './pages/TeachersPage/TeachersPage'
-// import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
 import { TeacherDetail } from './pages/TeachersPage/TeacherDetail/TeacherDetail'
+import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
 
 export default function App() {
   return (
@@ -50,7 +50,7 @@ export default function App() {
         <Route path="/teachers" element={<TeachersPage />} />
         {/* <Route path=":id" element={<TeacherDetail />} />{' '} */}
         <Route path="/teachers/:id" element={<TeacherDetail />} />
-        {/* <Route path="/favorite" element={<FavoritesPage />} /> */}
+        <Route path="/favorite" element={<FavoritesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>

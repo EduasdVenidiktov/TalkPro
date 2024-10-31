@@ -1,43 +1,90 @@
-// import { createContext, useContext, useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
 
-// const FavoritesContext = createContext()
+export function FavoritesPage() {
+  const [favoriteCards, setFavoriteCards] = useState([])
 
-// export const useFavorites = () => {
-//   return useContext(FavoritesContext)
-// }
+  useEffect(() => {
+    const storedFavorites =
+      JSON.parse(localStorage.getItem('favoriteCards')) || []
+    setFavoriteCards(storedFavorites)
+  }, [])
 
-// export const FavoritesPage = ({ children }) => {
-//   const [favorites, setFavorites] = useState([])
+  // Функция для обновления избранного
+  const toggleFavorite = (cardId) => {
+    const storedFavorites =
+      JSON.parse(localStorage.getItem('favoriteCards')) || []
+    const updatedFavorites = storedFavorites.some((card) => card.id === cardId)
+      ? storedFavorites.filter((card) => card.id !== cardId)
+      : [...storedFavorites, { id: cardId }]
+
+    localStorage.setItem('favoriteCards', JSON.stringify(updatedFavorites))
+    setFavoriteCards(updatedFavorites)
+  }
+
+  return (
+    <div>
+      <h2>Избранные преподаватели</h2>
+      <div>
+        {favoriteCards.length > 0 ? (
+          favoriteCards.map((card) => (
+            <TeacherCard
+              key={card.id}
+              {...card} // Передаем все свойства карточки как пропсы
+              isFavorite={true}
+              onToggleFavorite={() => toggleFavorite(card.id)}
+            />
+          ))
+        ) : (
+          <p>У вас пока нет избранных преподавателей.</p>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// // import css from './FavoritesPage.module.css'
+// import { useEffect, useState } from 'react'
+// import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
+
+// export function FavoritesPage() {
+//   const [favoriteCards, setFavoriteCards] = useState([])
 
 //   useEffect(() => {
-//     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || []
-//     setFavorites(storedFavorites)
+//     const storedFavorites =
+//       JSON.parse(localStorage.getItem('favoriteCards')) || []
+//     setFavoriteCards(storedFavorites)
 //   }, [])
 
-//   useEffect(() => {
-//     localStorage.setItem('favorites', JSON.stringify(favorites))
-//   }, [favorites])
+//   // Функция для обновления избранного
+//   const toggleFavorite = (cardId) => {
+//     const storedFavorites =
+//       JSON.parse(localStorage.getItem('favoriteCards')) || []
+//     const updatedFavorites = storedFavorites.includes(cardId)
+//       ? storedFavorites.filter((id) => id !== cardId) // Удалить из избранного
+//       : [...storedFavorites, cardId] // Добавить в избранное
 
-//   const addFavorite = (teacher) => {
-//     if (!favorites.some((fav) => fav._id === teacher._id)) {
-//       // Проверка по _id
-//       setFavorites([...favorites, teacher])
-//     }
-//   }
-
-//   const removeFavorite = (id) => {
-//     setFavorites(favorites.filter((teacher) => teacher._id !== id)) // Удаление по _id
-//   }
-
-//   const isFavorite = (id) => {
-//     return favorites.some((teacher) => teacher._id === id) // Проверка по _id
+//     localStorage.setItem('favoriteCards', JSON.stringify(updatedFavorites))
+//     setFavoriteCards(updatedFavorites) // Обновить состояние
 //   }
 
 //   return (
-//     <FavoritesContext.Provider
-//       value={{ addFavorite, removeFavorite, isFavorite, favorites }}
-//     >
-//       {children}
-//     </FavoritesContext.Provider>
+//     <div>
+//       <h2>Избранные преподаватели</h2>
+//       <div>
+//         {favoriteCards.length > 0 ? (
+//           favoriteCards.map((cardId) => (
+//             <TeacherCard
+//               key={cardId}
+//               id={cardId}
+//               isFavorite={true}
+//               onToggleFavorite={() => toggleFavorite(cardId)}
+//             />
+//           ))
+//         ) : (
+//           <p>У вас пока нет избранных преподавателей.</p>
+//         )}
+//       </div>
+//     </div>
 //   )
 // }
