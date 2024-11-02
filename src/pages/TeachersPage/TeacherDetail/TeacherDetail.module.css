@@ -1,32 +1,64 @@
-.teacherDetailSection {
+.teacherIcon {
+  width: 24px;
+  height: 16px;
+  padding-right: 8px;
 }
 
-.teacherDescription {
+.contentItem {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #8a8a89;
+  padding-bottom: 8px;
 }
 
-.teacherReview {
+.additionalInfo {
 }
 
-.teacherAvatar {
-}
-
-.reviewerName {
+.review {
 }
 
 .teacherRating {
+  display: flex;
+  align-items: center;
+  padding-bottom: 16px;
 }
 
 .ratingValue {
 }
 
-.reviewText {
+.reviewComment {
+  padding-bottom: 32px;
 }
 
-.levelsContainer {
+.experienceContent {
+  font-weight: 400;
+  padding-bottom: 32px;
 }
 
-.levelsText {
+.levelList {
+  display: flex;
+  gap: 8px;
+}
+
+.levelsItem {
+  padding: 8px 12px;
+
+  border: 1px solid #12141733;
+  border-radius: 35px;
 }
 
 .btnTrialLesson {
+  margin-top: 48px;
+  padding: 16px 48px;
+  border-radius: 12px;
+  border-radius: 12px;
+  background-color: #f4c550;
+  border: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #121417;
+  cursor: pointer;
 }

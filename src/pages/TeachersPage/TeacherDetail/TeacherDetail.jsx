@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import css from './TeacherDetail.module.css'
+import star from '/src/assets/icons/sprite.svg'
 import { Lesson } from '/src/components/Modal/Lesson/Lesson'
 
 export function TeacherDetail({
@@ -8,32 +9,46 @@ export function TeacherDetail({
   name_review,
   rating,
   review,
+  reviews = [], // Убедитесь, что по умолчанию это массив
+  experience,
+  levels,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Функция для открытия и закрытия модального окна
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
-  console.log({ description, avatar, name_review, rating, review }) // Добавлено для проверки
+  console.log({ description, avatar, name_review, rating, review, reviews }) // Проверка всех пропсов
 
   return (
-    <div className={css.teacherDetailSection}>
-      <p className={css.teacherDescription}>{description}</p>
-      <div className={css.teacherReview}>
-        <div className={css.teacherAvatar}>{avatar}</div>
-        <p className={css.reviewerName}>{name_review}</p>
-        <div className={css.teacherRating}>
-          <svg>Star</svg>
-          <p className={css.ratingValue}>{rating}</p>
-        </div>
+    <div className={css.additionalInfo}>
+      <p className={css.experienceContent}>{experience}</p>
+      {reviews.length > 0 ? (
+        reviews.map((review, index) => (
+          <div key={index} className={css.review}>
+            <p className={css.contentItem}>{review.reviewer_name}</p>
+            <div className={css.teacherRating}>
+              <svg className={css.teacherIcon} aria-label="open book">
+                <use href={`${star}#star`} />
+              </svg>
+              <p className={css.ratingValue}>{review.reviewer_rating}</p>
+            </div>
+            <p className={css.reviewComment}>{review.comment}</p>
+          </div>
+        ))
+      ) : (
+        <p>No reviews available</p>
+      )}
+      <div className={css.levelList}>
+        {levels.map((level, index) => (
+          <p key={index} className={css.levelsItem}>
+            {level}
+          </p>
+        ))}
       </div>
-      <h2 className={css.reviewText}>{review}</h2>
       <button onClick={openModal} type="button" className={css.btnTrialLesson}>
         Book trial lesson
       </button>
-
-      {/* Отображаем модальное окно Lesson, если isModalOpen === true */}
       {isModalOpen && <Lesson onClose={closeModal} />}
     </div>
   )
