@@ -41,8 +41,12 @@ import { TeachersPage } from './pages/TeachersPage/TeachersPage'
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
 import { TeacherDetail } from './pages/TeachersPage/TeacherDetail/TeacherDetail'
 import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
+// import { PrivateRoute } from 'components/routes/PrivateRoute'
+// import { useContext } from 'react'
 
 export default function App() {
+  // const { isAuthenticated } = useContext(AuthContext)
+
   return (
     <div>
       <Routes>
@@ -50,6 +54,15 @@ export default function App() {
         <Route path="/teachers" element={<TeachersPage />} />
         {/* <Route path=":id" element={<TeacherDetail />} />{' '} */}
         <Route path="/teachers/:id" element={<TeacherDetail />} />
+
+        {/* <Route
+          path="/favorites"
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <FavoritesPage />
+            </PrivateRoute>
+          }
+        /> */}
         <Route path="/favorite" element={<FavoritesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
