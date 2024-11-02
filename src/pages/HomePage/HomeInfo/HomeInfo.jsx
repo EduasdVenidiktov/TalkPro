@@ -1,17 +1,21 @@
-import { useState } from 'react'
+// import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import css from './HomeInfo.module.css' // Імпортуєш модульні стилі для інших елементів
-import { Lesson } from '../../../components/Modal/Lesson/Lesson' // Імпорт компоненту Lesson
+// import { Lesson } from '../../../components/Modal/Lesson/Lesson' // Імпорт компоненту Lesson
 
 export function HomeInfo() {
-  const [isLessonOpen, setLessonOpen] = useState(false) // Створюємо стан для контролю видимості модального вікна
+  // const [isLessonOpen, setLessonOpen] = useState(false) // Створюємо стан для контролю видимості модального вікна
+  const navigate = useNavigate()
 
   const handleGetStartedClick = () => {
-    setLessonOpen(true) // Відкриваємо модальне вікно
+    navigate('/teachers')
+
+    // setLessonOpen(true) // Відкриваємо модальне вікно
   }
 
-  const handleCloseLesson = () => {
-    setLessonOpen(false) // Закриваємо модальне вікно
-  }
+  // const handleCloseLesson = () => {
+  //   setLessonOpen(false) // Закриваємо модальне вікно
+  // }
 
   return (
     <div className={css.infoSection}>
@@ -27,7 +31,7 @@ export function HomeInfo() {
       <button className={css.buttonStyle} onClick={handleGetStartedClick}>
         Get started
       </button>
-      {isLessonOpen && <Lesson onClose={handleCloseLesson} />}
+      {/* {isLessonOpen && <Lesson onClose={handleCloseLesson} />} */}
       {/* Відображаємо модальне вікно, якщо isLessonOpen true */}
     </div>
   )

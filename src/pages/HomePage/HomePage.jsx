@@ -3,7 +3,6 @@ import { HomeInfo } from './HomeInfo/HomeInfo'
 import { HomeAvatar } from './HomeAvatar/HomeAvatar'
 import { HomeStat } from './HomeStat/HomeStat'
 import { HomeHeader } from './HomeHeader/HomeHeader'
-// import { Filters } from '../../components/Filters/Filters'
 
 export function HomePage() {
   return (
