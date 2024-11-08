@@ -67,7 +67,11 @@ export function TeachersPage() {
       {/* Перевірка, чи є картки, що відповідають фільтрам */}
       {filteredTeachers.length > 0 ? (
         filteredTeachers.map((teacher) => (
-          <TeacherCard key={teacher.id} {...teacher} />
+          <TeacherCard
+            key={teacher.id}
+            {...teacher}
+            selectedLevel={filters.level} // Передаємо обраний рівень
+          />
         ))
       ) : (
         <p>Немає викладачів, що відповідають обраним фільтрам.</p>
