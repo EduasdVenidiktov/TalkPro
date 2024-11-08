@@ -6,6 +6,12 @@ import { Filters } from '/src/components/Filters/Filters'
 
 export function TeachersPage() {
   const [teachers, setTeachers] = useState([])
+  const [filteredTeachers, setFilteredTeachers] = useState([]) // Доданий стан для фільтрованих викладачів
+  const [filters, setFilters] = useState({
+    language: '',
+    level: '',
+    price: '',
+  })
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -19,6 +25,7 @@ export function TeachersPage() {
             ...data[key],
           }))
           setTeachers(teachersArray)
+          setFilteredTeachers(teachersArray) // Початкове значення фільтрованих викладачів
         } else {
           console.log('Дані не знайдено')
         }
@@ -30,13 +37,41 @@ export function TeachersPage() {
     fetchTeachers()
   }, [])
 
+  useEffect(() => {
+    // Функція для фільтрації викладачів за вибраними фільтрами
+    const applyFilters = () => {
+      const filtered = teachers.filter((teacher) => {
+        const matchesLanguage = filters.language
+          ? teacher.languages.includes(filters.language)
+          : true
+        const matchesLevel = filters.level
+          ? teacher.levels.includes(filters.level)
+          : true
+        const matchesPrice = filters.price
+          ? teacher.price_per_hour <= parseInt(filters.price)
+          : true
+
+        return matchesLanguage && matchesLevel && matchesPrice
+      })
+      setFilteredTeachers(filtered)
+    }
+
+    applyFilters()
+  }, [teachers, filters])
+
   return (
     <div>
       <Link to="/">Go to main page</Link>
-      <Filters />
-      {teachers.map((teacher) => (
-        <TeacherCard key={teacher.id} {...teacher} />
-      ))}
+      <Filters setFilters={setFilters} />
+
+      {/* Перевірка, чи є картки, що відповідають фільтрам */}
+      {filteredTeachers.length > 0 ? (
+        filteredTeachers.map((teacher) => (
+          <TeacherCard key={teacher.id} {...teacher} />
+        ))
+      ) : (
+        <p>Немає викладачів, що відповідають обраним фільтрам.</p>
+      )}
     </div>
   )
 }

@@ -1,9 +1,15 @@
 import { useState } from 'react'
 import css from './LangSwitcher.module.css'
 
-export function LangSwitcher() {
+export function LangSwitcher({ setFilters }) {
   const [selectedLanguage, setSelectedLanguage] = useState('')
   const languages = ['English', 'Spanish', 'French', 'German', 'Italian']
+
+  const handleLanguageChange = (e) => {
+    const language = e.target.value
+    setSelectedLanguage(language)
+    setFilters((prevFilters) => ({ ...prevFilters, language }))
+  }
 
   return (
     <div className={css.langSwitcherSection}>
@@ -13,7 +19,7 @@ export function LangSwitcher() {
       <select
         id="languages"
         value={selectedLanguage}
-        onChange={(e) => setSelectedLanguage(e.target.value)}
+        onChange={handleLanguageChange}
         className={css.selectValue}
       >
         <option value="" disabled>

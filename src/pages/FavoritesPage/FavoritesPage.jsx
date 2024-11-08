@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
+import { Link } from 'react-router-dom'
 
 export function FavoritesPage() {
   // Створюємо стан для зберігання обраних (вибраних) викладачів
@@ -32,6 +33,8 @@ export function FavoritesPage() {
   return (
     <div>
       <h2>Обрані викладачі</h2>
+      <Link to="/">Go to main page</Link>
+
       <div>
         {favoriteCards.length > 0 ? (
           // Якщо є обрані викладачі, виводимо їх у вигляді карток
