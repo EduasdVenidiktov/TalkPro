@@ -22,6 +22,7 @@ export function TeacherCard({
   experience,
   reviews = [],
   onToggleFavorite, // Функция для обновления состояния избранного
+  selectedLevel,
 }) {
   const [showMore, setShowMore] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
@@ -158,7 +159,12 @@ export function TeacherCard({
           {!showMore && (
             <div className={css.levelList}>
               {levels.map((level, index) => (
-                <p key={index} className={css.levelsItem}>
+                <p
+                  key={index}
+                  className={`${css.levelsItem} ${
+                    level === selectedLevel ? css.selectedLevel : ''
+                  }`} // Додаємо клас, якщо рівень збігається з обраним
+                >
                   {level}
                 </p>
               ))}

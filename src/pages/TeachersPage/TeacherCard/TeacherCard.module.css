@@ -4,6 +4,10 @@ body {
 .teacherSection {
 }
 
+.favorite {
+  background-color: #e0ffe0; /* Светло-зеленый фон */
+  border-color: #66cc66; /* Зеленая рамка */
+}
 .teacherCard {
   position: relative;
   display: flex;
@@ -173,6 +177,10 @@ body {
 
   border: 1px solid #12141733;
   border-radius: 35px;
+}
+
+.selectedLevel {
+  background-color: #f4c550;
 }
 
 .btnTrialLesson {
