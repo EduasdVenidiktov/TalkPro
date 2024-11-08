@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import css from './LevelOfKnowledge.module.css'
 
-export function LevelOfKnowledge() {
+export function LevelOfKnowledge({ setFilters }) {
   const [selectedLevel, setSelectedLevel] = useState('')
   const levels = [
     'A1 Beginner',
@@ -10,15 +10,21 @@ export function LevelOfKnowledge() {
     'B2 Upper-Intermediate',
   ]
 
+  const handleLevelChange = (e) => {
+    const level = e.target.value
+    setSelectedLevel(level)
+    setFilters((prevFilters) => ({ ...prevFilters, level }))
+  }
+
   return (
-    <div className={css.LevelOfKnowledgeSection}>
+    <div className={css.levelOfKnowledgeSection}>
       <label htmlFor="levelOfKnowledge" className={css.textLabel}>
         Level of Knowledge
       </label>
       <select
         id="levelOfKnowledge"
         value={selectedLevel}
-        onChange={(e) => setSelectedLevel(e.target.value)}
+        onChange={handleLevelChange}
         className={css.selectValue}
       >
         <option value="" disabled>
