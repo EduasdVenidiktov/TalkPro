@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TeacherCard } from './TeacherCard/TeacherCard'
-import { database, ref, get, child } from '../../firebase/firebase' // Подключите Firebase
+import { database, ref, get, child } from '../../firebase/firebase'
 import { Filters } from '/src/components/Filters/Filters'
+import css from './TeachersPage.module.css'
 
-export function TeachersPage() {
-  const [teachers, setTeachers] = useState([])
-  const [filteredTeachers, setFilteredTeachers] = useState([]) // Доданий стан для фільтрованих викладачів
+export default function TeachersPage() {
+  const [teachers, setTeachers] = useState([]) // Стан для всіх викладачів
+  const [filteredTeachers, setFilteredTeachers] = useState([]) // Стан для фільтрованих викладачів
+  const [visibleTeachers, setVisibleTeachers] = useState(4) // Стан для кількості видимих карток
   const [filters, setFilters] = useState({
     language: '',
     level: '',
@@ -25,7 +27,7 @@ export function TeachersPage() {
             ...data[key],
           }))
           setTeachers(teachersArray)
-          setFilteredTeachers(teachersArray) // Початкове значення фільтрованих викладачів
+          setFilteredTeachers(teachersArray) // Початково всі викладачі — це фільтровані
         } else {
           console.log('Дані не знайдено')
         }
@@ -38,7 +40,7 @@ export function TeachersPage() {
   }, [])
 
   useEffect(() => {
-    // Функція для фільтрації викладачів за вибраними фільтрами
+    // Фільтрація викладачів
     const applyFilters = () => {
       const filtered = teachers.filter((teacher) => {
         const matchesLanguage = filters.language
@@ -59,21 +61,64 @@ export function TeachersPage() {
     applyFilters()
   }, [teachers, filters])
 
+  const handleLoadMore = () => {
+    setVisibleTeachers((prevVisible) => prevVisible + 4)
+    setTimeout(() => {
+      // Находим все карточки на странице
+      const cards = document.querySelectorAll('.card') // Используйте общий класс для всех карточек
+      if (cards.length > 0) {
+        // Вычисляем максимальную высоту карточки
+        const maxCardHeight = Math.max(
+          ...Array.from(cards).map((card) => card.offsetHeight)
+        )
+
+        // Прокручиваем на высоту двух карточек
+        window.scrollBy({
+          top: maxCardHeight * 3,
+          behavior: 'smooth',
+        })
+      } else {
+        // Если карточки не найдены, можно задать стандартную высоту
+        window.scrollBy({
+          top: 700, // Стандартное значение, если карточки не найдены
+          behavior: 'smooth',
+        })
+      }
+    }, 200) // Задержка для рендеринга
+    // // Прокрутка вверх на высоту двух карточек
+    // setTimeout(() => {
+    //   const scrollDistance =
+    //     document.querySelector('.teacherCard')?.offsetHeight * 2 || 700
+    //   window.scrollBy({
+    //     top: scrollDistance,
+    //     behavior: 'smooth',
+    //   })
+    // }, 200) // Небольшая задержка для выполнения рендеринга перед прокруткой
+  }
+
   return (
     <div>
       <Link to="/">Go to main page</Link>
       <Filters setFilters={setFilters} />
 
-      {/* Перевірка, чи є картки, що відповідають фільтрам */}
-      {filteredTeachers.length > 0 ? (
-        filteredTeachers.map((teacher) => (
-          <TeacherCard
-            key={teacher.id}
-            {...teacher}
-            selectedLevel={filters.level} // Передаємо обраний рівень
-          />
-        ))
-      ) : (
+      {/* Відображення фільтрованих карток, обмежених значенням visibleTeachers */}
+      {filteredTeachers.slice(0, visibleTeachers).map((teacher) => (
+        <TeacherCard
+          key={teacher.id}
+          {...teacher}
+          selectedLevel={filters.level}
+        />
+      ))}
+
+      {/* Кнопка "Load more" з умовою */}
+      {visibleTeachers < filteredTeachers.length && (
+        <button onClick={handleLoadMore} className={css.btnLoadMore}>
+          Load more
+        </button>
+      )}
+
+      {/* Повідомлення, якщо немає результатів за фільтрами */}
+      {filteredTeachers.length === 0 && (
         <p>Немає викладачів, що відповідають обраним фільтрам.</p>
       )}
     </div>

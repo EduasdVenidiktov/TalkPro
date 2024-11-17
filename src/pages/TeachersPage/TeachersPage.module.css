@@ -3,3 +3,21 @@
   padding-left: 128px;
   padding-right: 128px;
 }
+
+.btnLoadMore {
+  background-color: #f4c550;
+  padding: 16px 48px;
+  border-radius: 12px;
+  color: #121417;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 96px;
+  margin-left: 50%;
+}
+
+.btnLoadMore:hover {
+  background-color: #ffdc86;
+}
