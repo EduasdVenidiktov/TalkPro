@@ -17,11 +17,12 @@
   padding: 14px 18px;
   border-radius: 14px;
   cursor: pointer;
+
+  outline: none; /* убирает рамку фокуса */
 }
 
-/* .selectValue:hover {
-  border: 1px solid rgb(0, 255, 30);
-  color: black; 
+/* .selectValue:focus {
+  border: 1px solid red;
 } */
 
 /* Скрываем разделитель между значением и значком */

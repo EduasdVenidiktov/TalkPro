@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import css from './NotFoundPage.module.css'
 
-export function NotFoundPage() {
+export default function NotFoundPage() {
   return (
     <div className={css.containerNotFound}>
       <h1 className={css.titleNotFound}>Oooops, something went wrong!</h1>

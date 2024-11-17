@@ -4,7 +4,7 @@ import { HomeAvatar } from './HomeAvatar/HomeAvatar'
 import { HomeStat } from './HomeStat/HomeStat'
 import { HomeHeader } from './HomeHeader/HomeHeader'
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <div className={css.container}>
       <HomeHeader />

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
 import { Link } from 'react-router-dom'
 
-export function FavoritesPage() {
+export default function FavoritesPage() {
   // Створюємо стан для зберігання обраних (вибраних) викладачів
   const [favoriteCards, setFavoriteCards] = useState([])
 

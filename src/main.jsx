@@ -49,8 +49,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // <Provider store={store}>
   <BrowserRouter>
     {/* <PersistGate loading={null} persistor={persistor}>
-        <FavoritesProvider> */}
+        <FavoritesProvider> */}{' '}
+    {/* <React.StrictMode> */}
     <App />
+    {/* </React.StrictMode> */}
     {/* </FavoritesProvider>
       </PersistGate> */}
   </BrowserRouter>

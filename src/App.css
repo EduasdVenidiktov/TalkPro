@@ -5,6 +5,14 @@
   /* text-align: center; */
 }
 
+body.main-page {
+  background-color: white; /* Белый фон для главной страницы */
+}
+
+body.teacher-page {
+  background-color: #f8f8f8; /* Розовый фон для страницы TeacherPage */
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;

@@ -4,11 +4,6 @@ import star from '/src/assets/icons/sprite.svg'
 import { Lesson } from '/src/components/Modal/Lesson/Lesson'
 
 export function TeacherDetail({
-  description,
-  avatar,
-  name_review,
-  rating,
-  review,
   reviews = [], // Убедитесь, что по умолчанию это массив
   experience,
   levels,
@@ -18,7 +13,7 @@ export function TeacherDetail({
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
-  console.log({ description, avatar, name_review, rating, review, reviews }) // Проверка всех пропсов
+  console.log(reviews) // Проверка данных рецензий
 
   return (
     <div className={css.additionalInfo}>
@@ -26,9 +21,18 @@ export function TeacherDetail({
       {reviews.length > 0 ? (
         reviews.map((review, index) => (
           <div key={index} className={css.review}>
+            <img
+              src={review.reviewer_avatar_url}
+              alt={`${review.reviewer_name} avatar`}
+              className={css.reviewerAvatar}
+              onError={(e) => {
+                console.error('Error loading image:', e.target.src)
+                e.target.src = '/path/to/default/avatar.jpg' // Добавьте запасной аватар для тестирования
+              }}
+            />
             <p className={css.contentItem}>{review.reviewer_name}</p>
             <div className={css.teacherRating}>
-              <svg className={css.teacherIcon} aria-label="open book">
+              <svg className={css.teacherIcon} aria-label="star">
                 <use href={`${star}#star`} />
               </svg>
               <p className={css.ratingValue}>{review.reviewer_rating}</p>
