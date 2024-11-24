@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TeacherCard } from './TeacherCard/TeacherCard'
-import { database, ref, get, child } from '../../firebase/firebase'
+import teachersData from '../../data/teachers.json' // Импорт JSON
+
+// import { database, ref, get, child } from '../../firebase/firebase'
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
 
@@ -14,30 +16,42 @@ export default function TeachersPage() {
     level: '',
     price: '',
   })
-
   useEffect(() => {
-    const fetchTeachers = async () => {
-      const dbRef = ref(database)
-      try {
-        const snapshot = await get(child(dbRef, 'teachers'))
-        if (snapshot.exists()) {
-          const data = snapshot.val()
-          const teachersArray = Object.keys(data).map((key) => ({
-            id: key,
-            ...data[key],
-          }))
-          setTeachers(teachersArray)
-          setFilteredTeachers(teachersArray) // Початково всі викладачі — це фільтровані
-        } else {
-          console.log('Дані не знайдено')
-        }
-      } catch (error) {
-        console.error('Помилка при отриманні даних:', error)
-      }
+    // Загрузка данных из teachers.json
+    const fetchTeachers = () => {
+      const teachersArray = teachersData.map((teacher, index) => ({
+        id: index + 1, // Добавляем уникальный ID, если его нет
+        ...teacher,
+      }))
+      setTeachers(teachersArray)
+      setFilteredTeachers(teachersArray) // Початково всі викладачі — це фільтровані
     }
-
     fetchTeachers()
   }, [])
+  //                  DATA Firebase
+  // useEffect(() => {
+  //   const fetchTeachers = async () => {
+  //     const dbRef = ref(database)
+  //     try {
+  //       const snapshot = await get(child(dbRef, 'teachers'))
+  //       if (snapshot.exists()) {
+  //         const data = snapshot.val()
+  //         const teachersArray = Object.keys(data).map((key) => ({
+  //           id: key,
+  //           ...data[key],
+  //         }))
+  //         setTeachers(teachersArray)
+  //         setFilteredTeachers(teachersArray) // Початково всі викладачі — це фільтровані
+  //       } else {
+  //         console.log('Дані не знайдено')
+  //       }
+  //     } catch (error) {
+  //       console.error('Помилка при отриманні даних:', error)
+  //     }
+  //   }
+
+  //   fetchTeachers()
+  // }, [])
 
   useEffect(() => {
     // Фільтрація викладачів
@@ -84,16 +98,7 @@ export default function TeachersPage() {
           behavior: 'smooth',
         })
       }
-    }, 200) // Задержка для рендеринга
-    // // Прокрутка вверх на высоту двух карточек
-    // setTimeout(() => {
-    //   const scrollDistance =
-    //     document.querySelector('.teacherCard')?.offsetHeight * 2 || 700
-    //   window.scrollBy({
-    //     top: scrollDistance,
-    //     behavior: 'smooth',
-    //   })
-    // }, 200) // Небольшая задержка для выполнения рендеринга перед прокруткой
+    }, 200)
   }
 
   return (
