@@ -1,3 +1,7 @@
 .linkGoToMain {
   margin-bottom: 20px;
 }
+
+.selectedLevel {
+  background-color: #f4c550;
+}
