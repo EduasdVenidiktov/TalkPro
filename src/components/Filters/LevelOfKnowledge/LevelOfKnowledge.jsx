@@ -1,8 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import css from './LevelOfKnowledge.module.css'
 
 export function LevelOfKnowledge({ setFilters }) {
-  const [selectedLevel, setSelectedLevel] = useState('')
   const levels = [
     'A1 Beginner',
     'A2 Elementary',
@@ -12,10 +11,30 @@ export function LevelOfKnowledge({ setFilters }) {
     'C2 Proficient',
   ]
 
+  // Состояние для выбранного уровня
+  const [selectedLevel, setSelectedLevel] = useState(null)
+
+  // Загрузка состояния из localStorage при монтировании компонента
+  useEffect(() => {
+    const savedLevel = localStorage.getItem('selectedLevel')
+    if (savedLevel) {
+      setSelectedLevel(savedLevel)
+    } else {
+      setSelectedLevel(levels[0]) // Если нет сохранённого уровня, выбираем первый
+    }
+  }, [])
+
+  // Сохраняем уровень в localStorage при его изменении
+  useEffect(() => {
+    if (selectedLevel) {
+      localStorage.setItem('selectedLevel', selectedLevel)
+      setFilters((prevFilters) => ({ ...prevFilters, level: selectedLevel }))
+    }
+  }, [selectedLevel, setFilters]) // Этот useEffect сработает при изменении selectedLevel
+
   const handleLevelChange = (e) => {
     const level = e.target.value
     setSelectedLevel(level)
-    setFilters((prevFilters) => ({ ...prevFilters, level }))
   }
 
   return (
@@ -25,15 +44,16 @@ export function LevelOfKnowledge({ setFilters }) {
       </label>
       <select
         id="levelOfKnowledge"
-        value={selectedLevel}
+        value={selectedLevel || ''}
         onChange={handleLevelChange}
         className={css.selectValue}
       >
-        <option value="" disabled>
-          Select a level
-        </option>
         {levels.map((level, index) => (
-          <option key={index} value={level}>
+          <option
+            key={index}
+            value={level}
+            className={level === selectedLevel ? css.selectedLevel : ''}
+          >
             {level}
           </option>
         ))}
