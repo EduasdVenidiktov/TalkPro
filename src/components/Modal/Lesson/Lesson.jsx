@@ -6,25 +6,18 @@ import {
 } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { handleEscapeKey } from '../../../utils/utils'
 import css from './Lesson.module.css'
-import { LuEyeOff } from 'react-icons/lu'
 import close from '/src/assets/icons/sprite.svg'
 import { ReasonBox } from './ReasonBox/ReasonBox'
+import { lessonValidationSchema } from '../../../validation/validationSchema'
 
-// Валідаційна схема
-const lessonValidationSchema = yup.object().shape({
-  name: yup.string().required('Full name is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
-})
+import { toast } from 'react-toastify' // Для уведомлений
+import { useNavigate } from 'react-router-dom' // Для перенаправления
 
-export function Lesson({ onClose, avatar_url }) {
+export function Lesson({ onClose, avatar_url, name, surname }) {
   const auth = getAuth()
+  const navigate = useNavigate() // Инициализация navigate для перенаправления
 
   // Добавляем только обработчик для Escape
   useEffect(() => {
@@ -52,11 +45,23 @@ export function Lesson({ onClose, avatar_url }) {
       const user = userCredential.user
 
       await updateProfile(user, { displayName: data.name })
-      alert('Користувач зареєстрований:', user)
+      // alert('Користувач зареєстрований:', user)
+      toast.success('Користувач зареєстрований!') // Уведомление об успешной регистрации
+
+      navigate('/logIn')
+
+      reset({
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+      }) // Очищаем форму
 
       onClose()
     } catch (error) {
       alert('Помилка при реєстрації:', error.message)
+      console.error('Error during registration:', error) // Додаткове логування
+
+      toast.error('Помилка при реєстрації: ' + error.message) // Уведомление о ошибке
     }
   }
 
@@ -64,90 +69,88 @@ export function Lesson({ onClose, avatar_url }) {
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(lessonValidationSchema),
   })
 
-  const showPassword = watch('showPassword')
-
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.lessonSection}>
-        <svg
-          className={css.closeIcon}
-          aria-label="close registration Icon"
-          onClick={onClose}
-        >
-          <use href={`${close}#close`} />
-        </svg>
+        <div className={css.lessonContent}>
+          <svg
+            className={css.closeIcon}
+            aria-label="close registration Icon"
+            onClick={onClose}
+          >
+            <use href={`${close}#close`} />
+          </svg>
 
-        <h1 className={css.title}>Book trial lesson</h1>
-        <p className={css.text}>
-          Our experienced tutor will assess your current language level, discuss
-          your learning goals, and tailor the lesson to your specific needs.
-        </p>
+          <h1 className={css.title}>Book trial lesson</h1>
+          <p className={css.text}>
+            Our experienced tutor will assess your current language level,
+            discuss your learning goals, and tailor the lesson to your specific
+            needs.
+          </p>
 
-        <div className={css.teacherBox}>
-          <p className={css.titleTeacher}>Your teacher</p>
-          <div className={css.teacherInfo}>
-            <img src={avatar_url} alt="Teacher's avatar" />
-            <h2 className={css.nameTeacher}>Jane Smith</h2>
-          </div>
-        </div>
-
-        <div className={css.reasonBox}>
-          <ReasonBox />
-        </div>
-
-        <form onSubmit={handleSubmit(handleRegister)}>
-          <div className={css.inputWrapper}>
-            <input
-              type="text"
-              placeholder="Full name"
-              className={css.inputField}
-              {...register('name')}
+          <div className={css.teacherBox}>
+            <img
+              src={avatar_url}
+              alt="Teacher's avatar"
+              className={css.teacherImage}
             />
-            {errors.name && (
-              <div className={css.error}>{errors.name.message}</div>
-            )}
+            <div className={css.teacherInfo}>
+              <p className={css.titleTeacher}>Your teacher</p>
 
-            <input
-              type="email"
-              placeholder="Email"
-              className={css.inputField}
-              {...register('email')}
-            />
-            {errors.email && (
-              <div className={css.error}>{errors.email.message}</div>
-            )}
-
-            <div className={css.passwordContainer}>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                className={css.inputField}
-                {...register('password')}
-              />
-              <button
-                type="button"
-                onClick={() => setValue('showPassword', !showPassword)}
-                className={css.eyeIcon}
-              >
-                <LuEyeOff size={20} />
-              </button>
+              <p className={css.nameTeacher}>{`${name} ${surname}`}</p>
             </div>
-            {errors.password && (
-              <div className={css.error}>{errors.password.message}</div>
-            )}
           </div>
 
-          <button type="submit" className={css.btnSignIn}>
-            Sign Up
-          </button>
-        </form>
+          <div className={css.reasonBox}>
+            <ReasonBox />
+          </div>
+
+          <form onSubmit={handleSubmit(handleRegister)}>
+            <div className={css.inputWrapper}>
+              <input
+                type="text"
+                placeholder="Full name"
+                className={css.inputField}
+                {...register('fullName')}
+              />
+              {errors.fullName && (
+                <div className={css.error}>{errors.fullName.message}</div>
+              )}
+
+              <input
+                type="email"
+                placeholder="Email"
+                className={css.inputField}
+                {...register('email')}
+              />
+              {errors.email && (
+                <div className={css.error}>{errors.email.message}</div>
+              )}
+
+              <div className={css.passwordContainer}>
+                <input
+                  type="tel" // Тип для ввода номера телефона
+                  placeholder="Phone number" // Плейсхолдер с текстом "Phone number"
+                  className={css.inputField}
+                  {...register('phoneNumber')} // Здесь предполагается, что в форме используется поле 'phoneNumber'
+                />
+              </div>
+              {errors.phoneNumber && ( // Используем 'phoneNumber' для отображения ошибки
+                <div className={css.error}>{errors.phoneNumber.message}</div>
+              )}
+            </div>
+
+            <button type="submit" className={css.btnSignIn}>
+              Book
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

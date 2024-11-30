@@ -18,6 +18,12 @@
   margin: 0;
 }
 
+.active {
+  color: aqua;
+  font-weight: bold; /* Выделение жирным */
+  border-bottom: 2px solid #1c1c1b; /* Подчеркивание */
+}
+
 .link {
   color: rgb(36, 21, 244);
   text-decoration: none;
@@ -25,9 +31,9 @@
   transition: color 0.3s;
 }
 
-.link.active h2 {
+/* .link.active h2 {
   color: red;
-}
+} */
 
 .navButton :hover {
   /* font-size: 1.02em; */

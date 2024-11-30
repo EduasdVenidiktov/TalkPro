@@ -9,22 +9,29 @@
   justify-content: center;
   z-index: 1000; /* Значение выше других элементов */
   background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон */
+  box-sizing: border-box; /* Учитываем padding в ширину/высоту */
 }
 
 .lessonSection {
-  /* box-sizing: border-box; */
+  transform: scale(0.7); /* Уменьшаем масштаб на 90% */
+
+  /* box-sizing: content-box; */
   display: flex;
   flex-direction: column;
-  max-height: 96vh;
+  justify-content: space-between; /* Разделяет содержимое на верхнюю и нижнюю части */
+
+  /* max-height: 80vh; */
   max-width: 600px;
   background-color: white;
   border-radius: 30px;
-  /* padding: 64px; */
-  padding: 64px 64px; /* Левый и правый padding */
+  padding: 64px;
+  /* margin: 64px; */
 
   color: #121417cc;
-  position: relative;
+  /* position: relative; */
   /* margin-top: 20px; */
+}
+.lessonContent {
 }
 
 .closeIcon {
@@ -59,6 +66,14 @@
   padding-bottom: 40px;
 }
 
+.teacherImage {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 14px;
+}
+
 .titleTeacher {
   font-size: 12px;
   font-weight: 500;
@@ -66,10 +81,10 @@
   color: #8a8a89;
 }
 
-.tacherInfo {
+/* .tacherInfo {
   display: flex;
   align-items: center;
-}
+} */
 
 .nameTeacher {
   font-size: 16px;
@@ -88,7 +103,7 @@
 .inputField {
   width: 100%;
   padding: 16px;
-  box-sizing: border-box; /* Чтобы padding не влиял на общую ширину input */
+  box-sizing: border-box;
   border: 1px solid #1214171a;
   border-radius: 12px;
   font-size: 16px;
@@ -138,7 +153,6 @@
 .eyeIcon svg {
   width: 20px;
   height: 20px;
-  padding: 18px;
 }
 
 /* .backdrop {

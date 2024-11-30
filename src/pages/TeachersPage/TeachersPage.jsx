@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { TeacherCard } from './TeacherCard/TeacherCard'
 import teachersData from '../../data/teachers.json' // Импорт JSON
 
 // import { database, ref, get, child } from '../../firebase/firebase'
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
+import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
+// import { Navigate } from 'react-router-dom'
 
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([]) // Стан для всіх викладачів
@@ -16,6 +17,7 @@ export default function TeachersPage() {
     level: '',
     price: '',
   })
+
   useEffect(() => {
     // Загрузка данных из teachers.json
     const fetchTeachers = () => {
@@ -101,9 +103,15 @@ export default function TeachersPage() {
     }, 200)
   }
 
+  // const isLoggedIn = !!localStorage.getItem('authToken') // Проверяем, есть ли токен
+
+  // if (!isLoggedIn) {
+  //   return <Navigate to="/" replace /> // Перенаправляем на главную страницу
+  // }
+
   return (
     <div>
-      <Link to="/">Go to main page</Link>
+      <HomeHeader />
       <Filters setFilters={setFilters} />
 
       {/* Відображення фільтрованих карток, обмежених значенням visibleTeachers */}

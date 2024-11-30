@@ -1,5 +1,14 @@
-.linkGoToMain {
-  margin-bottom: 20px;
+.favoritesPage {
+  background-color: #f8f8f8; /* Установите желаемый цвет */
+  width: 1440px;
+}
+
+.levelList {
+  background-color: blue;
+}
+
+.levelsItem {
+  background-color: aqua;
 }
 
 .selectedLevel {
