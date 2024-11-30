@@ -22,13 +22,17 @@
   height: 24px;
   right: 24px;
   top: 24px;
-}
 
-.heartIcon {
   color: gray; /* Цвет по умолчанию */
   transition: color 0.3s; /* Плавный переход цвета */
   cursor: pointer;
 }
+
+/* .heartIcon {
+  color: gray;
+  transition: color 0.3s; 
+  cursor: pointer;
+} */
 
 .heartIcon.favorited {
   color: #f4c550; /* Цвет, когда вчитель в избранном */

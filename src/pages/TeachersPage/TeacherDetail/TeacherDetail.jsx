@@ -8,6 +8,9 @@ export function TeacherDetail({
   experience,
   levels,
   selectedLevel,
+  avatar_url,
+  name,
+  surname,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -64,7 +67,14 @@ export function TeacherDetail({
       <button onClick={openModal} type="button" className={css.btnTrialLesson}>
         Book trial lesson
       </button>
-      {isModalOpen && <Lesson onClose={closeModal} />}
+      {isModalOpen && (
+        <Lesson
+          onClose={closeModal}
+          avatar_url={avatar_url}
+          name={name}
+          surname={surname}
+        />
+      )}
     </div>
   )
 }

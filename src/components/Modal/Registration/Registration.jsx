@@ -52,6 +52,10 @@ export function Registration({ onClose }) {
       const user = userCredential.user
 
       await updateProfile(user, { displayName: values.name })
+
+      const token = await user.getIdToken() // Отримання токена
+      localStorage.setItem('authToken', token) // Збереження токена
+
       alert('Користувач зареєстрований:', user)
 
       onClose()

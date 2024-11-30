@@ -42,6 +42,7 @@ import './App.css'
 // import { TeacherDetail } from './pages/TeachersPage/TeacherDetail/TeacherDetail'
 // import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
 import { lazy, Suspense, useEffect } from 'react'
+import { PrivateRoute } from './components/routes/PrivateRoute'
 // import { PrivateRoute } from 'components/routes/PrivateRoute'
 // import { useContext } from 'react'
 
@@ -86,7 +87,14 @@ export default function App() {
             </PrivateRoute>
           }
         /> */}
-          <Route path="/favorite" element={<FavoritesPage />} />
+          <Route
+            path="/favorite"
+            element={
+              <PrivateRoute>
+                <FavoritesPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

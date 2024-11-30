@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import css from './HomeHeader.module.css'
 import ukraine from '../../../assets/icons/sprite.svg'
-import logIn from '../../../assets/icons/sprite.svg'
+import logOut from '../../../assets/icons/sprite.svg'
 import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
-import { Link } from 'react-router-dom' // Імпорт Link для навігації
+import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 
 export function HomeHeader() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
+
+  const navigate = useNavigate()
 
   const handleLogInClick = () => {
     setIsLogInOpen(true)
@@ -22,6 +24,18 @@ export function HomeHeader() {
     setIsLogInOpen(false)
     setIsRegistrationOpen(false)
   }
+
+  const handleLogOut = () => {
+    localStorage.clear() // Полностью очищаем localStorage
+    sessionStorage.clear() // Полностью очищаем sessionStorage
+    navigate('/') // Перенаправляем на главную
+  }
+
+  // const handleLogOut = () => {
+  //   localStorage.removeItem('authToken') // Удаляем токен из localStorage
+  //   sessionStorage.removeItem('authToken') // Также можно очистить sessionStorage
+  //   navigate('/') // Перенаправляем на главную страницу
+  // }
 
   return (
     <div className={css.headerBox}>
@@ -57,11 +71,11 @@ export function HomeHeader() {
       <ul className={css.regAuthMenu}>
         <li>
           <svg
-            className={css.logIn}
+            className={css.logOut}
             aria-label="Log In Icon"
-            onClick={handleLogInClick}
+            onClick={handleLogOut}
           >
-            <use href={`${logIn}#logIn`} />
+            <use href={`${logOut}#logOut`} />
           </svg>
         </li>
         <li>

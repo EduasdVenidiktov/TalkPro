@@ -1,16 +1,26 @@
 #root {
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
+
+  /* transform: scale(0.9); */
+
   /* padding: 2rem; */
   /* text-align: center; */
 }
+body {
+  height: 100%; /* Ограничиваем максимальную высоту */
+}
 
 body.main-page {
-  background-color: white; /* Белый фон для главной страницы */
+  background-color: white;
 }
 
 body.teacher-page {
   background-color: #f8f8f8; /* Розовый фон для страницы TeacherPage */
+}
+
+body.favorites-page {
+  background-color: #f8f8f8; /* Розовый фон для страницы FavoritePage */
 }
 
 /* .logo {

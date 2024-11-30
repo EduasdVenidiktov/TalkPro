@@ -41,15 +41,22 @@ export function LogIn({ onClose }) {
         values.email,
         values.password
       )
+      const token = await userCredential.user.getIdToken() // Отримання токена
+      localStorage.setItem('authToken', token) // Збереження токена
+
       alert('Користувач увійшов:', userCredential.user)
       onClose()
     } catch (error) {
-      alert('Помилка при вході:', error.message)
+      alert('Помилка при вході:', error.code)
     }
   }
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
+    // <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
+    <div
+      className={css.backdrop}
+      onClick={(e) => handleBackdropClick(e, onClose)}
+    >
       <div className={css.LoginSection}>
         <svg
           className={css.closeIcon}

@@ -42,7 +42,7 @@
 .inputField {
   width: 100%;
   padding: 16px;
-  box-sizing: border-box; /* Чтобы padding не влиял на общую ширину input */
+  /* box-sizing: border-box;  */
   border: 1px solid #1214171a;
   border-radius: 12px;
   font-size: 16px;
@@ -61,7 +61,7 @@
   width: 100%;
   background-color: #f4c550;
   border-radius: 12px;
-  padding: 16px 194px;
+  padding: 16px;
   border: none;
   color: #121417;
   font-size: 18px;
@@ -92,7 +92,7 @@
 .eyeIcon svg {
   width: 20px;
   height: 20px;
-  padding: 18px;
+  color: currentColor;
 }
 
 .backdrop {

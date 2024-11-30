@@ -1,9 +1,25 @@
 import { useEffect, useState } from 'react'
 import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import css from './FavoritesPage.module.css'
+import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 
-export default function FavoritesPage() {
+export default function FavoritesPage({ levels }) {
   const [favoriteCards, setFavoriteCards] = useState([])
+
+  const location = useLocation()
+  console.log('Location State:', location.state) // Проверьте, что здесь есть selectedLevel
+
+  const selectedLevel = localStorage.getItem('selectedLevel') || ''
+
+  useEffect(() => {
+    document.body.className = 'favorites-page' // Установить класс для страницы
+
+    // Очистка при размонтировании
+    return () => {
+      document.body.className = '' // Сбросить класс
+    }
+  })
 
   useEffect(() => {
     // Отримуємо обраних викладачів з localStorage
@@ -22,9 +38,8 @@ export default function FavoritesPage() {
   }
 
   return (
-    <div>
-      <h2>Обрані викладачі</h2>
-      <Link to="/">Go to main page</Link>
+    <div className={css.favoritesPage}>
+      <HomeHeader />
 
       <div>
         {favoriteCards.length > 0 ? (
@@ -39,6 +54,18 @@ export default function FavoritesPage() {
         ) : (
           <p>У вас поки немає обраних викладачів.</p>
         )}
+      </div>
+      <div className={css.levelList}>
+        {(levels || []).map((level, index) => (
+          <p
+            key={index}
+            className={`${css.levelsItem} ${
+              level === selectedLevel ? css.selectedLevel : ''
+            }`}
+          >
+            {level}
+          </p>
+        ))}
       </div>
     </div>
   )

@@ -291,6 +291,14 @@ export function TeacherCard({
   }, [id])
 
   const handleHeartClick = () => {
+    const isLoggedIn = !!localStorage.getItem('idToken')
+    console.log('authToken in localStorage:', localStorage.getItem('authToken'))
+
+    if (!isLoggedIn) {
+      alert('Этот функционал доступен только для авторизованных пользователей')
+      return
+    }
+
     const updatedStatus = !isFavorite
     setIsFavorite(updatedStatus)
 
@@ -392,7 +400,9 @@ export function TeacherCard({
             {showMore && (
               <TeacherDetail
                 description={lesson_info}
-                avatar={avatar_url}
+                avatar_url={avatar_url}
+                name={name}
+                surname={surname}
                 name_review={name}
                 rating={rating}
                 reviews={reviews}
