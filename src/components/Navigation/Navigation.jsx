@@ -6,7 +6,7 @@ const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active)
 }
 
-const isLoggedIn = !!localStorage.getItem('authToken') // Проверяем наличие токена
+const isLoggedIn = !!localStorage.getItem('userToken') // Проверяем наличие токена
 
 function Navigation() {
   if (!isLoggedIn) {

@@ -26,16 +26,11 @@ export function HomeHeader() {
   }
 
   const handleLogOut = () => {
-    localStorage.clear() // Полностью очищаем localStorage
-    sessionStorage.clear() // Полностью очищаем sessionStorage
+    localStorage.removeItem('userToken') // Удаляем токен из localStorage
+    sessionStorage.clear() // Повністю очищаємо sessionStorage, якщо воно використовується лише для тимчасових даних
     navigate('/') // Перенаправляем на главную
+    alert('Користувач вийшов')
   }
-
-  // const handleLogOut = () => {
-  //   localStorage.removeItem('authToken') // Удаляем токен из localStorage
-  //   sessionStorage.removeItem('authToken') // Также можно очистить sessionStorage
-  //   navigate('/') // Перенаправляем на главную страницу
-  // }
 
   return (
     <div className={css.headerBox}>
