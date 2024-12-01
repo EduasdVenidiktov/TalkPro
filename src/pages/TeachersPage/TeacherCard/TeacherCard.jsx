@@ -291,13 +291,13 @@ export function TeacherCard({
   }, [id])
 
   const handleHeartClick = () => {
-    const isLoggedIn = !!localStorage.getItem('idToken')
-    console.log('authToken in localStorage:', localStorage.getItem('authToken'))
+    // const isLoggedIn = !!localStorage.getItem('idToken')
+    // console.log('authToken in localStorage:', localStorage.getItem('authToken'))
 
-    if (!isLoggedIn) {
-      alert('Этот функционал доступен только для авторизованных пользователей')
-      return
-    }
+    // if (!isLoggedIn) {
+    //   alert('Этот функционал доступен только для авторизованных пользователей')
+    //   return
+    // }
 
     const updatedStatus = !isFavorite
     setIsFavorite(updatedStatus)

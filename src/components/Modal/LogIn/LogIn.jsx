@@ -42,10 +42,10 @@ export function LogIn({ onClose }) {
         values.password
       )
       const token = await userCredential.user.getIdToken() // Отримання токена
-      localStorage.setItem('authToken', token) // Збереження токена
+      localStorage.setItem('userToken', token) // Збереження токена
 
-      alert('Користувач увійшов:', userCredential.user)
       onClose()
+      alert('Користувач увійшов:', userCredential.user)
     } catch (error) {
       alert('Помилка при вході:', error.code)
     }

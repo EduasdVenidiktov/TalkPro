@@ -50,18 +50,18 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
 
       navigate('/logIn')
 
+      onClose()
+    } catch (error) {
+      alert('Помилка при реєстрації:', error.message)
+
       reset({
         fullName: '',
         email: '',
         phoneNumber: '',
       }) // Очищаем форму
-
-      onClose()
-    } catch (error) {
-      alert('Помилка при реєстрації:', error.message)
       console.error('Error during registration:', error) // Додаткове логування
 
-      toast.error('Помилка при реєстрації: ' + error.message) // Уведомление о ошибке
+      // toast.error('Помилка при реєстрації: ' + error.message) // Уведомление о ошибке
     }
   }
 
