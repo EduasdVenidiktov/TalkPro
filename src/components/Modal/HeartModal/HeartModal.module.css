@@ -1,5 +1,79 @@
 .modalSection {
   max-width: 565px;
+  border-radius: 30px;
+  padding: 64px;
+  color: #121417cc;
+  position: relative;
+  background-color: white;
+
+  /* background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center; */
+}
+
+.backdrop {
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 20px; /* Расстояние от верхнего края */
+  right: 20px; /* Расстояние от правого края */
+  cursor: pointer;
+  stroke: #121417;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleText {
+  margin-bottom: 20px;
+}
+
+.modalButton {
+  margin-top: 48px;
+  padding: 16px 48px;
+  border-radius: 28px;
+  background-color: #f4c550;
+  border: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #121417;
+  cursor: pointer;
+}
+
+.modalButton:hover {
+  transition: background-color 0.4s ease; /* Плавний перехід */
+  background-color: #ffdc86;
+}
+
+.modalSection {
+  max-width: 565px;
 
   /* box-sizing: content-box; */
   border-radius: 30px;
