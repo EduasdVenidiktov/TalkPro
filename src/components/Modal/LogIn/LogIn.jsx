@@ -53,11 +53,8 @@ export function LogIn({ onClose }) {
 
   return (
     // <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
-    <div
-      className={css.backdrop}
-      onClick={(e) => handleBackdropClick(e, onClose)}
-    >
-      <div className={css.LoginSection}>
+    <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
+      <div className={css.modalSection}>
         <svg
           className={css.closeIcon}
           aria-label="close log in Icon"
@@ -109,109 +106,3 @@ export function LogIn({ onClose }) {
     </div>
   )
 }
-
-// import { useEffect } from 'react'
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-// import { Formik, Form, Field, ErrorMessage } from 'formik'
-// import { loginValidationSchema } from '../../../validation/validationSchema'
-// import css from './LogIn.module.css'
-// import close from '../../../assets/icons/sprite.svg'
-// import { LuEyeOff } from 'react-icons/lu'
-// import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
-
-// export function LogIn({ onClose }) {
-//   const auth = getAuth()
-
-//   useEffect(() => {
-//     const handleEscape = handleEscapeKey(onClose)
-//     document.addEventListener('keydown', handleEscape)
-//     return () => document.removeEventListener('keydown', handleEscape)
-//   }, [onClose])
-
-//   const handleLogin = async (values) => {
-//     try {
-//       const userCredential = await signInWithEmailAndPassword(
-//         auth,
-//         values.email,
-//         values.password
-//       )
-//       alert('Користувач увійшов:', userCredential.user)
-//       onClose()
-//     } catch (error) {
-//       alert('Помилка при вході:', error.message)
-//     }
-//   }
-
-//   return (
-//     <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
-//       <div className={css.LoginSection}>
-//         <svg
-//           className={css.closeIcon}
-//           aria-label="close log in Icon"
-//           onClick={onClose}
-//         >
-//           <use href={`${close}#x`} />
-//         </svg>
-//         <h2 className={css.titleLogin}>Log In</h2>
-//         <p className={css.textLogin}>
-//           Welcome back! Please enter your credentials to access your account and
-//           continue your search for a teacher.
-//         </p>
-//         <Formik
-//           initialValues={{ email: '', password: '', showPassword: false }}
-//           validationSchema={loginValidationSchema}
-//           onSubmit={handleLogin}
-//         >
-//           {({ values, setFieldValue, handleChange, handleBlur }) => (
-//             <Form>
-//               <div className={css.inputWrapper}>
-//                 <Field
-//                   type="email"
-//                   name="email"
-//                   placeholder="Email"
-//                   className={css.inputField}
-//                   onChange={handleChange}
-//                   onBlur={handleBlur}
-//                   value={values.email}
-//                 />
-//                 <ErrorMessage
-//                   name="email"
-//                   component="div"
-//                   className={css.error}
-//                 />
-//                 <div className={css.passwordContainer}>
-//                   <Field
-//                     type={values.showPassword ? 'text' : 'password'}
-//                     name="password"
-//                     placeholder="Password"
-//                     className={css.inputField}
-//                     onChange={handleChange}
-//                     onBlur={handleBlur}
-//                     value={values.password}
-//                   />
-//                   <button
-//                     type="button"
-//                     onClick={() =>
-//                       setFieldValue('showPassword', !values.showPassword)
-//                     }
-//                     className={css.eyeIcon}
-//                   >
-//                     <LuEyeOff />
-//                   </button>
-//                 </div>
-//                 <ErrorMessage
-//                   name="password"
-//                   component="div"
-//                   className={css.error}
-//                 />
-//               </div>
-//               <button type="submit" className={css.btnLogin}>
-//                 Log In
-//               </button>
-//             </Form>
-//           )}
-//         </Formik>
-//       </div>
-//     </div>
-//   )
-// }

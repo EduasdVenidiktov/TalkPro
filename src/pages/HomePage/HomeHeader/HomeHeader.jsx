@@ -26,11 +26,20 @@ export function HomeHeader() {
   }
 
   const handleLogOut = () => {
-    localStorage.removeItem('userToken') // Удаляем токен из localStorage
-    sessionStorage.clear() // Повністю очищаємо sessionStorage, якщо воно використовується лише для тимчасових даних
-    navigate('/') // Перенаправляем на главную
+    localStorage.removeItem('userToken') // Видаляємо токен
+    localStorage.removeItem('filters') // Очищення вибраних фільтрів
+    localStorage.removeItem('favorites') // Очищення вибраних сердечок
+    sessionStorage.clear() // Очищення тимчасових даних
     alert('Користувач вийшов')
+    navigate('/') // Перенаправлення на головну
   }
+
+  // const handleLogOut = () => {
+  //   localStorage.removeItem('userToken') // Удаляем токен из localStorage
+  //   sessionStorage.clear() // Повністю очищаємо sessionStorage, якщо воно використовується лише для тимчасових даних
+  //   navigate('/') // Перенаправляем на главную
+  //   alert('Користувач вийшов')
+  // }
 
   return (
     <div className={css.headerBox}>
