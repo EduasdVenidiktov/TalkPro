@@ -52,7 +52,7 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
 
       onClose()
     } catch (error) {
-      alert('Помилка при реєстрації:', error.message)
+      toast.error('Помилка при реєстрації:', error.message)
 
       reset({
         fullName: '',
