@@ -6,6 +6,7 @@ import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпорту�
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
 import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 
+import toast from 'react-hot-toast'
 export function HomeHeader() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
@@ -30,7 +31,7 @@ export function HomeHeader() {
     localStorage.removeItem('filters') // Очищення вибраних фільтрів
     localStorage.removeItem('favorites') // Очищення вибраних сердечок
     sessionStorage.clear() // Очищення тимчасових даних
-    alert('Користувач вийшов')
+    toast.success('Користувач вийшов')
     navigate('/') // Перенаправлення на головну
   }
 

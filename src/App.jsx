@@ -43,7 +43,7 @@ import './App.css'
 // import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage'
 import { lazy, Suspense, useEffect } from 'react'
 import { PrivateRoute } from './components/routes/PrivateRoute'
-// import { PrivateRoute } from 'components/routes/PrivateRoute'
+import { Toaster } from 'react-hot-toast' // Import Toaster
 // import { useContext } from 'react'
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
@@ -72,6 +72,8 @@ export default function App() {
 
   return (
     <div>
+      <Toaster />
+
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />

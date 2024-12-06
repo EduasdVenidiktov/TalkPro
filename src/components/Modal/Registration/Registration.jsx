@@ -11,6 +11,7 @@ import { handleEscapeKey, handleBackdropClick } from '../../../utils/utils'
 import css from './Registration.module.css'
 import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
+import { toast } from 'react-hot-toast'
 
 export function Registration({ onClose }) {
   const auth = getAuth()
@@ -56,11 +57,11 @@ export function Registration({ onClose }) {
       const token = await user.getIdToken() // Отримання токена
       localStorage.setItem('userToken', token) // Збереження токена
 
-      alert('Користувач зареєстрований:', user)
+      toast.success('Користувач зареєстрований:', user)
 
       onClose()
     } catch (error) {
-      alert('Помилка при реєстрації:', error.message)
+      toast.error('Помилка при реєстрації:', error.message)
     }
   }
 

@@ -8,6 +8,8 @@ import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
 
+import { toast } from 'react-hot-toast' // Import toast
+
 export function LogIn({ onClose }) {
   const auth = getAuth()
 
@@ -45,9 +47,9 @@ export function LogIn({ onClose }) {
       localStorage.setItem('userToken', token) // Збереження токена
 
       onClose()
-      alert('Користувач увійшов:', userCredential.user)
+      toast.success('Користувач увійшов:', userCredential.user)
     } catch (error) {
-      alert('Помилка при вході:', error.code)
+      toast.error('Помилка при вході:', error.code)
     }
   }
 

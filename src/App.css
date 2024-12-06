@@ -23,6 +23,24 @@ body.favorites-page {
   background-color: #f8f8f8; /* Розовый фон для страницы FavoritePage */
 }
 
+.react-hot-toast {
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: #fff; /* Білий текст */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Стиль для успішних повідомлень */
+.react-hot-toast--success {
+  background: #4bb543; /* Зелене тло */
+}
+
+/* Стиль для помилок */
+.react-hot-toast--error {
+  background: #d32f2f; /* Червоний фон */
+}
+
 /* .logo {
   height: 6em;
   padding: 1.5em;
