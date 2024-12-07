@@ -47,9 +47,22 @@ export function LogIn({ onClose }) {
       localStorage.setItem('userToken', token) // Збереження токена
 
       onClose()
-      toast.success('Користувач увійшов:', userCredential.user)
-    } catch (error) {
-      toast.error('Помилка при вході:', error.code)
+      toast.success(
+        <strong>
+          <> Hello 👋, </>
+          {values.email} !
+        </strong>,
+        {
+          className: css.toastSuccess,
+          duration: 3000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+        }
+      )
+    } catch {
+      toast.error('Login error', {
+        className: css.toastError,
+
+        duration: 3000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+      })
     }
   }
 
