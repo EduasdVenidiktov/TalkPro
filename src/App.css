@@ -23,22 +23,32 @@ body.favorites-page {
   background-color: #f8f8f8; /* Розовый фон для страницы FavoritePage */
 }
 
-.react-hot-toast {
-  font-size: 16px;
-  padding: 12px 20px;
-  border-radius: 8px;
-  color: #fff; /* Білий текст */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+.toastSuccess {
+  background-color: #2d6a4f; /* Rich green */
+  color: #f4f9f4; /* Soft white-green */
+  font-size: 24px;
+  border-radius: 12px; /* Slightly smaller rounding */
+  padding: 14px 24px; /* Slightly larger padding */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Stronger shadow */
+  border: 2px solid #1b4332; /* Accent border */
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s; /* Smooth transitions */
+  cursor: pointer; /* Pointer cursor */
 }
 
-/* Стиль для успішних повідомлень */
-.react-hot-toast--success {
-  background: #4bb543; /* Зелене тло */
-}
-
-/* Стиль для помилок */
-.react-hot-toast--error {
-  background: #d32f2f; /* Червоний фон */
+.toastError {
+  background-color: #ab2b2b; /* Red for error */
+  color: #fff; /* White text */
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 14px 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: 2px solid #b71c1c;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 /* .logo {

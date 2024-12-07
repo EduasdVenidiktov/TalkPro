@@ -4,14 +4,15 @@ import ukraine from '../../../assets/icons/sprite.svg'
 import logOut from '../../../assets/icons/sprite.svg'
 import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
-import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
+// import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
+import { Link } from 'react-router-dom' // Імпорт Link для навігації
 
 import toast from 'react-hot-toast'
 export function HomeHeader() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handleLogInClick = () => {
     setIsLogInOpen(true)
@@ -31,8 +32,11 @@ export function HomeHeader() {
     localStorage.removeItem('filters') // Очищення вибраних фільтрів
     localStorage.removeItem('favorites') // Очищення вибраних сердечок
     sessionStorage.clear() // Очищення тимчасових даних
-    toast.success('Користувач вийшов')
-    navigate('/') // Перенаправлення на головну
+    toast.success('Buy, see you again!', {
+      className: css.toastSuccess,
+      duration: 5000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+    })
+    // navigate('/') // Перенаправлення на головну
   }
 
   // const handleLogOut = () => {

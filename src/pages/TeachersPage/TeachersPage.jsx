@@ -6,6 +6,8 @@ import teachersData from '../../data/teachers.json' // Импорт JSON
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
+import toast from 'react-hot-toast'
+
 // import { Navigate } from 'react-router-dom'
 
 export default function TeachersPage() {
@@ -17,6 +19,8 @@ export default function TeachersPage() {
     level: '',
     price: '',
   })
+
+  const [isFirstRender, setIsFirstRender] = useState(true) // Стан для перевірки першого рендеру
 
   useEffect(() => {
     // Загрузка данных из teachers.json
@@ -72,10 +76,25 @@ export default function TeachersPage() {
         return matchesLanguage && matchesLevel && matchesPrice
       })
       setFilteredTeachers(filtered)
+
+      // Показуємо повідомлення тільки коли немає результатів і фільтри змінено
+      if (!isFirstRender && filtered.length === 0) {
+        toast.error('Please select a higher price.', {
+          className: css.toastError,
+          duration: 3000,
+        })
+      }
     }
 
     applyFilters()
-  }, [teachers, filters])
+  }, [teachers, filters, isFirstRender]) // Залежність від teachers та filters
+
+  useEffect(() => {
+    // Після першого рендеру змінюємо isFirstRender на false
+    if (isFirstRender) {
+      setIsFirstRender(false)
+    }
+  }, [isFirstRender])
 
   const handleLoadMore = () => {
     setVisibleTeachers((prevVisible) => prevVisible + 4)
@@ -132,7 +151,9 @@ export default function TeachersPage() {
 
       {/* Повідомлення, якщо немає результатів за фільтрами */}
       {filteredTeachers.length === 0 && (
-        <p>Немає викладачів, що відповідають обраним фільтрам.</p>
+        <p className={css.commentFilters}>
+          No teachers match the selected filters.
+        </p>
       )}
     </div>
   )
