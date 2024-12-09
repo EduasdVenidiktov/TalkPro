@@ -75,24 +75,23 @@ export const HeartModal = ({
           <use href={`${close}#x`} />
         </svg>
         <h2 className={css.titleText} id="modal-title">
-          Доступно тільки для авторизованих користувачів
+          Available only for authorized users
         </h2>
         <p id="modal-description">
-          Будь ласка, увійдіть або зареєструйтеся, щоб скористатися цим
-          функціоналом.
+          Please log in or register to use this functionality.
         </p>
         <div className={css.modalButtons}>
           <button
             className={css.modalButton}
             onClick={() => setActiveComponent('logIn')}
           >
-            Увійти
+            Log In
           </button>
           <button
             className={css.modalButton}
             onClick={() => setActiveComponent('register')}
           >
-            Зареєструватися
+            Register
           </button>
         </div>
       </>

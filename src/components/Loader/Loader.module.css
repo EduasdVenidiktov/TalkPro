@@ -1,0 +1,10 @@
+.loaderWrapper {
+  position: fixed; /* Фиксированная позиция */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Полная ширина экрана */
+  height: 100vh; /* Полная высота экрана */
+  display: flex; /* Включаем Flexbox */
+  justify-content: center; /* Горизонтальное центрирование */
+  align-items: center; /* Вертикальное центрирование */
+}
