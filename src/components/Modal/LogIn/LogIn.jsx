@@ -67,7 +67,6 @@ export function LogIn({ onClose }) {
   }
 
   return (
-    // <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
     <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
       <div className={css.modalSection}>
         <svg
