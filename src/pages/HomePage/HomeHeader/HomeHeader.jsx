@@ -34,7 +34,7 @@ export function HomeHeader() {
     sessionStorage.clear() // Очищення тимчасових даних
     toast.success('Buy, see you again!', {
       className: css.toastSuccess,
-      duration: 5000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+      duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
     })
     // navigate('/') // Перенаправлення на головну
   }

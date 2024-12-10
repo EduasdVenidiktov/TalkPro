@@ -47,11 +47,17 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
         toast.success('User registered successfully!')
         navigate('/logIn')
       } else {
-        toast.success('Booking trial lesson!')
+        toast.success('Booking trial lesson!', {
+          className: css.toastSuccess,
+          duration: 2000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+        })
       }
       onClose()
     } catch (error) {
-      toast.error('Error during registration or booking: ' + error.message)
+      toast.error('Error during registration or booking: ' + error.message, {
+        className: css.toastError,
+        duration: 1500, // Продолжительность в миллисекундах (1500 = 1.5 секунды)
+      })
       reset({
         fullName: '',
         email: '',

@@ -54,14 +54,14 @@ export function LogIn({ onClose }) {
         </strong>,
         {
           className: css.toastSuccess,
-          duration: 3000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          duration: 2000, // Продолжительность в миллисекундах (5000 = 5 секунд)
         }
       )
     } catch {
       toast.error('Login error', {
         className: css.toastError,
 
-        duration: 3000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+        duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
       })
     }
   }
