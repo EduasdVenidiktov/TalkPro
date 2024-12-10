@@ -98,8 +98,8 @@
 }
 
 .toastSuccess {
-  background-color: #2d6a4f; /* насыщенный зеленый */
-  color: #f4f9f4; /* мягкий бело-зеленый */
+  background-color: #2d6a4f !important; /* насыщенный зеленый */
+  color: #f4f9f4 !important; /* мягкий бело-зеленый */
   font-size: 24px;
   border-radius: 12px; /* немного меньше закругления */
   padding: 14px 24px; /* немного больше внутреннего отступа */

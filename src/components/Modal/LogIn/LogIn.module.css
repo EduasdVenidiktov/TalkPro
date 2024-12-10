@@ -126,8 +126,8 @@
 }
 
 .toastSuccess {
-  background-color: #2d6a4f; /* насыщенный зеленый */
-  color: #f4f9f4; /* мягкий бело-зеленый */
+  background-color: #2d6a4f !important; /* насыщенный зеленый */
+  color: #f4f9f4 !important; /* мягкий бело-зеленый */
   font-size: 24px;
   border-radius: 12px; /* немного меньше закругления */
   padding: 14px 24px; /* немного больше внутреннего отступа */
@@ -140,8 +140,8 @@
 }
 
 .toastError {
-  background-color: #ab2b2b; /* красный цвет для ошибки */
-  color: #fff; /* белый текст */
+  background-color: #ab2b2b !important; /* красный цвет для ошибки */
+  color: #fff !important; /* белый текст */
   font-size: 18px;
   font-weight: bold;
   border-radius: 12px;

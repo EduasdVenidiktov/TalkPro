@@ -57,6 +57,8 @@ export function Registration({ onClose }) {
       const token = await user.getIdToken() // Отримання токена
       localStorage.setItem('userToken', token) // Збереження токена
 
+      onClose()
+
       toast.success(
         <div>
           <strong>
@@ -65,32 +67,17 @@ export function Registration({ onClose }) {
           </strong>
         </div>,
         {
-          style: {
-            backgroundColor: '#4bb543',
-            color: '#fff',
-            fontSize: '24px',
-            borderRadius: '24px',
-            padding: '12px 20px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-          },
-          duration: 3000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          className: css.toastSuccess,
+          duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
         }
       )
-
-      onClose()
     } catch {
       toast.error(
         'This email is already registered. Please use a different one.',
         {
-          style: {
-            backgroundColor: '#d32f2f',
-            color: '#fff',
-            fontSize: '24px',
-            borderRadius: '24px',
-            padding: '12px 20px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-          },
-          duration: 3000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          className: css.toastError,
+
+          duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
         }
       )
     }
