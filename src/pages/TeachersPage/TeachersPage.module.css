@@ -32,10 +32,16 @@
   margin: 0 auto 96px;
   display: block;
 }
+
+.scrollToTopBtn span {
+  margin-right: 20px; /* Отступ между стрелкой и текстом */
+}
+
 .noMoreTeachers {
   color: red; /* Делает текст красным */
   text-align: center; /* Выравнивает текст по центру */
   margin-bottom: 40px; /* Добавляет отступ снизу */
+  font-size: 24px;
 }
 
 .scrollToTopBtn:hover {

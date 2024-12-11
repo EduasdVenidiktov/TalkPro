@@ -17,8 +17,6 @@ export function TeacherDetail({
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
-  console.log(reviews) // Проверка данных рецензий
-
   return (
     <div className={css.additionalInfo}>
       <p className={css.experienceContent}>{experience}</p>

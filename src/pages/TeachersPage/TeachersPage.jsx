@@ -5,6 +5,7 @@ import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import toast from 'react-hot-toast'
+import { TbArrowBigUpLinesFilled } from 'react-icons/tb'
 
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([])
@@ -115,7 +116,10 @@ export default function TeachersPage() {
       ) : (
         visibleTeachers >= filteredTeachers.length && (
           <button onClick={scrollToTop} className={css.scrollToTopBtn}>
-            ↑ Scroll to Top
+            <span>
+              <TbArrowBigUpLinesFilled />
+            </span>
+            Scroll to Top
           </button>
         )
       )}
