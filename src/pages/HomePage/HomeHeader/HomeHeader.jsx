@@ -4,7 +4,7 @@ import ukraine from '../../../assets/icons/sprite.svg'
 import logOut from '../../../assets/icons/sprite.svg'
 import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
-import { Link } from 'react-router-dom' // Імпорт Link для навігації
+import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 
 import toast from 'react-hot-toast'
 
@@ -14,6 +14,8 @@ export function HomeHeader() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const [hasFavorites, setHasFavorites] = useState(false)
+
+  const navigate = useNavigate() // Використовуємо хук useNavigate
 
   useEffect(() => {
     // Перевіряємо, чи є токен в localStorage
@@ -54,6 +56,7 @@ export function HomeHeader() {
       className: css.toastSuccess,
       duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
     })
+    navigate('/teachers')
     // navigate('/') // Перенаправлення на головну
   }
 

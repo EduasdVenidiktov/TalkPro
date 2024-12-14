@@ -138,3 +138,40 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
+.googleWrapper {
+  display: flex;
+  flex-direction: column; /* Розташування елементів вертикально */
+  align-items: center; /* Вирівнювання по центру */
+  gap: 16px; /* Відступ між елементами */
+  text-align: center;
+}
+
+.googleWrapper p {
+  width: 100%; /* Щоб лінії займали всю ширину контейнера */
+  border-top: 1px solid #ccc; /* Лінія зверху */
+  line-height: 0.1em; /* Компактне розташування тексту */
+  margin: 20px 0; /* Відступи зверху і знизу */
+  color: #333;
+}
+
+.googleWrapper button {
+  display: flex; /* Щоб іконка та текст були на одній лінії */
+  gap: 8px; /* Відстань між іконкою та текстом */
+  padding: 8px 16px;
+  border: none;
+  background-color: #fff; /* Білий фон кнопки */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.googleWrapper button:hover {
+  background-color: #f0f0f0; /* Світліший фон при наведенні */
+}
+
+.googleIcon {
+  font-size: 20px; /* Розмір іконки */
+}
