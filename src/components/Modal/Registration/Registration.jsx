@@ -12,6 +12,9 @@ import css from './Registration.module.css'
 import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { toast } from 'react-hot-toast'
+import { FcGoogle } from 'react-icons/fc'
+
+import { signInWithGoogle } from '/src/firebase/registrationGoogle.js' // Шлях до вашої функції
 
 export function Registration({ onClose }) {
   const auth = getAuth()
@@ -81,9 +84,6 @@ export function Registration({ onClose }) {
         }
       )
     }
-    // } catch (error) {
-    //   toast.error(`Error during registration:            ${error.message}`)
-    // }
   }
 
   return (
@@ -145,7 +145,14 @@ export function Registration({ onClose }) {
               <div className={css.error}>{errors.password.message}</div>
             )}
           </div>
+          <div className={css.googleWrapper}>
+            <p>or</p>
 
+            <button onClick={signInWithGoogle}>
+              <FcGoogle className={css.googleIcon} />
+              continue with Google
+            </button>
+          </div>
           <button type="submit" className={css.btnSignIn}>
             Sign Up
           </button>

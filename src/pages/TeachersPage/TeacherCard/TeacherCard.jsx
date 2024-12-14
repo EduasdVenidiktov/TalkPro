@@ -1,3 +1,31 @@
+// export function TeacherCard({
+//   id,
+//   name,
+//   surname,
+//   languages = [],
+//   levels = [],
+//   rating,
+//   price_per_hour,
+//   avatar_url,
+//   onToggleFavorite,
+//   isFavorite,
+// }) {
+//   const handleHeartClick = () => {
+//     onToggleFavorite(id)
+//   }
+
+//   return (
+//     <div>
+//       <h2>
+//         {name} {surname}
+//       </h2>
+//       <button onClick={handleHeartClick}>
+//         {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+//       </button>
+//     </div>
+//   )
+// }
+
 import { useState, useEffect } from 'react'
 import css from './TeacherCard.module.css'
 import bookOpen from '/src/assets/icons/sprite.svg'

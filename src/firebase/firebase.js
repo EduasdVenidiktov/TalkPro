@@ -1,10 +1,14 @@
 // src/firebase.js
 import { initializeApp } from 'firebase/app'
+import { GoogleAuthProvider, getAuth } from 'firebase/auth'
 import { getDatabase, ref, get, child } from 'firebase/database'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCPA9oF26HyhwskD8CNDauOE7kzE1lzfbQ',
+  // apiKey: 'AIzaSyCnZuVelW6SovBxmvgM0-kJKkJTbCMzKe4',
   authDomain: 'talkpro-ce5a4.firebaseapp.com',
+  // storageBucket: 'talkpro-ce5a4.appspot.com',
+
   databaseURL: 'https://talkpro-ce5a4-default-rtdb.firebaseio.com',
   projectId: 'talkpro-ce5a4',
   storageBucket: 'talkpro-ce5a4.appspot.com',
@@ -14,6 +18,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
+
+export const auth = getAuth(app)
+export const googleProvider = new GoogleAuthProvider()
 
 export { database, ref, get, child }
 
