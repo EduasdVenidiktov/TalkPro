@@ -9,9 +9,11 @@ import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
 
 import { toast } from 'react-hot-toast' // Import toast
+import { useAuth } from '../../../App'
 
 export function LogIn({ onClose }) {
   const auth = getAuth()
+  const { login } = useAuth()
 
   useEffect(() => {
     const handleEscape = handleEscapeKey(onClose)
@@ -112,7 +114,7 @@ export function LogIn({ onClose }) {
               <div className={css.error}>{errors.password.message}</div>
             )}
           </div>
-          <button type="submit" className={css.btnLogin}>
+          <button type="submit" className={css.btnLogin} onClick={login}>
             Log In
           </button>
         </form>
