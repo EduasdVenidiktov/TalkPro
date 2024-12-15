@@ -1,8 +1,14 @@
 .imageSection {
+  /* position: relative; */
+
   background: #fbe9ba;
   border-radius: 30px;
   padding-left: 114px;
   padding-right: 114px;
+}
+
+.logOutStyle {
+  background: transparent;
 }
 
 .imageWrapper {
@@ -14,9 +20,21 @@
   width: 540px;
 }
 
+.guestAvatarStyle {
+  position: absolute;
+  top: 0;
+  right: -34%;
+  max-width: 568px;
+}
+
 .macStyle {
   position: absolute;
   top: 85%;
   left: -12%;
   max-width: 392px;
+}
+
+.guestStyle {
+  width: 100%; /* Гостьова аватарка займає всю ширину контейнера */
+  object-fit: cover; /* Щоб аватарка не деформувалась */
 }

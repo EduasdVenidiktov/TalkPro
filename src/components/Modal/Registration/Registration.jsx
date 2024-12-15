@@ -15,9 +15,11 @@ import { toast } from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
 
 import { signInWithGoogle } from '/src/firebase/registrationGoogle.js' // Шлях до вашої функції
+import { useAuth } from '../../../App'
 
 export function Registration({ onClose }) {
   const auth = getAuth()
+  const { login } = useAuth()
 
   // Закриття модального вікна по натисканню клавіші Esc
   useEffect(() => {
@@ -92,7 +94,7 @@ export function Registration({ onClose }) {
         <svg
           className={css.closeIcon}
           aria-label="close registration Icon"
-          onClick={onClose}
+          onClick={(onClose, login)}
         >
           <use href={`${close}#close`} />
         </svg>

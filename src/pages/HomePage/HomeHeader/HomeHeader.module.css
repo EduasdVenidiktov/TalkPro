@@ -16,6 +16,13 @@
   height: 28px;
 }
 
+.grayCircle {
+  width: 28px; /* Укажите нужный размер */
+  height: 28px;
+  background-color: #8a8a89; /* Серый цвет */
+  border-radius: 50%; /* Для создания круга */
+}
+
 .logoName {
   font-size: 20px;
   font-weight: 500;
@@ -81,6 +88,16 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
+}
+
+.logOutText {
+  color: #8a8a89;
+}
+
+.guest {
+  background: #8a8a89;
+  color: white;
+  border: none;
 }
 
 /* Затемнення фону */

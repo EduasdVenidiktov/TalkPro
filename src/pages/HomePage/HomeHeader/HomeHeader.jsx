@@ -7,6 +7,7 @@ import { Registration } from '../../../components/Modal/Registration/Registratio
 import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 
 import toast from 'react-hot-toast'
+import { useAuth } from '../../../App'
 
 export function HomeHeader() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
@@ -16,6 +17,11 @@ export function HomeHeader() {
   const [hasFavorites, setHasFavorites] = useState(false)
 
   const navigate = useNavigate() // Використовуємо хук useNavigate
+
+  const { isLoggedIn } = useAuth()
+
+  const statClass = isLoggedIn ? css.authenticated : css.guest
+  const logInClass = !isLoggedIn ? css.logOutText : ''
 
   useEffect(() => {
     // Перевіряємо, чи є токен в localStorage
@@ -69,9 +75,13 @@ export function HomeHeader() {
   return (
     <div className={css.headerBox}>
       <div className={css.logoHeaderBox}>
-        <svg className={css.logoImg} aria-label="Logo Ukraine Icon">
-          <use href={`${ukraine}#ukraine`} />
-        </svg>
+        {isLoggedIn ? (
+          <svg className={css.logoImg} aria-label="Logo Ukraine Icon">
+            <use href={`${ukraine}#ukraine`} />
+          </svg>
+        ) : (
+          <div className={css.grayCircle}></div>
+        )}
         <h2>
           <Link to="/" className={css.logoName}>
             LearnLingo
@@ -113,13 +123,17 @@ export function HomeHeader() {
         ) : (
           <>
             <li>
-              <h2 className={css.loginText} onClick={handleLogInClick}>
+              <h2
+                className={`${css.loginText} ${logInClass}`}
+                onClick={handleLogInClick}
+              >
                 Log in
               </h2>
             </li>
             <li>
               <button
-                className={css.buttonReg}
+                className={`${css.buttonReg} ${statClass}`}
+                // className={css.buttonReg}
                 onClick={handleRegistrationClick}
               >
                 Registration

@@ -28,6 +28,10 @@
   margin-right: 8px;
 }
 
+/* .logOutspanWord {
+  background: #121417;
+} */
+
 .infoText {
   font-size: 16px;
   font-weight: 400;
@@ -47,6 +51,10 @@
   line-height: 28px;
   color: #121417;
   cursor: pointer;
+}
+
+.logOutStyle {
+  background-color: #8a8a89;
 }
 
 .buttonStyle:hover,

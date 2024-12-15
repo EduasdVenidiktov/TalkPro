@@ -1,8 +1,15 @@
+// import { useEffect, useState } from 'react'
 import css from './HomeStat.module.css'
+import { useAuth } from '../../../App'
 
 export function HomeStat() {
+  const { isLoggedIn } = useAuth()
+
+  // Визначаємо клас для секції
+  const statClass = isLoggedIn ? css.authenticated : css.guest
+
   return (
-    <div className={css.statSection}>
+    <div className={`${css.statSection} ${statClass}`}>
       <div className={css.statList}>
         <div className={css.statItem}>
           <h2 className={css.statNumber}>32,000+</h2>
