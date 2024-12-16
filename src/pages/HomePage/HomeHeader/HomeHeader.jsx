@@ -15,8 +15,7 @@ export function HomeHeader() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const [hasFavorites, setHasFavorites] = useState(false)
-
-  const navigate = useNavigate() // Використовуємо хук useNavigate
+  const navigate = useNavigate()
 
   const { isLoggedIn } = useAuth()
 
@@ -32,8 +31,6 @@ export function HomeHeader() {
       JSON.parse(localStorage.getItem('favoriteCards')) || []
     setHasFavorites(favoriteCards.length > 0) // Оновлюємо стан
   })
-
-  // const navigate = useNavigate()
 
   const handleLogInClick = () => {
     setIsLogInOpen(true)
@@ -62,8 +59,8 @@ export function HomeHeader() {
       className: css.toastSuccess,
       duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
     })
-    navigate('/teachers')
-    // navigate('/') // Перенаправлення на головну
+    // navigate('/teachers')
+    navigate('/') // Перенаправлення на головну
   }
 
   const handleLogInSuccess = (user) => {
