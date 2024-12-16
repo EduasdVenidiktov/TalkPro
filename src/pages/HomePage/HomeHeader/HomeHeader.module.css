@@ -49,6 +49,10 @@
   cursor: pointer;
 }
 
+.menuItem {
+  color: #121417;
+}
+
 .regAuthMenu {
   display: flex;
   align-items: center;
