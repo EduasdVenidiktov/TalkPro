@@ -17,9 +17,9 @@ export function HomeHeader() {
   const [hasFavorites, setHasFavorites] = useState(false)
   const navigate = useNavigate()
 
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn, logout } = useAuth()
 
-  const statClass = isLoggedIn ? css.authenticated : css.guest
+  const statClass = isLoggedIn ? css.authenticated : css.logOutStyle
   const logInClass = !isLoggedIn ? css.logOutText : ''
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export function HomeHeader() {
             <svg
               className={css.logOut}
               aria-label="Log Out Icon"
-              onClick={handleLogOut}
+              onClick={(handleLogOut, logout)}
             >
               <use href={`${logOut}#logOut`} />
             </svg>

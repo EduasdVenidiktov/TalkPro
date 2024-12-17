@@ -4,7 +4,7 @@ import { useAuth } from '../../../App'
 export function HomeStat() {
   const { isLoggedIn } = useAuth()
 
-  const statClass = isLoggedIn ? css.authenticated : css.guest
+  const statClass = isLoggedIn ? css.authenticated : css.logOutStyle
 
   return (
     <div className={`${css.statSection} ${statClass}`}>
