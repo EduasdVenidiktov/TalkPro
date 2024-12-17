@@ -81,16 +81,9 @@
 //   return useContext(AuthContext)
 // }
 
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import {
-  createContext,
-  lazy,
-  Suspense,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, lazy, Suspense, useContext, useState } from 'react'
 import { PrivateRoute } from './components/routes/PrivateRoute'
 import { Toaster } from 'react-hot-toast'
 import Loader from '/src/components/Loader/Loader'
@@ -109,7 +102,6 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem('userToken')
   )
-  const [bodyClass, setBodyClass] = useState('') // Новое состояние для класса body
 
   const login = () => {
     localStorage.setItem('userToken', 'token_value')
@@ -120,27 +112,9 @@ export default function App() {
     localStorage.removeItem('userToken')
     setIsLoggedIn(false)
   }
-
-  const location = useLocation()
-
-  useEffect(() => {
-    // Определяем класс для body в зависимости от маршрута и авторизации
-    let newClass = ''
-    if (location.pathname === '/') {
-      newClass = isLoggedIn ? 'main-page' : 'main-page-logged-out'
-    } else if (location.pathname === '/teachers') {
-      newClass = 'teacher-page'
-    }
-    setBodyClass(newClass) // Обновляем состояние
-  }, [location.pathname, isLoggedIn])
-
-  useEffect(() => {
-    document.body.className = bodyClass // Применяем класс к body
-  }, [bodyClass]) // Следим за изменением состояния bodyClass
-
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
-      <div key={isLoggedIn ? 'authenticated' : 'logged-out'}>
+      <div key={isLoggedIn ? 'authenticated' : 'logOutStyle'}>
         <Toaster />
 
         <Suspense fallback={<Loader />}>
