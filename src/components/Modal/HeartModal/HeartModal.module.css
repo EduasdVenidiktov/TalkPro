@@ -5,24 +5,9 @@
   color: #121417cc;
   position: relative;
   background-color: white;
-
-  /* background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center; */
 }
 
 .backdrop {
-  /* position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; */
-
   position: fixed;
   top: 0;
   left: 0;
@@ -59,7 +44,6 @@
   border-radius: 28px;
   background-color: #f4c550;
   border: none;
-
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
@@ -74,8 +58,6 @@
 
 .modalSection {
   max-width: 565px;
-
-  /* box-sizing: content-box; */
   border-radius: 30px;
   padding: 64px;
   color: #121417cc;
@@ -118,7 +100,6 @@
 .inputField {
   width: 100%;
   padding: 16px;
-  /* box-sizing: border-box; */
   border: 1px solid #1214171a;
   border-radius: 12px;
   font-size: 16px;

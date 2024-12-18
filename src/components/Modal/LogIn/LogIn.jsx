@@ -7,7 +7,6 @@ import css from './LogIn.module.css'
 import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
-
 import { toast } from 'react-hot-toast' // Import toast
 import { useAuth } from '../../../App'
 
@@ -56,14 +55,14 @@ export function LogIn({ onClose }) {
         </strong>,
         {
           className: css.toastSuccess,
-          duration: 2000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          duration: 2000,
         }
       )
     } catch {
       toast.error('Login error', {
         className: css.toastError,
 
-        duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
+        duration: 1500,
       })
     }
   }

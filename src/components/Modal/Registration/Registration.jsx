@@ -73,7 +73,7 @@ export function Registration({ onClose }) {
         </div>,
         {
           className: css.toastSuccess,
-          duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          duration: 1500,
         }
       )
     } catch {
@@ -82,7 +82,7 @@ export function Registration({ onClose }) {
         {
           className: css.toastError,
 
-          duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          duration: 1500,
         }
       )
     }

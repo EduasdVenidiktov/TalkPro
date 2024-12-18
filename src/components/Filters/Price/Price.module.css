@@ -20,14 +20,9 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
-  outline: none; /* убирает рамку фокуса */
+  outline: none;
 }
 
-/* .selectValue:focus {
-  border: 1px solid red;
-} */
-
-/* Скрываем разделитель между значением и значком */
 [class*='indicator-separator'] {
   display: none;
 }

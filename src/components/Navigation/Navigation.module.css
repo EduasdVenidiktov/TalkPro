@@ -1,5 +1,4 @@
 .navbar {
-  /* width: 1440px; */
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -30,10 +29,6 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   transition: color 0.3s;
 }
-
-/* .link.active h2 {
-  color: red;
-} */
 
 .navButton :hover {
   /* font-size: 1.02em; */

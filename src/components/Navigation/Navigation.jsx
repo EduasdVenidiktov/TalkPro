@@ -5,7 +5,6 @@ import css from './Navigation.module.css' // Імпортуємо стилі
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active)
 }
-
 const isLoggedIn = !!localStorage.getItem('userToken') // Проверяем наличие токена
 
 function Navigation() {

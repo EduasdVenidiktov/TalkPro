@@ -33,14 +33,12 @@ export function TeacherDetail({
                   e.target.src = '/path/to/default/avatar.jpg'
                 }}
               />
-              <div className={css.boxItem}>
-                <p className={css.contentItem}>{review.reviewer_name}</p>
-                <div className={css.teacherRating}>
-                  <svg className={css.teacherIcon} aria-label="star">
-                    <use href={`${star}#star`} />
-                  </svg>
-                  <p className={css.ratingValue}>{review.reviewer_rating}.0</p>
-                </div>
+              <p className={css.contentItem}>{review.reviewer_name}</p>
+              <div className={css.teacherRating}>
+                <svg className={css.teacherIcon} aria-label="star">
+                  <use href={`${star}#star`} />
+                </svg>
+                <p className={css.ratingValue}>{review.reviewer_rating}.0</p>
               </div>
             </div>
             <p className={css.reviewComment}>{review.comment}</p>

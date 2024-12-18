@@ -3,7 +3,6 @@
   border-radius: 30px;
   padding-left: 64px;
   padding-bottom: 98px;
-
   width: 720px;
   height: 530px;
 }
@@ -37,13 +36,9 @@
   width: 195px;
   height: 40px;
   border-radius: 8px;
-  top: 26.6%;
-  left: 28.4%;
+  top: 230px;
+  left: 440px;
 }
-
-/* .logOutspanWord {
-  background: #121417;
-} */
 
 .infoText {
   font-size: 16px;
@@ -68,8 +63,8 @@
 
 .logOutStyle {
   background-color: #8a8a89;
-  top: 29%;
-  left: 28.4%;
+  top: 250px;
+  left: 440px;
 }
 
 .buttonStyle:hover,
