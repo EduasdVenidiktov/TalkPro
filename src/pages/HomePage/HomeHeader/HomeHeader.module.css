@@ -43,8 +43,8 @@
   font-weight: 400;
   line-height: 20px;
   color: #121417;
-  /* text-align: left; */
 }
+
 .headerMenu li {
   cursor: pointer;
 }
@@ -76,7 +76,6 @@
   font-weight: 700;
   line-height: 20px;
   color: #121417;
-
   cursor: pointer;
 }
 
@@ -88,7 +87,6 @@
   padding: 14px 39px;
   color: white;
   cursor: pointer;
-
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;

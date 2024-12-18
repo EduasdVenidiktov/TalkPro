@@ -1,6 +1,3 @@
-.teacherSection {
-}
-
 .favorite {
   background-color: #e0ffe0; /* Светло-зеленый фон */
   border-color: #66cc66; /* Зеленая рамка */
@@ -9,7 +6,6 @@
   position: relative;
   display: flex;
   gap: 48px;
-
   padding: 24px;
   margin-bottom: 53px;
   background-color: #fff;
@@ -22,17 +18,10 @@
   height: 24px;
   right: 24px;
   top: 24px;
-
   color: gray; /* Цвет по умолчанию */
   transition: color 0.3s; /* Плавный переход цвета */
   cursor: pointer;
 }
-
-/* .heartIcon {
-  color: gray;
-  transition: color 0.3s; 
-  cursor: pointer;
-} */
 
 .heartIcon.favorited {
   color: #f4c550; /* Цвет, когда вчитель в избранном */
@@ -72,7 +61,6 @@
   justify-content: center;
   align-items: center;
   right: 114px;
-  /* margin-right: 104px; */
 }
 
 .divider {
@@ -82,6 +70,7 @@
   margin: 0 16px;
   align-self: center;
 }
+
 .teacherIcon {
   width: 24px;
   height: 16px;
@@ -107,17 +96,8 @@
   text-decoration: underline;
 }
 
-.lessonsDone {
-}
-
-.ratingText {
-}
-
 .priceValue {
   color: #38cd3e;
-}
-
-.teacherInfo {
 }
 
 .titleTeachers {
@@ -126,9 +106,6 @@
 
 .contentList {
   padding-bottom: 32px;
-}
-
-.contentItem {
 }
 
 .linkShowSearch {
@@ -141,22 +118,10 @@
   padding-bottom: 32px;
 }
 
-.additionalInfo {
-}
-
-.teacherExperience {
-}
-
-.review {
-}
-
 .teacherRating {
   display: flex;
   align-items: center;
   padding-bottom: 16px;
-}
-
-.ratingValue {
 }
 
 .reviewComment {
@@ -175,7 +140,6 @@
 
 .levelsItem {
   padding: 8px 12px;
-
   border: 1px solid #12141733;
   border-radius: 35px;
 }
@@ -191,7 +155,6 @@
   border-radius: 12px;
   background-color: #f4c550;
   border: none;
-
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;

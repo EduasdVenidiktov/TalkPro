@@ -1,31 +1,3 @@
-// export function TeacherCard({
-//   id,
-//   name,
-//   surname,
-//   languages = [],
-//   levels = [],
-//   rating,
-//   price_per_hour,
-//   avatar_url,
-//   onToggleFavorite,
-//   isFavorite,
-// }) {
-//   const handleHeartClick = () => {
-//     onToggleFavorite(id)
-//   }
-
-//   return (
-//     <div>
-//       <h2>
-//         {name} {surname}
-//       </h2>
-//       <button onClick={handleHeartClick}>
-//         {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-//       </button>
-//     </div>
-//   )
-// }
-
 import { useState, useEffect } from 'react'
 import css from './TeacherCard.module.css'
 import bookOpen from '/src/assets/icons/sprite.svg'
@@ -124,108 +96,101 @@ export function TeacherCard({
   const handleReadMore = () => setShowMore((prev) => !prev)
 
   return (
-    <div className={css.teacherSection}>
-      <div className={css.teacherCard}>
-        <div className={css.teacherImageBox}>
-          <img
-            src={avatar_url}
-            alt={`${name} ${surname}`}
-            className={css.teacherImage}
-          />
-          <svg className={css.teacherLable} aria-label="green label">
-            <use href={`${greenLable}#greenLable`} />
-          </svg>
-        </div>
-        <div className={css.teacherContent}>
-          <div className={css.teacherHeader}>
-            <p className={css.contentItem}>Languages</p>
-            <div className={css.teacherHeaderList}>
-              <svg className={css.teacherIcon} aria-label="open book">
-                <use href={`${bookOpen}#bookOpen`} />
-              </svg>
-              <p className={css.teacherContent}>Lessons online</p>
-              <span className={css.divider}></span>
-              <p className={css.teacherContent}>Lessons done: {lessons_done}</p>
-              <span className={css.divider}></span>
-              <svg className={css.teacherIcon} aria-label="star">
-                <use href={`${star}#star`} />
-              </svg>
-              <p className={css.teacherContent}>Rating: {rating}</p>
-              <span className={css.divider}></span>
-              <p className={css.teacherContent}>
-                Price/1 hour:{' '}
-                <span className={css.priceValue}>{price_per_hour}$</span>
-              </p>
-            </div>
-            <p className={css.btnHeart} onClick={handleHeartClick}>
-              {isFavorite && isLoggedIn ? (
-                <FaHeart className={`${css.heartIcon} ${css.favorited}`} />
-              ) : (
-                <FiHeart className={css.heartIcon} />
-              )}
+    <div className={css.teacherCard}>
+      <div className={css.teacherImageBox}>
+        <img
+          src={avatar_url}
+          alt={`${name} ${surname}`}
+          className={css.teacherImage}
+        />
+        <svg className={css.teacherLable} aria-label="green label">
+          <use href={`${greenLable}#greenLable`} />
+        </svg>
+      </div>
+      <div className={css.teacherContent}>
+        <div className={css.teacherHeader}>
+          <p className={css.contentItem}>Languages</p>
+          <div className={css.teacherHeaderList}>
+            <svg className={css.teacherIcon} aria-label="open book">
+              <use href={`${bookOpen}#bookOpen`} />
+            </svg>
+            <p className={css.teacherContent}>Lessons online</p>
+            <span className={css.divider}></span>
+            <p className={css.teacherContent}>Lessons done: {lessons_done}</p>
+            <span className={css.divider}></span>
+            <svg className={css.teacherIcon} aria-label="star">
+              <use href={`${star}#star`} />
+            </svg>
+            <p className={css.teacherContent}>Rating: {rating}</p>
+            <span className={css.divider}></span>
+            <p className={css.teacherContent}>
+              Price/1 hour:{' '}
+              <span className={css.priceValue}>{price_per_hour}$</span>
             </p>
-            <HeartModal
-              isOpen={showModal}
-              onClose={() => setShowModal(false)}
-            />
           </div>
-          <div className={css.teacherInfo}>
-            <h2 className={css.titleTeachers}>
-              {name} {surname}
-            </h2>
-            <ul className={css.contentList}>
-              <li className={css.contentItem}>
-                Speaks:{' '}
-                <span className={css.teacherContent}>
-                  {languages.join(', ')}
-                </span>
-              </li>
-              <li className={css.contentItem}>
-                Lesson info:{' '}
-                <span className={css.teacherContent}>{lesson_info}</span>
-              </li>
-              <li className={css.contentItem}>
-                Conditions:{' '}
-                <span className={css.teacherContent}>{conditions}</span>
-              </li>
-            </ul>
-            <p
-              onClick={showMore ? () => setShowMore(false) : handleReadMore}
-              className={css.linkShowSearch}
-            >
-              {showMore ? 'Hide' : 'Read more'}
-            </p>
-
-            {showMore && (
-              <TeacherDetail
-                description={lesson_info}
-                avatar_url={avatar_url}
-                name={name}
-                surname={surname}
-                name_review={name}
-                rating={rating}
-                reviews={reviews}
-                experience={experience}
-                levels={levels}
-                selectedLevel={selectedLevel}
-              />
+          <p className={css.btnHeart} onClick={handleHeartClick}>
+            {isFavorite && isLoggedIn ? (
+              <FaHeart className={`${css.heartIcon} ${css.favorited}`} />
+            ) : (
+              <FiHeart className={css.heartIcon} />
             )}
-          </div>
-          {!showMore && (
-            <div className={css.levelList}>
-              {levels.map((level, index) => (
-                <p
-                  key={index}
-                  className={`${css.levelsItem} ${
-                    level === selectedLevel ? css.selectedLevel : ''
-                  }`}
-                >
-                  {level}
-                </p>
-              ))}
-            </div>
+          </p>
+          <HeartModal isOpen={showModal} onClose={() => setShowModal(false)} />
+        </div>
+        <div className={css.teacherInfo}>
+          <h2 className={css.titleTeachers}>
+            {name} {surname}
+          </h2>
+          <ul className={css.contentList}>
+            <li className={css.contentItem}>
+              Speaks:{' '}
+              <span className={css.teacherContent}>{languages.join(', ')}</span>
+            </li>
+            <li className={css.contentItem}>
+              Lesson info:{' '}
+              <span className={css.teacherContent}>{lesson_info}</span>
+            </li>
+            <li className={css.contentItem}>
+              Conditions:{' '}
+              <span className={css.teacherContent}>{conditions}</span>
+            </li>
+          </ul>
+          <p
+            onClick={showMore ? () => setShowMore(false) : handleReadMore}
+            className={css.linkShowSearch}
+          >
+            {showMore ? 'Hide' : 'Read more'}
+          </p>
+
+          {showMore && (
+            <TeacherDetail
+              description={lesson_info}
+              avatar_url={avatar_url}
+              name={name}
+              surname={surname}
+              name_review={name}
+              rating={rating}
+              reviews={reviews}
+              experience={experience}
+              levels={levels}
+              selectedLevel={selectedLevel}
+            />
           )}
         </div>
+        {!showMore && (
+          <div className={css.levelList}>
+            {levels.map((level, index) => (
+              <p
+                key={index}
+                className={`${css.levelsItem} ${
+                  level === selectedLevel ? css.selectedLevel : ''
+                }`}
+              >
+                #{level}
+              </p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

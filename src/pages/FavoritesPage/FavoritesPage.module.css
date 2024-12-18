@@ -1,20 +1,3 @@
-/* body {
-  background-color: #f8f8f8;
-} */
-
-/* .favoritesPage {
-  background-color: #f8f8f8;
-  width: 1440px;
-} */
-
-.levelList {
-  background-color: blue;
-}
-
-.levelsItem {
-  background-color: aqua;
-}
-
 .selectedLevel {
   background-color: #f4c550;
 }
@@ -25,6 +8,8 @@
 
 .textMessage {
   padding-left: 100px;
+  margin-top: 60px;
+  font-size: 24px;
   color: red;
 }
 

@@ -1,9 +1,7 @@
 import css from './HomeAvatar.module.css'
 import LogOutAvatar from '/src/assets/icons/sprite.svg'
-
 import Avatar from '../../../assets/Images/Avatar.png'
 import Avatar2x from '../../../assets/Images/Avatar2x.png'
-
 import { useAuth } from '../../../App'
 
 export function HomeAvatar() {
