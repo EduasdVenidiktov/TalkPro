@@ -119,27 +119,28 @@ export default function TeachersPage() {
         />
       ))}
 
-      {visibleTeachers < filteredTeachers.length ? (
-        <button onClick={handleLoadMore} className={css.btnLoadMore}>
-          Load more
-        </button>
-      ) : (
-        <p className={css.noMoreTeachers}>All teachers have been loaded.</p>
-      )}
-
       {filteredTeachers.length === 0 ? (
         <p className={css.commentFilters}>
           No teachers match the selected filters.
         </p>
       ) : (
-        visibleTeachers >= filteredTeachers.length && (
-          <button onClick={scrollToTop} className={css.scrollToTopBtn}>
-            <span>
-              <TbArrowBigUpLinesFilled />
-            </span>
-            Scroll to Top
-          </button>
-        )
+        <>
+          {visibleTeachers < filteredTeachers.length ? (
+            <button onClick={handleLoadMore} className={css.btnLoadMore}>
+              Load more
+            </button>
+          ) : (
+            <p className={css.noMoreTeachers}>All teachers have been loaded.</p>
+          )}
+          {visibleTeachers >= filteredTeachers.length && (
+            <button onClick={scrollToTop} className={css.scrollToTopBtn}>
+              <span>
+                <TbArrowBigUpLinesFilled />
+              </span>
+              Scroll to Top
+            </button>
+          )}
+        </>
       )}
     </div>
   )
@@ -147,7 +148,7 @@ export default function TeachersPage() {
 
 // import { useEffect, useState } from 'react'
 // import { TeacherCard } from './TeacherCard/TeacherCard'
-// import teachersData from '../../data/teachers.json' // Импорт JSON
+// import teachersData from '../../data/teachers.json' // Імпорт JSON
 // import { Filters } from '/src/components/Filters/Filters'
 // import css from './TeachersPage.module.css'
 // import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
@@ -160,6 +161,10 @@ export default function TeachersPage() {
 //   const [visibleTeachers, setVisibleTeachers] = useState(4)
 //   const [filters, setFilters] = useState({ language: '', level: '', price: '' })
 //   const [isFirstRender, setIsFirstRender] = useState(true)
+//   const [favorites, setFavorites] = useState([]) // Стан для обраних викладачів
+//   const [isLoggedIn, setIsLoggedIn] = useState(
+//     !!localStorage.getItem('userToken')
+//   ) // Авторизація
 
 //   useEffect(() => {
 //     const fetchTeachers = () => {
@@ -235,16 +240,30 @@ export default function TeachersPage() {
 //     })
 //   }
 
+//   const handleToggleFavorite = (id) => {
+//     setFavorites((prevFavorites) =>
+//       prevFavorites.includes(id)
+//         ? prevFavorites.filter((favId) => favId !== id)
+//         : [...prevFavorites, id]
+//     )
+//   }
+
+//   const handleLogOut = () => {
+//     localStorage.removeItem('userToken')
+//     setIsLoggedIn(false)
+//   }
+
 //   return (
 //     <div>
-//       <HomeHeader />
+//       <HomeHeader isLoggedIn={isLoggedIn} onLogOut={handleLogOut} />
 //       <Filters setFilters={setFilters} />
-
 //       {filteredTeachers.slice(0, visibleTeachers).map((teacher) => (
 //         <TeacherCard
 //           key={teacher.id}
 //           {...teacher}
 //           selectedLevel={filters.level}
+//           onToggleFavorite={handleToggleFavorite}
+//           isFavorite={favorites.includes(teacher.id)}
 //         />
 //       ))}
 
