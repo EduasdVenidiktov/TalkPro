@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import css from './HomeInfo.module.css' // Імпортуєш модульні стилі для інших елементів
-import { useAuth } from '../../../App'
+import { useAuth } from '/src/AuthProvider'
 
 export function HomeInfo() {
   const navigate = useNavigate()

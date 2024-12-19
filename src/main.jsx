@@ -5,12 +5,15 @@ import './index.css'
 
 import { BrowserRouter } from 'react-router-dom'
 import { checkDatabaseConnection } from './firebase/firebase.js'
+import { AuthProvider } from '/src/AuthProvider'
 
 // Виклик функції для перевірки підключення
 checkDatabaseConnection()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <AuthProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthProvider>
 )
