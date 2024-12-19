@@ -6,7 +6,7 @@ import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпорту�
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
 import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 import toast from 'react-hot-toast'
-import { useAuth } from '../../../App'
+import { useAuth } from '/src/AuthProvider'
 
 export function HomeHeader() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)

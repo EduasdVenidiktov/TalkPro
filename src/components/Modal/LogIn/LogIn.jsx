@@ -8,7 +8,7 @@ import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
 import { toast } from 'react-hot-toast' // Import toast
-import { useAuth } from '../../../App'
+import { useAuth } from '/src/AuthProvider'
 
 export function LogIn({ onClose }) {
   const auth = getAuth()

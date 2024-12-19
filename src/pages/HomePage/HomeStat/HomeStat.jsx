@@ -1,5 +1,5 @@
 import css from './HomeStat.module.css'
-import { useAuth } from '../../../App'
+import { useAuth } from '/src/AuthProvider'
 
 export function HomeStat() {
   const { isLoggedIn } = useAuth()
