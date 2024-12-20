@@ -19,9 +19,9 @@ export function HomeHeader() {
   const logInClass = !isLoggedIn ? css.logOutText : ''
   const handleClick = () => {
     setTimeout(() => {
-      logout() // Викликаємо logout із затримкою
-    }, 1500) // Затримка у 1.5 секунди
-    handleLogOut() // Спочатку викликаємо handleLogOut
+      logout()
+    })
+    handleLogOut()
   }
 
   useEffect(() => {
@@ -61,10 +61,6 @@ export function HomeHeader() {
     setHasFavorites(false) // Оновлюємо стан hasFavorites, щоб хедер більше не відображав "Favorite"
     setIsLogInOpen(false)
     setIsRegistrationOpen(false)
-
-    setTimeout(() => {
-      navigate('/')
-    }, 1500)
 
     navigate('/') // Перенаправлення на головну
   }
