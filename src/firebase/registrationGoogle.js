@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast'
 
 export const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider)
+    const result = await signInWithPopup(auth, googleProvider) // Використовуємо signInWithPopup
     const user = result.user // Отримуємо дані про користувача
 
     const isNewUser = result._tokenResponse?.isNewUser
@@ -12,18 +12,19 @@ export const signInWithGoogle = async () => {
     const token = await result.user.getIdToken()
     localStorage.setItem('userToken', token)
 
-    // Show success message for both new and existing users
+    // Показуємо успішне повідомлення для нових та існуючих користувачів
     toast.success(
       isNewUser
         ? `Your registration was successful. Welcome ${user.displayName}!`
         : `Welcome back! ${user.displayName} was successful.`,
       {
-        duration: 2500, // Продолжительность в миллисекундах (5000 = 5 секунд)
+        duration: 2500,
       }
     )
-  } catch (error) {
-    console.error('Error during Google login:', error)
-    // Show generic error message
-    toast.error('An error occurred during login. Please try again.')
+    window.location.href = '/'
+  } catch {
+    toast.error('An error occurred during login. Please try again.', {
+      duration: 1500,
+    })
   }
 }
