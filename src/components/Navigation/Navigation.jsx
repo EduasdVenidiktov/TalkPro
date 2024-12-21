@@ -1,19 +1,14 @@
-import { Navigate, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import css from './Navigation.module.css'
 import clsx from 'clsx'
-import css from './Navigation.module.css' // Імпортуємо стилі
 
-const buildLinkClass = ({ isActive }) => clsx(css.link, isActive && css.active)
+export const buildLinkClass = ({ isActive }) =>
+  clsx(css.link, isActive && css.active)
 
-const isLoggedIn = !!localStorage.getItem('userToken') // Проверяем наличие токена
-
-export function Navigation() {
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace /> // Перенаправляем неавторизованного пользователя
-  }
-
+export function Navigation({ isAuthenticated, hasFavorites, buildLinkClass }) {
   return (
     <nav className={css.navbar}>
-      <ul className={css.navButton}>
+      <ul className={css.headerMenu}>
         <li>
           <NavLink to="/" end className={buildLinkClass}>
             Home
@@ -24,14 +19,14 @@ export function Navigation() {
             Teachers
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/favorites" className={buildLinkClass}>
-            Favorites
-          </NavLink>
-        </li>
+        {isAuthenticated && hasFavorites && (
+          <li>
+            <NavLink to="/favorite" className={buildLinkClass}>
+              Favorite
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   )
 }
-
-export default Navigation
