@@ -5,9 +5,7 @@ import { getDatabase, ref, get, child } from 'firebase/database'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCPA9oF26HyhwskD8CNDauOE7kzE1lzfbQ',
-  // apiKey: 'AIzaSyCnZuVelW6SovBxmvgM0-kJKkJTbCMzKe4',
   authDomain: 'talkpro-ce5a4.firebaseapp.com',
-  // storageBucket: 'talkpro-ce5a4.appspot.com',
 
   databaseURL: 'https://talkpro-ce5a4-default-rtdb.firebaseio.com',
   projectId: 'talkpro-ce5a4',
