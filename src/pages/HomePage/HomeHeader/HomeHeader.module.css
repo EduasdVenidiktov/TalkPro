@@ -7,6 +7,12 @@
   position: relative;
 }
 
+.navigator {
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .logoHeaderBox {
   display: flex;
   gap: 8px;

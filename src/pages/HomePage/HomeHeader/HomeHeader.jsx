@@ -92,26 +92,27 @@ export function HomeHeader() {
           </Link>
         </h2>
       </div>
-
-      <ul className={css.headerMenu}>
-        <li>
-          <NavLink to="/" end className={buildLinkClass}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/teachers" className={buildLinkClass}>
-            Teachers
-          </NavLink>
-        </li>
-        {isAuthenticated && hasFavorites && (
+      <nav className={css.navigator}>
+        <ul className={css.headerMenu}>
           <li>
-            <NavLink to="/favorite" className={buildLinkClass}>
-              Favorite
+            <NavLink to="/" end className={buildLinkClass}>
+              Home
             </NavLink>
           </li>
-        )}
-      </ul>
+          <li>
+            <NavLink to="/teachers" className={buildLinkClass}>
+              Teachers
+            </NavLink>
+          </li>
+          {isAuthenticated && hasFavorites && (
+            <li>
+              <NavLink to="/favorite" className={buildLinkClass}>
+                Favorite
+              </NavLink>
+            </li>
+          )}
+        </ul>
+      </nav>
 
       <ul className={css.regAuthMenu}>
         {isAuthenticated ? (
