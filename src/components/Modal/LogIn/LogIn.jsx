@@ -7,7 +7,7 @@ import css from './LogIn.module.css'
 import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
-import { toast } from 'react-hot-toast' // Import toast
+import { toast } from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 
 export function LogIn({ onClose }) {

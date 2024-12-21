@@ -53,9 +53,9 @@ export function HomeHeader() {
       duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
     })
 
-    localStorage.removeItem('userToken') // Видаляємо токен
+    // localStorage.removeItem('userToken') // Видаляємо токен
     localStorage.removeItem('filters') // Очищення вибраних фільтрів
-    localStorage.removeItem('favorites') // Очищення вибраних сердечок
+    // localStorage.removeItem('favoriteCards') // Очищення вибраних сердечок
     sessionStorage.clear() // Очищення тимчасових даних
     setIsAuthenticated(false) // Оновлюємо стан аутентифікації
     setHasFavorites(false) // Оновлюємо стан hasFavorites, щоб хедер більше не відображав "Favorite"
