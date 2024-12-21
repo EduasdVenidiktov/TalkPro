@@ -65,7 +65,7 @@ export function Registration({ onClose }) {
           <strong>Hello, {values.email} 👋!</strong>
         </div>,
         {
-          className: css.toastSuccess,
+          className: 'toastSuccess',
           duration: 1500,
           onClose: () => onClose(),
         }
@@ -75,13 +75,13 @@ export function Registration({ onClose }) {
         toast.error(
           'This email is already registered. Please use a different one.',
           {
-            className: css.toastError,
+            className: 'toastError',
             duration: 1500,
           }
         )
       } else {
         toast.error('Something went wrong. Please try again.', {
-          className: css.toastError,
+          className: 'toastError',
           duration: 1500,
         })
       }

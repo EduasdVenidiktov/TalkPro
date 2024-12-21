@@ -48,8 +48,8 @@ export function HomeHeader() {
   }
 
   const handleLogOut = () => {
-    toast.success('Buy, see you again!', {
-      className: css.toastSuccess,
+    toast.error('Buy, see you again!', {
+      className: 'toastError',
       duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
     })
 

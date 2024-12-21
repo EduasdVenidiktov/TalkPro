@@ -143,31 +143,3 @@
 .error {
   color: red;
 }
-
-.toastSuccess {
-  background-color: #2d6a4f !important; /* насыщенный зеленый */
-  color: #f4f9f4 !important; /* мягкий бело-зеленый */
-  font-size: 24px;
-  border-radius: 12px; /* немного меньше закругления */
-  padding: 14px 24px; /* немного больше внутреннего отступа */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* усиленная тень */
-  border: 2px solid #1b4332; /* добавить акцентный обвод */
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s; /* плавные эффекты */
-  cursor: pointer; /* указатель */
-}
-
-.toastError {
-  background-color: #ab2b2b !important; /* красный цвет для ошибки */
-  color: #fff !important; /* белый текст */
-  font-size: 18px;
-  font-weight: bold;
-  border-radius: 12px;
-  padding: 14px 28px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  border: 2px solid #b71c1c;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}

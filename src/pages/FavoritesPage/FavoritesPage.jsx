@@ -19,10 +19,12 @@ export default function FavoritesPage({ levels }) {
   useEffect(() => {
     // Логіка для відображення повідомлення
     if (!isFirstRender && favoriteCards.length === 0) {
-      toast.error('Please select a card.', {
-        className: css.toastError,
-        duration: 2000,
-      })
+      setTimeout(() => {
+        toast.error('Please select a card in Teachers.', {
+          className: 'toastError',
+          duration: 1500, // Продолжительность тостера
+        })
+      }, 1400) // Задержка 1000 миллисекунд
     }
   }, [favoriteCards, isFirstRender])
 

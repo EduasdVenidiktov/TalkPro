@@ -54,13 +54,13 @@ export function LogIn({ onClose }) {
           {values.email} !
         </strong>,
         {
-          className: css.toastSuccess,
+          className: 'toastSuccess',
           duration: 2000,
         }
       )
     } catch {
       toast.error('Login error', {
-        className: css.toastError,
+        className: 'toastError',
 
         duration: 1500,
       })

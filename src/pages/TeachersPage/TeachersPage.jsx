@@ -49,7 +49,7 @@ export default function TeachersPage() {
 
       if (!isFirstRender && filtered.length === 0) {
         toast.error('Please select a higher price.', {
-          className: css.toastError,
+          className: 'toastError',
           duration: 2000,
         })
       }
