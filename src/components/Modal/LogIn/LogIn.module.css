@@ -118,28 +118,27 @@
   color: #fff; /* Белый текст */
 }
 
-/* Стиль для успешных сообщений */
-.react-hot-toast--success {
-  background-color: #4bb543; /* Зеленый фон */
+/* .react-hot-toast--success {
+  background-color: #4bb543; 
 }
 
 .toastSuccess {
-  background-color: #2d6a4f !important; /* насыщенный зеленый */
-  color: #f4f9f4 !important; /* мягкий бело-зеленый */
+  background-color: #2d6a4f !important; 
+  color: #f4f9f4 !important; 
   font-size: 24px;
-  border-radius: 12px; /* немного меньше закругления */
-  padding: 14px 24px; /* немного больше внутреннего отступа */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* усиленная тень */
-  border: 2px solid #1b4332; /* добавить акцентный обвод */
+  border-radius: 12px; 
+  padding: 14px 24px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border: 2px solid #1b4332; 
   transition:
     transform 0.2s,
-    box-shadow 0.2s; /* плавные эффекты */
-  cursor: pointer; /* указатель */
+    box-shadow 0.2s; 
+  cursor: pointer; 
 }
 
 .toastError {
-  background-color: #ab2b2b !important; /* красный цвет для ошибки */
-  color: #fff !important; /* белый текст */
+  background-color: #ab2b2b !important; 
+  color: #fff !important; 
   font-size: 18px;
   font-weight: bold;
   border-radius: 12px;
@@ -149,4 +148,4 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-}
+} */
