@@ -50,7 +50,7 @@ export function LogIn({ onClose }) {
       // Выполните вход в систему после успешного логина
       login(token)
 
-      onClose() // Закрытие модала
+      onClose()
       toast.success(
         <strong>
           <> Hello 👋, </>
