@@ -2,12 +2,11 @@ import { Navigate, NavLink } from 'react-router-dom'
 import clsx from 'clsx'
 import css from './Navigation.module.css' // Імпортуємо стилі
 
-const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active)
-}
+const buildLinkClass = ({ isActive }) => clsx(css.link, isActive && css.active)
+
 const isLoggedIn = !!localStorage.getItem('userToken') // Проверяем наличие токена
 
-function Navigation() {
+export function Navigation() {
   if (!isLoggedIn) {
     return <Navigate to="/login" replace /> // Перенаправляем неавторизованного пользователя
   }
@@ -16,7 +15,7 @@ function Navigation() {
     <nav className={css.navbar}>
       <ul className={css.navButton}>
         <li>
-          <NavLink to="/" className={buildLinkClass}>
+          <NavLink to="/" end className={buildLinkClass}>
             Home
           </NavLink>
         </li>

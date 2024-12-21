@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 20px 64px;
+
   position: relative;
 }
 
@@ -49,9 +50,9 @@
   cursor: pointer;
 }
 
-.menuItem {
+/* .menuItem {
   color: #121417;
-}
+} */
 
 .regAuthMenu {
   display: flex;
@@ -115,4 +116,29 @@
   justify-content: center;
   align-items: center;
   z-index: 999;
+}
+
+.navbar {
+  background-color: #f4f4f4;
+  padding: 10px;
+}
+
+.navButton {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #121417;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.active {
+  color: #5a50dc;
+  border-bottom: 2px solid #5a50dc;
 }

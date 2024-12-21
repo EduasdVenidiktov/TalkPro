@@ -103,6 +103,9 @@ export default function TeachersPage() {
   const handleLogOut = () => {
     localStorage.removeItem('userToken')
     setIsLoggedIn(false)
+    localStorage.removeItem('favoriteCards') // Очищаємо список улюблених
+    setIsLoggedIn(false)
+    setFavorites(false)
   }
 
   return (

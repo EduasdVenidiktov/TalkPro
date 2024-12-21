@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import clsx from 'clsx'
+
 import css from './HomeHeader.module.css'
 import ukraine from '../../../assets/icons/sprite.svg'
 import logOut from '../../../assets/icons/sprite.svg'
 import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
-import { Link, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
+import { Link, NavLink, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 
@@ -23,6 +25,9 @@ export function HomeHeader() {
     })
     handleLogOut()
   }
+
+  const buildLinkClass = ({ isActive }) =>
+    clsx(css.link, isActive && css.active)
 
   useEffect(() => {
     // Перевіряємо, чи є токен в localStorage
@@ -90,20 +95,20 @@ export function HomeHeader() {
 
       <ul className={css.headerMenu}>
         <li>
-          <Link to="/" className={css.menuItem}>
+          <NavLink to="/" end className={buildLinkClass}>
             Home
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/teachers" className={css.menuItem}>
+          <NavLink to="/teachers" className={buildLinkClass}>
             Teachers
-          </Link>
+          </NavLink>
         </li>
         {isAuthenticated && hasFavorites && (
           <li>
-            <Link to="/favorite" className={css.menuItem}>
+            <NavLink to="/favorite" className={buildLinkClass}>
               Favorite
-            </Link>
+            </NavLink>
           </li>
         )}
       </ul>
