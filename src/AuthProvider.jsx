@@ -7,24 +7,30 @@ export const AuthProvider = ({ children }) => {
     !!localStorage.getItem('userToken')
   )
 
-  // const [isNewUser, setIsNewUser] = useState(false)
+  const [isNewUser, setIsNewUser] = useState(false)
+  const [localId, setlocalId] = useState(null)
 
   // const login = (token, newUser = false) => {
-  const login = (token) => {
+  const login = (token, newUser = false, id) => {
     localStorage.setItem('userToken', token)
-    // setIsNewUser(newUser)
+    setIsNewUser(newUser)
+    setlocalId(id) // Устанавливаем уникальный идентификатор пользователя
 
     setIsLoggedIn(true)
   }
 
   const logout = () => {
     localStorage.removeItem('userToken')
+    setlocalId(null)
+
     setIsLoggedIn(false)
   }
 
   return (
     // <AuthContext.Provider value={{ isLoggedIn, login, logout, isNewUser }}>
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, login, logout, isNewUser, localId }}
+    >
       {children}
     </AuthContext.Provider>
   )
