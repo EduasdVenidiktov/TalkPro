@@ -68,6 +68,7 @@
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .btnSignIn:hover,
@@ -128,16 +129,18 @@
 }
 
 .googleWrapper button {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
   display: flex; /* Щоб іконка та текст були на одній лінії */
   gap: 8px; /* Відстань між іконкою та текстом */
-  padding: 8px 16px;
+  padding: 16px 64px;
   border: none;
-  background-color: #fff; /* Білий фон кнопки */
+  background-color: #dedcdc; /* Білий фон кнопки */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
-  margin-bottom: 40px;
 }
 
 .googleWrapper button:hover {

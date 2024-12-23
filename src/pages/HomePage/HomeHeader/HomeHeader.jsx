@@ -16,13 +16,14 @@ export function HomeHeader() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [hasFavorites, setHasFavorites] = useState(false)
   const navigate = useNavigate()
+  // const { isLoggedIn, logout, isNewUser } = useAuth()
   const { isLoggedIn, logout } = useAuth()
+
   const statClass = isLoggedIn ? css.authenticated : css.logOutStyle
   const logInClass = !isLoggedIn ? css.logOutText : ''
+
   const handleClick = () => {
-    setTimeout(() => {
-      logout()
-    })
+    logout()
     handleLogOut()
   }
 
@@ -62,6 +63,7 @@ export function HomeHeader() {
     localStorage.removeItem('filters') // Очищення вибраних фільтрів
     // localStorage.removeItem('favoriteCards') // Очищення вибраних сердечок
     sessionStorage.clear() // Очищення тимчасових даних
+
     setIsAuthenticated(false) // Оновлюємо стан аутентифікації
     setHasFavorites(false) // Оновлюємо стан hasFavorites, щоб хедер більше не відображав "Favorite"
     setIsLogInOpen(false)
@@ -104,6 +106,7 @@ export function HomeHeader() {
               Teachers
             </NavLink>
           </li>
+          {/* {isAuthenticated && hasFavorites && !isNewUser && ( */}
           {isAuthenticated && hasFavorites && (
             <li>
               <NavLink to="/favorite" className={buildLinkClass}>

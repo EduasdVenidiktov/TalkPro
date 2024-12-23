@@ -48,6 +48,7 @@ export function TeacherCard({
   reviews = [],
   onToggleFavorite,
   selectedLevel,
+  // isNewUser,
 }) {
   const [showMore, setShowMore] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
@@ -56,15 +57,18 @@ export function TeacherCard({
   const navigate = useNavigate()
 
   // Загружаем данные избранных карточек из localStorage при рендере
+
   useEffect(() => {
+    // if (isLoggedIn && !isNewUser) {
     if (isLoggedIn) {
       const favoriteCards =
         JSON.parse(localStorage.getItem('favoriteCards')) || []
       setIsFavorite(favoriteCards.some((card) => card.id === id))
     } else {
-      // При выходе из системы сбрасываем состояние isFavorite
+      // При виході з системи скидаємо стан isFavorite
       setIsFavorite(false)
     }
+    // }, [id, isLoggedIn, isNewUser])
   }, [id, isLoggedIn])
 
   // Обработка клика на сердце
@@ -156,6 +160,7 @@ export function TeacherCard({
             </p>
           </div>
           <p className={css.btnHeart} onClick={handleHeartClick}>
+            {/* {isFavorite && isLoggedIn && isNewUser ? ( */}
             {isFavorite && isLoggedIn ? (
               <FaHeart className={`${css.heartIcon} ${css.favorited}`} />
             ) : (
