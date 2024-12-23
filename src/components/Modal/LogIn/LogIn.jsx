@@ -45,6 +45,8 @@ export function LogIn({ onClose }) {
         values.password
       )
       const token = await userCredential.user.getIdToken() // Получение токена
+      console.log('token:', token)
+
       localStorage.setItem('userToken', token) // Сохранение токена
 
       // Выполните вход в систему после успешного логина

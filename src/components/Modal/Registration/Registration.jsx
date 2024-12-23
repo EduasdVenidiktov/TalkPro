@@ -57,7 +57,9 @@ export function Registration({ onClose }) {
 
       const token = await user.getIdToken()
       localStorage.setItem('userToken', token)
+
       login(token)
+
       onClose()
 
       toast.success(
@@ -155,6 +157,10 @@ export function Registration({ onClose }) {
               <div className={css.error}>{errors.password.message}</div>
             )}
           </div>
+
+          <button type="submit" className={css.btnSignIn}>
+            Sign Up
+          </button>
           <div className={css.googleWrapper}>
             <p>or</p>
 
@@ -163,9 +169,6 @@ export function Registration({ onClose }) {
               Continue with Google
             </button>
           </div>
-          <button type="submit" className={css.btnSignIn}>
-            Sign Up
-          </button>
         </form>
       </div>
     </div>

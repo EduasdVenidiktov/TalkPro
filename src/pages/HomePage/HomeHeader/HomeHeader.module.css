@@ -144,6 +144,9 @@
   padding: 2px;
 }
 
+.link:hover {
+  color: #756edf;
+}
 .active {
   color: #5a50dc;
   border-bottom: 2px solid #5a50dc;

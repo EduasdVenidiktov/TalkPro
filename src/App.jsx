@@ -4,6 +4,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { PrivateRoute } from './components/routes/PrivateRoute'
 import { Toaster } from 'react-hot-toast'
 import Loader from '/src/components/Loader/Loader'
+// import { useAuth } from './AuthProvider'
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const TeachersPage = lazy(() => import('./pages/TeachersPage/TeachersPage'))
@@ -14,6 +15,8 @@ const TeacherDetail = lazy(
 )
 
 export default function App() {
+  // const { isNewUser } = useAuth() // Достаем isNewUser из контекста
+
   const [backgroundColor, setBackgroundColor] = useState('#fff') // Состояние для фона
   const location = useLocation() // Получение текущего маршрута
 
@@ -37,8 +40,14 @@ export default function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/teachers" element={<TeachersPage />} />
+          <Route
+            path="/teachers"
+            // element={<TeachersPage isNewUser={isNewUser} />}
+            element={<TeachersPage />}
+          />
           <Route path="/teachers/:id" element={<TeacherDetail />} />
+          {/* {!isNewUser && ( */}
+
           <Route
             path="/favorite"
             element={
@@ -47,6 +56,7 @@ export default function App() {
               </PrivateRoute>
             }
           />
+          {/* } */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

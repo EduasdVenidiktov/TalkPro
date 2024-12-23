@@ -6,6 +6,7 @@ import css from './TeachersPage.module.css'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import toast from 'react-hot-toast'
 import { TbArrowBigUpLinesFilled } from 'react-icons/tb'
+import { useAuth } from '/src/AuthProvider'
 
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([])
@@ -17,6 +18,8 @@ export default function TeachersPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem('userToken')
   ) // Авторизація
+
+  const { isNewUser } = useAuth() // Достаємо isNewUser з контексту
 
   useEffect(() => {
     const fetchTeachers = () => {
@@ -103,15 +106,16 @@ export default function TeachersPage() {
   const handleLogOut = () => {
     localStorage.removeItem('userToken')
     setIsLoggedIn(false)
-    localStorage.removeItem('favoriteCards') // Очищаємо список улюблених
-    setIsLoggedIn(false)
-    setFavorites(false)
+    // localStorage.removeItem('favoriteCards') // Очищаємо список улюблених
+
+    setFavorites([])
   }
 
   return (
     <div>
       <HomeHeader isLoggedIn={isLoggedIn} onLogOut={handleLogOut} />
       <Filters setFilters={setFilters} />
+
       {filteredTeachers.slice(0, visibleTeachers).map((teacher) => (
         <TeacherCard
           key={teacher.id}
@@ -119,9 +123,9 @@ export default function TeachersPage() {
           selectedLevel={filters.level}
           onToggleFavorite={handleToggleFavorite}
           isFavorite={favorites.includes(teacher.id)}
+          isNewUser={isNewUser}
         />
       ))}
-
       {filteredTeachers.length === 0 ? (
         <p className={css.commentFilters}>
           No teachers match the selected filters.
