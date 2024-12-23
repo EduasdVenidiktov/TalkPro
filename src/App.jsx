@@ -4,7 +4,8 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { PrivateRoute } from './components/routes/PrivateRoute'
 import { Toaster } from 'react-hot-toast'
 import Loader from '/src/components/Loader/Loader'
-// import { useAuth } from './AuthProvider'
+import { getFavoriteCards, saveFavoriteCards } from './utils/utils'
+import { useAuth } from './AuthProvider'
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const TeachersPage = lazy(() => import('./pages/TeachersPage/TeachersPage'))
@@ -15,7 +16,8 @@ const TeacherDetail = lazy(
 )
 
 export default function App() {
-  // const { isNewUser } = useAuth() // Достаем isNewUser из контекста
+  const { isLoggedIn, isNewUser, localId } = useAuth() // Контекст авторизации.Достаем isNewUser из контекста
+  const [favoriteCards, setFavoriteCards] = useState([])
 
   const [backgroundColor, setBackgroundColor] = useState('#fff') // Состояние для фона
   const location = useLocation() // Получение текущего маршрута
@@ -33,30 +35,58 @@ export default function App() {
     document.body.style.backgroundColor = backgroundColor
   }, [backgroundColor]) // Срабатывает при изменении цвета в состоянии
 
+  // Загрузка данных при входе
+  useEffect(() => {
+    if (isLoggedIn && localId) {
+      ;(async () => {
+        try {
+          const cards = await getFavoriteCards(localId)
+          setFavoriteCards(cards || [])
+        } catch (error) {
+          console.error('Ошибка при загрузке карточек:', error)
+        }
+      })()
+    }
+  }, [isLoggedIn, localId])
+
+  // Сохранение данных
+  const handleSaveFavorites = async (newFavorites) => {
+    if (!localId) return
+    setFavoriteCards(newFavorites)
+    try {
+      await saveFavoriteCards(localId, newFavorites)
+    } catch (error) {
+      console.error('Ошибка при сохранении карточек:', error)
+    }
+  }
   return (
     <div>
       <Toaster />
 
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={<HomePage favoriteCards={favoriteCards} />}
+          />
           <Route
             path="/teachers"
-            // element={<TeachersPage isNewUser={isNewUser} />}
-            element={<TeachersPage />}
+            element={<TeachersPage isNewUser={isNewUser} />}
           />
           <Route path="/teachers/:id" element={<TeacherDetail />} />
-          {/* {!isNewUser && ( */}
-
-          <Route
-            path="/favorite"
-            element={
-              <PrivateRoute>
-                <FavoritesPage />
-              </PrivateRoute>
-            }
-          />
-          {/* } */}
+          {!isNewUser && (
+            <Route
+              path="/favorite"
+              element={
+                <PrivateRoute>
+                  <FavoritesPage
+                    favoriteCards={favoriteCards}
+                    onSaveFavorites={handleSaveFavorites}
+                  />
+                </PrivateRoute>
+              }
+            />
+          )}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

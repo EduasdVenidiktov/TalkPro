@@ -1,20 +1,44 @@
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import 'modern-normalize'
+import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './AuthProvider' // Імпортуйте AuthProvider
+import App from './App'
 import './index.css'
 import './assets/styles/toastStyles.css'
-
-import { BrowserRouter } from 'react-router-dom'
-import { checkDatabaseConnection } from './firebase/firebase.js'
-import { AuthProvider } from '/src/AuthProvider'
+import { getTeachersData } from './data/firebase'
 
 // Виклик функції для перевірки підключення
-checkDatabaseConnection()
+getTeachersData()
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <AuthProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </AuthProvider>
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <React.StrictMode>
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
+  </React.StrictMode>
 )
+
+// import ReactDOM from 'react-dom/client'
+// import App from './App.jsx'
+// import 'modern-normalize'
+// import './index.css'
+// import './assets/styles/toastStyles.css'
+
+// import { BrowserRouter } from 'react-router-dom'
+// import { checkDatabaseConnection } from './firebase/firebase.js'
+// import { AuthProvider } from '/src/AuthProvider'
+
+// // Виклик функції для перевірки підключення
+// checkDatabaseConnection()
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+
+//   <AuthProvider>
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   </AuthProvider>
+// )

@@ -1,5 +1,5 @@
 import { signInWithPopup } from 'firebase/auth'
-import { auth, googleProvider } from './firebase'
+import { auth, googleProvider } from '../data/firebase'
 import { toast } from 'react-hot-toast'
 
 export const signInWithGoogle = async () => {

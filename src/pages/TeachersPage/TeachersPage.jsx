@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { TeacherCard } from './TeacherCard/TeacherCard'
-import teachersData from '../../data/teachers.json' // Імпорт JSON
+// import teachersData from '../../data/teachers.json' // Імпорт JSON
+import { getTeachersData } from '/src/data/firebase'
+
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
@@ -18,20 +20,69 @@ export default function TeachersPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem('userToken')
   ) // Авторизація
+  const [hasShownPriceMessage, setHasShownPriceMessage] = useState(false)
+
+  // const [showMessage, setShowMessage] = useState(false) // Стан для перевірки повідомлення
 
   const { isNewUser } = useAuth() // Достаємо isNewUser з контексту
 
+  // useEffect(() => {
+  //   const fetchTeachers = () => {
+  //     const teachersArray = getTeachersData.map((teacher, index) => ({
+  //       id: index + 1,
+  //       ...teacher,
+  //     }))
+  //     setTeachers(teachersArray)
+  //     setFilteredTeachers(teachersArray)
+  //   }
+  //   fetchTeachers()
+  // }, [])
+
   useEffect(() => {
-    const fetchTeachers = () => {
-      const teachersArray = teachersData.map((teacher, index) => ({
-        id: index + 1,
-        ...teacher,
-      }))
-      setTeachers(teachersArray)
-      setFilteredTeachers(teachersArray)
+    const fetchTeachers = async () => {
+      const teachersArray = await getTeachersData() // Викликаємо асинхронну функцію
+      if (Array.isArray(teachersArray)) {
+        // Перевіряємо, чи це масив
+        const teachersWithId = teachersArray.map((teacher, index) => ({
+          id: index + 1,
+          ...teacher,
+        }))
+        setTeachers(teachersWithId) // Оновлюємо стан для вчителів
+        setFilteredTeachers(teachersWithId) // Оновлюємо стан для відфільтрованих вчителів
+      } else {
+        console.error('Отримані дані не є масивом')
+      }
     }
     fetchTeachers()
-  }, [])
+  }, []) // Порожній масив залежностей означає, що викликається один раз після першого рендеру
+
+  // useEffect(() => {
+  //   const applyFilters = () => {
+  //     const filtered = teachers.filter((teacher) => {
+  //       const matchesLanguage = filters.language
+  //         ? teacher.languages.includes(filters.language)
+  //         : true
+  //       const matchesLevel = filters.level
+  //         ? teacher.levels.includes(filters.level)
+  //         : true
+  //       const matchesPrice = filters.price
+  //         ? teacher.price_per_hour <= parseInt(filters.price)
+  //         : true
+
+  //       return matchesLanguage && matchesLevel && matchesPrice
+  //     })
+  //     setFilteredTeachers(filtered)
+
+  //     if (!isFirstRender && filtered.length === 0) {
+  //       toast.error('Please select a higher price.', {
+  //         className: 'toastError',
+  //         duration: 2000,
+  //       })
+  //     }
+  //   }
+
+  //   applyFilters()
+  // }, [teachers, filters, isFirstRender])
 
   useEffect(() => {
     const applyFilters = () => {
@@ -50,16 +101,17 @@ export default function TeachersPage() {
       })
       setFilteredTeachers(filtered)
 
-      if (!isFirstRender && filtered.length === 0) {
+      if (!isFirstRender && filtered.length === 0 && !hasShownPriceMessage) {
         toast.error('Please select a higher price.', {
           className: 'toastError',
           duration: 2000,
         })
+        setHasShownPriceMessage(true) // Оновлюємо стан, щоб повідомлення показалося тільки один раз
       }
     }
 
     applyFilters()
-  }, [teachers, filters, isFirstRender])
+  }, [teachers, filters, isFirstRender, hasShownPriceMessage])
 
   useEffect(() => {
     if (isFirstRender) {
