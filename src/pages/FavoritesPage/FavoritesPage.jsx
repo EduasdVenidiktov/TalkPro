@@ -1,3 +1,88 @@
+// import { useEffect, useState } from 'react'
+// import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
+// import css from './FavoritesPage.module.css'
+// import toast from 'react-hot-toast'
+// import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
+// import {
+//   getFavoriteCards,
+//   // addFavoriteCard,
+//   removeFavoriteCard,
+// } from '/src/data/firebase.js'
+
+// export default function FavoritesPage({ levels, localId }) {
+//   const [favoriteCards, setFavoriteCards] = useState([])
+//   const [isFirstRender, setIsFirstRender] = useState(true)
+//   const selectedLevel = localStorage.getItem('selectedLevel') || ''
+//   console.log(localStorage.getItem('favoriteCards'))
+
+//   useEffect(() => {
+//     // Завантаження обраних карток з Firebase
+//     const fetchFavorites = async () => {
+//       if (localId) {
+//         const favorites = await getFavoriteCards(localId)
+//         setFavoriteCards(favorites)
+//       }
+//     }
+//     fetchFavorites()
+//   }, [localId])
+
+//   useEffect(() => {
+//     if (!isFirstRender && favoriteCards.length === 0) {
+//       toast.error('Please select a card in Teachers.', {
+//         className: 'toastError',
+//         duration: 1500,
+//       })
+//     }
+//   }, [favoriteCards, isFirstRender])
+
+//   useEffect(() => {
+//     setIsFirstRender(false)
+//   }, [])
+
+//   // Функція для видалення викладача з обраного
+//   const toggleFavorite = async (cardId) => {
+//     try {
+//       await removeFavoriteCard(localId, cardId)
+//       setFavoriteCards((prev) => prev.filter((card) => card.id !== cardId))
+//     } catch (error) {
+//       console.error('Error removing favorite card:', error)
+//     }
+//   }
+
+//   return (
+//     <div className={css.favoritesPage}>
+//       <HomeHeader />
+
+//       <div>
+//         {favoriteCards.length > 0 ? (
+//           favoriteCards.map((card) => (
+//             <TeacherCard
+//               key={card.id}
+//               {...card}
+//               isFavorite={true}
+//               selectedLevel={selectedLevel}
+//               onToggleFavorite={() => toggleFavorite(card.id)}
+//             />
+//           ))
+//         ) : (
+//           <p className={css.textMessage}>
+//             You don&apos;t have any favorite teachers yet.
+//           </p>
+//         )}
+//       </div>
+
+//       {(levels || []).map((level, index) => (
+//         <p
+//           key={index}
+//           className={level === selectedLevel ? css.selectedLevel : ''}
+//         >
+//           {level}
+//         </p>
+//       ))}
+//     </div>
+//   )
+// }
+
 import { useEffect, useState } from 'react'
 import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
 import css from './FavoritesPage.module.css'
