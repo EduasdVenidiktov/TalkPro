@@ -178,22 +178,3 @@ export const getTeachersData = async () => {
     return []
   }
 }
-
-//Добавление карточек в избранное:
-
-// // Дополнительно экспортируем функцию проверки
-// export function checkDatabaseConnection() {
-//   const dbRef = ref(database, '/teachers')
-//   get(dbRef)
-//     .then((snapshot) => {
-//       if (snapshot.exists()) {
-//         const teachersArray = snapshot.val() // Масив даних із ключа 'teachers'
-//         console.log('Дані з бази:', teachersArray)
-//       } else {
-//         console.log('Дані не знайдено')
-//       }
-//     })
-//     .catch((error) => {
-//       console.error('Помилка при отриманні даних:', error)
-//     })
-// }
