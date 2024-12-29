@@ -4,12 +4,15 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { PrivateRoute } from './components/routes/PrivateRoute'
 import { Toaster } from 'react-hot-toast'
 import Loader from '/src/components/Loader/Loader'
-import { getFavoriteCards, saveFavoriteCards } from './utils/utils'
+// import { getFavoriteCards, saveFavoriteCards } from './utils/utils'
 import { useAuth } from './AuthProvider'
+import { addFavoriteCard, getFavoriteCards } from '/src/data/firebase.js'
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const TeachersPage = lazy(() => import('./pages/TeachersPage/TeachersPage'))
-const FavoritesPage = lazy(() => import('./pages/FavoritesPage/FavoritesPage'))
+const FavoriteCardsPage = lazy(
+  () => import('./pages/FavoritesPage/FavoriteCardsPage')
+)
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
 const TeacherDetail = lazy(
   () => import('./pages/TeachersPage/TeacherDetail/TeacherDetail')
@@ -50,11 +53,11 @@ export default function App() {
   }, [isLoggedIn, localId])
 
   // Сохранение данных
-  const handleSaveFavorites = async (newFavorites) => {
+  const handleSaveFavoriteCards = async (newFavoriteCards) => {
     if (!localId) return
-    setFavoriteCards(newFavorites)
+    setFavoriteCards(newFavoriteCards)
     try {
-      await saveFavoriteCards(localId, newFavorites)
+      await addFavoriteCard(localId, newFavoriteCards)
     } catch (error) {
       console.error('Ошибка при сохранении карточек:', error)
     }
@@ -79,9 +82,9 @@ export default function App() {
               path="/favorite"
               element={
                 <PrivateRoute>
-                  <FavoritesPage
+                  <FavoriteCardsPage
                     favoriteCards={favoriteCards}
-                    onSaveFavorites={handleSaveFavorites}
+                    onSaveFavoriteCards={handleSaveFavoriteCards}
                   />
                 </PrivateRoute>
               }

@@ -20,7 +20,9 @@ import { useAuth } from '/src/AuthProvider'
 // Імпорт Firestore
 // import { db } from '/src/data/firebase.js' // Імпортуйте ініціалізований Firestore
 // import { setDoc, doc, getFirestore } from 'firebase/firestore'
-import { addUserToFirestore } from '/src/data/firebase'
+// import { addUserToFirestore } from '/src/data/firebase'
+import { db } from '/src/data/firebase.js' // Імпортуйте ініціалізований Firestore
+import { doc, setDoc } from 'firebase/firestore'
 
 export function Registration({ onClose }) {
   const auth = getAuth()
@@ -58,25 +60,38 @@ export function Registration({ onClose }) {
         values.password
       )
       const user = userCredential.user
-
       await updateProfile(user, { displayName: values.name })
 
-      try {
-        await addUserToFirestore(user, values.name) // Передаємо values.name в addUserToFirestore
-      } catch (firestoreError) {
-        console.error('Помилка запису в Firestore:', firestoreError)
-        toast.error('Помилка при збереженні даних користувача.')
-        // Можна тут видалити створеного користувача Firebase Auth, якщо потрібно відкотити реєстрацію
-        // await deleteUser(user);
-        return // Важливо зупинити подальше виконання
-      }
+      // Додавання даних користувача в Firestore
+
+      console.log('Firestore path:', `users/${user.uid}`)
+      console.log('User data:', {
+        name: user.displayName,
+        email: values.email,
+        createdAt: new Date().toISOString(),
+      })
+
+      await setDoc(doc(db, 'users', user.uid), {
+        name: values.name,
+        email: values.email,
+        createdAt: new Date().toISOString(),
+      })
+      console.log('User added to Firestore:', {
+        uid: user.uid,
+        name: values.name,
+        email: values.email,
+      })
+
       const token = await user.getIdToken()
-      localStorage.setItem('userToken', token)
+
+      console.log(token)
+
       login(token)
+
       onClose()
       toast.success(
         <div>
-          <strong>Hello, {user.displayName || values.email} !</strong>
+          <strong>Hello, {user.displayName || values.email} 👋 !</strong>
         </div>,
         {
           className: 'toastSuccess',
@@ -85,7 +100,6 @@ export function Registration({ onClose }) {
         }
       )
     } catch (error) {
-      console.error('Error during registration:', error)
       if (error.code === 'auth/email-already-in-use') {
         toast.error(
           'This email is already registered. Please use a different one.',
@@ -114,27 +128,27 @@ export function Registration({ onClose }) {
   //     const user = userCredential.user
   //     await updateProfile(user, { displayName: values.name })
 
-  //     // Додавання даних користувача в Firestore
-  //     const db = getFirestore()
+  // Додавання даних користувача в Firestore
+  // const db = getFirestore()
 
-  //     console.log('Firestore path:', `users/${user.uid}`)
-  //     console.log('User data:', {
-  //       // name: values.name,
-  //       name: user.displayName,
-  //       email: values.email,
-  //       createdAt: new Date().toISOString(),
-  //     })
+  // console.log('Firestore path:', `users/${user.uid}`)
+  // console.log('User data:', {
+  //   // name: values.name,
+  //   name: user.displayName,
+  //   email: values.email,
+  //   createdAt: new Date().toISOString(),
+  // })
 
-  //     await setDoc(doc(db, 'users', user.uid), {
-  //       name: values.name,
-  //       email: values.email,
-  //       createdAt: new Date().toISOString(),
-  //     })
-  //     console.log('User added to Firestore:', {
-  //       uid: user.uid,
-  //       name: values.name,
-  //       email: values.email,
-  //     })
+  // await setDoc(doc(db, 'users', user.uid), {
+  //   name: values.name,
+  //   email: values.email,
+  //   createdAt: new Date().toISOString(),
+  // })
+  // console.log('User added to Firestore:', {
+  //   uid: user.uid,
+  //   name: values.name,
+  //   email: values.email,
+  // })
 
   //     const token = await user.getIdToken()
   //     localStorage.setItem('userToken', token)

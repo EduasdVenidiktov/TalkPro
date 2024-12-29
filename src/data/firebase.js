@@ -6,10 +6,10 @@ import {
   getFirestore,
   doc,
   updateDoc,
-  arrayUnion,
   arrayRemove,
-  getDoc,
   setDoc,
+  collection,
+  getDocs,
 } from 'firebase/firestore'
 
 export const firebaseConfig = {
@@ -48,6 +48,104 @@ export const addUserToFirestore = async (user, name) => {
   }
 }
 
+export const addFavoriteCard = async (userId, cardData) => {
+  console.log('cardData in addFavoriteCard:', cardData) // Перевірте вміст cardData
+
+  if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+    console.error('userId is undefined or empty in addFavoriteCard')
+    return
+  }
+  if (!cardData || typeof cardData !== 'object' || !cardData.id) {
+    console.error(
+      'cardData or cardData.id is undefined or empty in addFavoriteCard'
+    )
+    return
+  }
+  try {
+    const userRef = doc(db, 'users', userId)
+    const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
+    // if (!cardData || !cardData.id) {
+    //   console.error('cardData or cardData.id відсутні:', cardData)
+    //   return // або throw error;
+    // }
+
+    console.log('favoriteCardsCollectionRef:', favoriteCardsCollectionRef)
+    console.log('cardData.id:', cardData.id)
+
+    const cardDocRef = doc(favoriteCardsCollectionRef, cardData.id.toString())
+
+    await setDoc(cardDocRef, cardData) // Зберігає весь cardData в окремий документ
+  } catch (error) {
+    // Отримуємо помилку як параметр error
+    console.error('Помилка додавання картки в обране:', error)
+    throw error // Тепер кидаємо спійману помилку
+  }
+}
+
+// export const addFavoriteCard = async (userId, cardId) => {
+//   try {
+//     const userRef = doc(db, 'users', userId)
+//     await updateDoc(userRef, {
+//       favoritecards: arrayUnion(cardId),
+//     })
+//   } catch (error) {
+//     console.error('Error adding to favoritecards:', error)
+//     throw error // Пробрасываем ошибку для обработки в компоненте
+//   }
+// }
+
+export const removeFavoriteCard = async (userId, cardId) => {
+  if (!userId || !cardId) {
+    console.error(
+      'userId or cardId is undefined or empty in removeFavoriteCard'
+    )
+    return // або throw error; якщо хочете обробляти помилку вище
+  }
+  try {
+    const userRef = doc(db, 'users', userId)
+    await updateDoc(userRef, {
+      favoriteCards: arrayRemove(cardId),
+    })
+  } catch (error) {
+    console.error('Error removing from favorites:', error)
+    throw error // Пробрасываем ошибку
+  }
+}
+
+export const getFavoriteCards = async (userId) => {
+  try {
+    const userRef = doc(db, 'users', userId)
+    const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
+    const querySnapshot = await getDocs(favoriteCardsCollectionRef)
+
+    const favoriteCards = []
+    querySnapshot.forEach((doc) => {
+      console.log('Data from Firestore:', doc.data()) // Добавьте эту строку для отладки
+      favoriteCards.push(doc.data())
+    })
+    return favoriteCards
+  } catch (error) {
+    console.error('Error getting favorite cards:', error)
+    return []
+  }
+}
+
+// export const getFavoriteCards = async (userId) => {
+//   try {
+//     const userRef = doc(db, 'users', userId)
+//     const userDoc = await getDoc(userRef)
+//     if (userDoc.exists()) {
+//       return userDoc.data().favoritecards || []
+//     } else {
+//       console.log('User not found.')
+//       return []
+//     }
+//   } catch (error) {
+//     console.error('Error getting favoritecards:', error)
+//     return []
+//   }
+// }
+
 // export const addUserToFirestore = async (user) => {
 //   try {
 //     // Створюємо документ з вказаним userId
@@ -82,46 +180,6 @@ export const getTeachersData = async () => {
 }
 
 //Добавление карточек в избранное:
-export const addFavoriteCard = async (localId, cardId) => {
-  try {
-    const userRef = doc(db, 'users', localId)
-    await updateDoc(userRef, {
-      favorites: arrayUnion(cardId),
-    })
-  } catch (error) {
-    console.error('Ошибка при добавлении в избранное:', error)
-  }
-}
-
-//Удаление карточек из избранного:
-export const removeFavoriteCard = async (localId, cardId) => {
-  try {
-    const userRef = doc(db, 'users', localId)
-    await updateDoc(userRef, {
-      favorites: arrayRemove(cardId),
-    })
-  } catch (error) {
-    console.error('Ошибка при удалении из избранного:', error)
-  }
-}
-
-//Получение списка избранных карточек:
-
-export const getFavoriteCards = async (localId) => {
-  try {
-    const userRef = doc(db, 'users', localId)
-    const userDoc = await getDoc(userRef)
-    if (userDoc.exists()) {
-      return userDoc.data().favorites || []
-    } else {
-      console.log('Пользователь не найден.')
-      return []
-    }
-  } catch (error) {
-    console.error('Ошибка при получении избранного:', error)
-    return []
-  }
-}
 
 // // Дополнительно экспортируем функцию проверки
 // export function checkDatabaseConnection() {

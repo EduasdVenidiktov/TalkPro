@@ -8,11 +8,9 @@ import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
 import { toast } from 'react-hot-toast'
-import { useAuth } from '/src/AuthProvider'
 
 export function LogIn({ onClose }) {
   const auth = getAuth()
-  const { login } = useAuth()
 
   useEffect(() => {
     const handleEscape = handleEscapeKey(onClose)
@@ -44,15 +42,10 @@ export function LogIn({ onClose }) {
         values.email,
         values.password
       )
-      const token = await userCredential.user.getIdToken() // Получение токена
-      console.log('token:', token)
+      const user = userCredential.user // Отримуємо об'єкт користувача
+      const uid = user.uid // Отримуємо UID користувача
+      console.log('User UID:', uid) // Тепер ви використовуєте значення
 
-      localStorage.setItem('userToken', token) // Сохранение токена
-
-      // Выполните вход в систему после успешного логина
-      login(token)
-
-      onClose()
       toast.success(
         <strong>
           <> Hello 👋, </>
@@ -63,6 +56,7 @@ export function LogIn({ onClose }) {
           duration: 2000,
         }
       )
+      onClose()
     } catch {
       toast.error('Login error', {
         className: 'toastError',
