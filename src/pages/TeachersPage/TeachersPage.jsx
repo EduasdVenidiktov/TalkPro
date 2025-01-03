@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TeacherCard } from './TeacherCard/TeacherCard'
 // import teachersData from '../../data/teachers.json' // Імпорт JSON
-import { getTeachersData } from '/src/data/firebase'
+import { getTeachersData } from '/src/data/firebase.js'
 
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'

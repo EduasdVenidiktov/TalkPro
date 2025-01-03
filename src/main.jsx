@@ -5,7 +5,8 @@ import { AuthProvider } from './AuthProvider' // Імпортуйте AuthProvid
 import App from './App'
 import './index.css'
 import './assets/styles/toastStyles.css'
-import { getTeachersData } from './data/firebase'
+// import { getTeachersData } from './data/firebase'
+import { getTeachersData } from '/src/data/firebase.js'
 
 // Виклик функції для перевірки підключення
 getTeachersData()
