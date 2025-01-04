@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import css from './HomeInfo.module.css' // Імпортуєш модульні стилі для інших елементів
 import { useAuth } from '/src/AuthProvider'
+import clsx from 'clsx'
 
 export function HomeInfo() {
   const navigate = useNavigate()
-  const { isLoggedIn } = useAuth()
+  const { user } = useAuth()
   const handleGetStartedClick = () => {
     navigate('/teachers')
   }
-  const logOutClass = isLoggedIn ? css.authenticated : css.logOutStyle
+  const logOutClass = clsx(user ? css.authenticated : css.logOutStyle)
 
   return (
     <div className={css.infoSection}>

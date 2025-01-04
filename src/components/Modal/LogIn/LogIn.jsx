@@ -1,16 +1,17 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { loginValidationSchema } from '../../../validation/validationSchema'
 import css from './LogIn.module.css'
 import close from '../../../assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { handleBackdropClick, handleEscapeKey } from '../../../utils/utils'
 import { toast } from 'react-hot-toast'
+import { auth } from '/src/data/firebase.js'
 
 export function LogIn({ onClose }) {
-  const auth = getAuth()
+  // const auth = getAuth()
 
   useEffect(() => {
     const handleEscape = handleEscapeKey(onClose)

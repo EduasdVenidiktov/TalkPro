@@ -14,7 +14,7 @@ import { LuEyeOff } from 'react-icons/lu'
 import { toast } from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
 
-import { signInWithGoogle } from '/src/firebase/registrationGoogle.js' // Шлях до вашої функції
+import { signInWithGoogle } from '/src/data/registrationGoogle.js' // Шлях до вашої функції
 import { useAuth } from '/src/AuthProvider'
 
 // Імпорт Firestore
@@ -23,9 +23,10 @@ import { useAuth } from '/src/AuthProvider'
 // import { addUserToFirestore } from '/src/data/firebase'
 import { db } from '/src/data/firebase.js' // Імпортуйте ініціалізований Firestore
 import { doc, setDoc } from 'firebase/firestore'
+import { auth } from '/src/data/firebase.js'
 
 export function Registration({ onClose }) {
-  const auth = getAuth()
+  // const auth = getAuth()
   const { login } = useAuth()
 
   useEffect(() => {

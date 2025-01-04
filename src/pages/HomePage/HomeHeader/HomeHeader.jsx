@@ -18,7 +18,7 @@ export function HomeHeader() {
   const navigate = useNavigate()
   // const { isLoggedIn, logout, isNewUser } = useAuth()
   // const { isLoggedIn, user, loading, logout } = useAuth()
-  const { isLoggedIn, user, logout } = useAuth()
+  const { user, logout } = useAuth()
 
   const statClass = user ? css.authenticated : css.logOutStyle
   const logInClass = !user ? css.logOutText : ''
@@ -82,7 +82,7 @@ export function HomeHeader() {
   return (
     <div className={css.headerBox}>
       <div className={css.logoHeaderBox}>
-        {isLoggedIn ? (
+        {user ? (
           <svg className={css.logoImg} aria-label="Logo Ukraine Icon">
             <use href={`${ukraine}#ukraine`} />
           </svg>

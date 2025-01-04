@@ -3,15 +3,21 @@ import LogOutAvatar from '/src/assets/icons/sprite.svg'
 import Avatar from '../../../assets/Images/Avatar.png'
 import Avatar2x from '../../../assets/Images/Avatar2x.png'
 import { useAuth } from '/src/AuthProvider'
+import clsx from 'clsx'
 
 export function HomeAvatar() {
-  const { isLoggedIn } = useAuth()
-  const logOutClass = isLoggedIn ? css.authenticated : css.logOutStyle
+  const { user } = useAuth()
+  // const logOutClass = user ? css.authenticated : css.logOutStyle
+  const avatarClass = clsx(
+    css.imageSection,
+    user ? css.authenticated : css.logOutStyle
+  ) // Використовуємо user для визначення стилю
 
   return (
-    <div className={`${css.imageSection} ${logOutClass}`}>
+    // <div className={`${css.imageSection} ${logOutClass}`}>
+    <div className={avatarClass}>
       <div className={css.imageWrapper}>
-        {isLoggedIn ? (
+        {user ? (
           <img
             className={css.avatarStyle}
             src={Avatar}

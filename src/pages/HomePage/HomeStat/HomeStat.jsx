@@ -1,12 +1,14 @@
+import clsx from 'clsx'
 import css from './HomeStat.module.css'
 import { useAuth } from '/src/AuthProvider'
 
 export function HomeStat() {
-  const { isLoggedIn } = useAuth()
-  const statClass = isLoggedIn ? css.authenticated : css.logOutStyle
+  const { user } = useAuth()
+  // const statClass = user ? css.authenticated : css.logOutStyle
+  const statClass = clsx(user ? css.authenticated : css.logOutStyle)
 
   return (
-    <div className={`${css.statSection} ${statClass}`}>
+    <div className={clsx(css.statSection, statClass)}>
       <div className={css.statItem}>
         <h2 className={css.statNumber}>32,000</h2>
         <span className={css.plusSign}>+</span>
