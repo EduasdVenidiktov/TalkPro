@@ -11,10 +11,11 @@ import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 import {
   getFavoriteCards,
+  handleToggleFavorite,
   // addFavoriteCard,
   // removeFavoriteCard,
 } from '/src/data/firebase.js'
-import { handleToggleFavorite } from '/src/data/firebase.js'
+// import { getTeachersData } from '/src/data/firebase.js'
 
 export function TeacherCard({
   id,
@@ -43,7 +44,8 @@ export function TeacherCard({
       if (user) {
         try {
           const favoriteCards = await getFavoriteCards(user.uid)
-          setIsFavorite(favoriteCards.includes(id))
+          // setIsFavorite(favoriteCards.includes(id))
+          setIsFavorite(favoriteCards.some((card) => card.id === id))
         } catch (error) {
           console.error('Error fetching favorites:', error)
           toast.error('Failed to load favorites. Please try again later.') // Повідомлення про помилку
@@ -111,6 +113,31 @@ export function TeacherCard({
   //     } else {
   // }
 
+  const handleHeartClick = async () => {
+    if (!user) {
+      setShowModal(true)
+    } else {
+      try {
+        const favoriteCards = await getFavoriteCards(user.uid) // Получаем всех учителей
+        console.log('favoriteCards:', favoriteCards) // Отобразит массив преподавателей
+
+        const teacherData = favoriteCards.find((card) => card.id === id)
+        console.log('teacherData', teacherData)
+
+        if (!teacherData) {
+          console.error('Преподаватель с указанным ID не найден')
+          toast.error('Invalid teacher data. Cannot update favorites.')
+          return
+        }
+
+        // Вызываем функцию для добавления/удаления избранного
+        handleToggleFavorite(user.uid, teacherData, isFavorite, setIsFavorite)
+      } catch (error) {
+        console.error('Ошибка при обработке:', error)
+      }
+    }
+  }
+
   const handleReadMore = () => setShowMore((prev) => !prev)
 
   if (loading) {
@@ -152,11 +179,9 @@ export function TeacherCard({
           </div>
           <p
             className={css.btnHeart}
-            onClick={() => handleToggleFavorite(cardData)} // Передаём функцию как обработчик
+            onClick={handleHeartClick} // Передаем функцию как обработчик
           >
-            {favoriteIds.includes(cardData.id)
-              ? 'Remove from Favorites'
-              : 'Add to Favorites'}
+            {/* {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'} */}
 
             {user && isFavorite ? (
               <FaHeart className={`${css.heartIcon} ${css.favorited}`} />

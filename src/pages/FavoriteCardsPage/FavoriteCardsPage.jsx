@@ -213,7 +213,7 @@ import toast from 'react-hot-toast'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import { getFavoriteCards } from '/src/data/firebase.js'
 import { useAuth } from '/src/AuthProvider'
-import { handleToggleFavorite } from '/src/data/firebase.js'
+// import { handleToggleFavorite } from '/src/data/firebase.js'
 
 export default function FavoriteCardsPage({ levels }) {
   const { user } = useAuth() // Отримуємо user з контексту
@@ -240,12 +240,12 @@ export default function FavoriteCardsPage({ levels }) {
     fetchFavoriteCards() // Викличте функцію після отримання user.uid
   }, [user])
 
-  useEffect(() => {
-    // Отримуємо обраних викладачів з localStorage
-    const storedFavoriteCards =
-      JSON.parse(localStorage.getItem('favoriteCards')) || []
-    setFavoriteCards(storedFavoriteCards)
-  }, [])
+  // useEffect(() => {
+  //   // Отримуємо обраних викладачів з localStorage
+  //   const storedFavoriteCards =
+  //     JSON.parse(localStorage.getItem('favoriteCards')) || []
+  //   setFavoriteCards(storedFavoriteCards)
+  // }, [])
 
   useEffect(() => {
     // Логіка для відображення повідомлення

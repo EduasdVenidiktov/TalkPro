@@ -1,5 +1,5 @@
 // src/firebase.js
-import { firestore } from 'firebase-admin'
+// import { firestore } from 'firebase-admin'
 import { initializeApp } from 'firebase/app'
 import { GoogleAuthProvider, getAuth } from 'firebase/auth'
 import { getDatabase, ref, get, child } from 'firebase/database'
@@ -10,8 +10,13 @@ import {
   arrayRemove,
   setDoc,
   collection,
-  getDoc,
+  getDocs,
+  where,
+  addDoc,
+  deleteDoc,
+  query,
 } from 'firebase/firestore'
+import { toast } from 'react-hot-toast'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -84,32 +89,72 @@ export const addUserToFirestore = async (user, name) => {
 //   }
 // }
 
-export const handleToggleFavorite = async (cardData, user) => {
-  if (!user) return // Проверяем, авторизован ли пользователь
-  if (!cardData?.id) {
-    console.error('Card data must have an id')
-    return
-  }
+// export const handleToggleFavorite = async (cardData) => {
+//   if (loading) return
+//   if (!user) {
+//     setShowModal(true) // Отображаем модальное окно, если не залогинен
+//     return
+//   }
 
+//   try {
+//     if (isFavorite) {
+//       await removeFavoriteCard(user.uid, cardData.id) // Удаляем из избранного
+//       toast.error('Removed from favorites!')
+//     } else {
+//       await addFavoriteCard(user.uid, cardData) // Добавляем в избранное
+//       toast.success('Added to favorites!')
+//     }
+//     setIsFavorite(!isFavorite)
+//   } catch (error) {
+//     console.error('Error updating favorites:', error)
+//     toast.error('Failed to update favorites. Please try again later.')
+//   }
+// }
+
+console.log('database перед вызовом:', database)
+
+export const handleToggleFavorite = async (
+  userId,
+  database,
+  isFavorite,
+  setIsFavorite
+) => {
   try {
-    const userRef = doc(db, 'users', user.uid) // Путь к пользователю в Firestore
-    const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
-    const cardDocRef = doc(favoriteCardsCollectionRef, cardData.id.toString())
+    if (!database || !database.id) {
+      throw new Error('Invalid card data provided.')
+    }
 
-    // Проверяем, существует ли карточка в избранном
-    const cardSnapshot = await getDoc(cardDocRef)
+    // Ссылка на коллекцию favoriteCards внутри документа пользователя
+    const favoriteCardsCollectionRef = collection(
+      doc(db, 'users', userId),
+      'favoriteCards'
+    )
 
-    if (cardSnapshot.exists()) {
-      // Если карточка уже в избранном, удаляем её
-      await deleteDoc(cardDocRef)
-      toast.success('Removed from favorites!')
+    if (isFavorite) {
+      // Удаление карточки из коллекции favoriteCards
+      const q = query(
+        favoriteCardsCollectionRef,
+        where('id', '==', database.id)
+      )
+      const querySnapshot = await getDocs(q)
+
+      if (!querySnapshot.empty) {
+        // Удаляем найденные документы
+        for (const docSnapshot of querySnapshot.docs) {
+          await deleteDoc(docSnapshot.ref)
+        }
+        toast.error('Removed from favorites!')
+      }
     } else {
-      // Если карточки нет, добавляем её
-      await setDoc(cardDocRef, cardData) // cardData содержит все данные карточки
+      // Добавление карточки в коллекцию favoriteCards
+      await addDoc(favoriteCardsCollectionRef, database)
       toast.success('Added to favorites!')
     }
+
+    // Меняем состояние избранного
+    setIsFavorite(!isFavorite)
   } catch (error) {
-    console.error('Error updating favorite cards:', error)
+    console.error('Error updating favorites:', error)
     toast.error('Failed to update favorites. Please try again later.')
   }
 }
@@ -182,10 +227,15 @@ export const removeFavoriteCard = async (userId, cardId) => {
 // }
 
 export const getFavoriteCards = async (userId) => {
+  if (!userId) {
+    console.error('User ID is not provided.')
+    return []
+  }
   try {
     const userRef = doc(db, 'users', userId)
     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
     const querySnapshot = await getDocs(favoriteCardsCollectionRef)
+    console.log('querySnapshot', querySnapshot)
 
     const favoriteCards = []
     querySnapshot.forEach((doc) => {
