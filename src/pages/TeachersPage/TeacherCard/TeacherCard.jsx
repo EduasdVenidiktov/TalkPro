@@ -11,9 +11,10 @@ import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 import {
   getFavoriteCards,
-  addFavoriteCard,
-  removeFavoriteCard,
+  // addFavoriteCard,
+  // removeFavoriteCard,
 } from '/src/data/firebase.js'
+import { handleToggleFavorite } from '/src/data/firebase.js'
 
 export function TeacherCard({
   id,
@@ -54,47 +55,61 @@ export function TeacherCard({
     checkFavoriteStatus()
   }, [user, id, loading])
 
-  const handleHeartClick = async () => {
-    console.log('Card ID:', id) // Перевірте, чи id існує та має значення
-    // if (!card) {
-    //   console.error('Card data is missing!')
-    //   return // Виходимо з функції, якщо дані відсутні
-    // }
-    if (loading) return // Захист від кліків під час завантаження
-    if (!user) {
-      setShowModal(true) // Показуємо модальне вікно, якщо не залогінений
-      return
-    }
+  // const handleHeartClick = async () => {
+  //   console.log('Card ID:', id) // Перевірте, чи id існує та має значення
+  //   // if (!card) {
+  //   //   console.error('Card data is missing!')
+  //   //   return // Виходимо з функції, якщо дані відсутні
+  //   // }
+  //   if (loading) return // Захист від кліків під час завантаження
+  //   if (!user) {
+  //     setShowModal(true) // Показуємо модальне вікно, якщо не залогінений
+  //     return
+  //   }
 
-    try {
-      if (isFavorite) {
-        await removeFavoriteCard(user.uid, id)
-        toast.error('Removed from favorites!')
-      } else {
-        const cardData = {
-          id: id,
-          name: name,
-          surname: surname,
-          languages: languages,
-          levels: levels,
-          rating: rating,
-          price_per_hour: price_per_hour,
-          avatar_url: avatar_url,
-          lessons_done: lessons_done,
-          lesson_info: lesson_info,
-          conditions: conditions,
-          experience: experience,
-          reviews: reviews,
-          selectedLevel: selectedLevel,
-        }
-        await addFavoriteCard(user.uid, cardData)
-        toast.success('Added to favorites!')
-      }
-      setIsFavorite(!isFavorite)
-    } catch {
-      toast.error('Failed to update favorites. Please try again later.') // Повідомлення про помилку
-    }
-  }
+  //   try {
+  //     if (isFavorite) {
+  //       await removeFavoriteCard(user.uid, id)
+  //       toast.error('Removed from favorites!')
+  //     } else {
+  //       const cardData = {
+  //         id: id,
+  //         name: name,
+  //         surname: surname,
+  //         languages: languages,
+  //         levels: levels,
+  //         rating: rating,
+  //         price_per_hour: price_per_hour,
+  //         avatar_url: avatar_url,
+  //         lessons_done: lessons_done,
+  //         lesson_info: lesson_info,
+  //         conditions: conditions,
+  //         experience: experience,
+  //         reviews: reviews,
+  //         selectedLevel: selectedLevel,
+  //       }
+  //       await addFavoriteCard(user.uid, cardData)
+  //       toast.success('Added to favorites!')
+  //     }
+  //     setIsFavorite(!isFavorite)
+  //   } catch {
+  //     toast.error('Failed to update favorites. Please try again later.') // Повідомлення про помилку
+  //   }
+  // }
+
+  // const handleHeartClick = async () => {
+  //   if (loading) return // Захист від кліків під час завантаження
+  //     if (!user) {
+  //       setShowModal(true) // Показуємо модальне вікно, якщо не залогінений
+  //       return
+  //   }
+
+  //  try {
+  //     if (isFavorite) {
+  //       await handleToggleFavorite(user.uid, id)
+  //       toast.error('Removed from favorites!')
+  //     } else {
+  // }
 
   const handleReadMore = () => setShowMore((prev) => !prev)
 
@@ -135,7 +150,14 @@ export function TeacherCard({
               <span className={css.priceValue}>{price_per_hour}$</span>
             </p>
           </div>
-          <p className={css.btnHeart} onClick={handleHeartClick}>
+          <p
+            className={css.btnHeart}
+            onClick={() => handleToggleFavorite(cardData)} // Передаём функцию как обработчик
+          >
+            {favoriteIds.includes(cardData.id)
+              ? 'Remove from Favorites'
+              : 'Add to Favorites'}
+
             {user && isFavorite ? (
               <FaHeart className={`${css.heartIcon} ${css.favorited}`} />
             ) : (

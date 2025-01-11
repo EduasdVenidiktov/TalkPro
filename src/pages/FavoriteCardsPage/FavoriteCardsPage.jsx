@@ -140,22 +140,22 @@
 //     }
 //   }, [allCards, favoriteIds])
 
-//   const handleToggleFavorite = async (cardId) => {
-//     if (!user) return
+// const handleToggleFavorite = async (cardId) => {
+//   if (!user) return
 
-//     try {
-//       if (favoriteIds.includes(cardId)) {
-//         await removeFavoriteCard(user.uid, cardId)
-//         setFavoriteIds(favoriteIds.filter((id) => id !== cardId))
-//       } else {
-//         await addFavoriteCard(user.uid, cardId)
-//         setFavoriteIds([...favoriteIds, cardId])
-//       }
-//     } catch (error) {
-//       console.error('Error updating favoritecards:', error)
-//       toast.error('Failed to update favoritecards. Please try again later.')
+//   try {
+//     if (favoriteIds.includes(cardId)) {
+//       await removeFavoriteCard(user.uid, cardId)
+//       setFavoriteIds(favoriteIds.filter((id) => id !== cardId))
+//     } else {
+//       await addFavoriteCard(user.uid, cardId)
+//       setFavoriteIds([...favoriteIds, cardId])
 //     }
+//   } catch (error) {
+//     console.error('Error updating favoritecards:', error)
+//     toast.error('Failed to update favoritecards. Please try again later.')
 //   }
+// }
 
 //   if (loading || loadingAllCards) {
 //     return <div>Loading...</div>
@@ -213,6 +213,7 @@ import toast from 'react-hot-toast'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import { getFavoriteCards } from '/src/data/firebase.js'
 import { useAuth } from '/src/AuthProvider'
+import { handleToggleFavorite } from '/src/data/firebase.js'
 
 export default function FavoriteCardsPage({ levels }) {
   const { user } = useAuth() // Отримуємо user з контексту
@@ -265,16 +266,42 @@ export default function FavoriteCardsPage({ levels }) {
     }
   }, [isFirstRender])
 
-  // Функція для видалення викладача з обраного
-  const toggleFavorite = (cardId) => {
-    const updatedFavoriteCards = favoriteCards.filter(
-      (card) => card.id !== cardId
-    )
+  // export const handleToggleFavorite = async (cardData) => {
+  //   if (!user) return // Проверяем, авторизован ли пользователь
 
-    // Оновлення localStorage
-    localStorage.setItem('favoritecards', JSON.stringify(updatedFavoriteCards))
-    setFavoriteCards(updatedFavoriteCards)
-  }
+  //   try {
+  //     const userRef = doc(db, 'users', user.uid) // Путь к пользователю в Firestore
+  //     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
+  //     const cardDocRef = doc(favoriteCardsCollectionRef, cardData.id.toString())
+
+  //     // Проверяем, существует ли карточка в избранном
+  //     const cardSnapshot = await getDoc(cardDocRef)
+
+  //     if (cardSnapshot.exists()) {
+  //       // Если карточка уже в избранном, удаляем её
+  //       await deleteDoc(cardDocRef)
+  //       toast.success('Removed from favorites!')
+  //     } else {
+  //       // Если карточки нет, добавляем её
+  //       await setDoc(cardDocRef, cardData) // cardData содержит все данные карточки
+  //       toast.success('Added to favorites!')
+  //     }
+  //   } catch (error) {
+  //     console.error('Error updating favorite cards:', error)
+  //     toast.error('Failed to update favorites. Please try again later.')
+  //   }
+  // }
+
+  // // Функція для видалення викладача з обраного
+  // const toggleFavorite = (cardId) => {
+  //   const updatedFavoriteCards = favoriteCards.filter(
+  //     (card) => card.id !== cardId
+  //   )
+
+  //   // Оновлення localStorage
+  //   localStorage.setItem('favoritecards', JSON.stringify(updatedFavoriteCards))
+  //   setFavoriteCards(updatedFavoriteCards)
+  // }
 
   return (
     <div className={css.favoritecardsPage}>
@@ -288,7 +315,8 @@ export default function FavoriteCardsPage({ levels }) {
               {...card}
               isFavorite={true}
               selectedLevel={selectedLevel}
-              onToggleFavorite={() => toggleFavorite(card.id)}
+              // onToggleFavorite={() => toggleFavorite(card.id)}
+              // onToggleFavorite={() => handleToggleFavorite(card.id)}
             />
           ))
         ) : (
