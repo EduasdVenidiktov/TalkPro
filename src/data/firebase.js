@@ -1,4 +1,5 @@
 // src/firebase.js
+import { firestore } from 'firebase-admin'
 import { initializeApp } from 'firebase/app'
 import { GoogleAuthProvider, getAuth } from 'firebase/auth'
 import { getDatabase, ref, get, child } from 'firebase/database'
@@ -9,7 +10,7 @@ import {
   arrayRemove,
   setDoc,
   collection,
-  getDocs,
+  getDoc,
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -52,47 +53,85 @@ export const addUserToFirestore = async (user, name) => {
       email: user.email,
       createdAt: new Date().toISOString(),
     })
-    console.log('User added to Firestore')
   } catch (error) {
     console.error('Error adding user to Firestore:', error)
     throw error // Важливо прокидати помилку далі для обробки в компоненті
   }
 }
 
-export const addFavoriteCard = async (userId, cardData) => {
-  console.log('cardData in addFavoriteCard:', cardData) // Перевірте вміст cardData
+// export const addFavoriteCard = async (userId, cardData) => {
+//   if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+//     console.error('userId is undefined or empty in addFavoriteCard')
+//     return
+//   }
+//   if (!cardData || typeof cardData !== 'object' || !cardData.id) {
+//     console.error(
+//       'cardData or cardData.id is undefined or empty in addFavoriteCard'
+//     )
+//     return
+//   }
 
-  if (!userId || typeof userId !== 'string' || userId.trim() === '') {
-    console.error('userId is undefined or empty in addFavoriteCard')
+//   try {
+//     const userRef = doc(db, 'users', userId)
+//     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
+//     const cardDocRef = doc(favoriteCardsCollectionRef, cardData.id.toString())
+
+//     await setDoc(cardDocRef, cardData) // Зберігає весь cardData в окремий документ
+//   } catch (error) {
+//     // Отримуємо помилку як параметр error
+//     console.error('Помилка додавання картки в обране:', error)
+//     throw error // Тепер кидаємо спійману помилку
+//   }
+// }
+
+export const handleToggleFavorite = async (cardData, user) => {
+  if (!user) return // Проверяем, авторизован ли пользователь
+  if (!cardData?.id) {
+    console.error('Card data must have an id')
     return
   }
-  if (!cardData || typeof cardData !== 'object' || !cardData.id) {
-    console.error(
-      'cardData or cardData.id is undefined or empty in addFavoriteCard'
-    )
-    return
-  }
+
   try {
-    const userRef = doc(db, 'users', userId)
+    const userRef = doc(db, 'users', user.uid) // Путь к пользователю в Firestore
     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
-    // if (!cardData || !cardData.id) {
-    //   console.error('cardData or cardData.id відсутні:', cardData)
-    //   return // або throw error;
-    // }
-
-    console.log('favoriteCardsCollectionRef:', favoriteCardsCollectionRef)
-    console.log('cardData.id:', cardData.id)
-
     const cardDocRef = doc(favoriteCardsCollectionRef, cardData.id.toString())
 
-    await setDoc(cardDocRef, cardData) // Зберігає весь cardData в окремий документ
+    // Проверяем, существует ли карточка в избранном
+    const cardSnapshot = await getDoc(cardDocRef)
+
+    if (cardSnapshot.exists()) {
+      // Если карточка уже в избранном, удаляем её
+      await deleteDoc(cardDocRef)
+      toast.success('Removed from favorites!')
+    } else {
+      // Если карточки нет, добавляем её
+      await setDoc(cardDocRef, cardData) // cardData содержит все данные карточки
+      toast.success('Added to favorites!')
+    }
   } catch (error) {
-    // Отримуємо помилку як параметр error
-    console.error('Помилка додавання картки в обране:', error)
-    throw error // Тепер кидаємо спійману помилку
+    console.error('Error updating favorite cards:', error)
+    toast.error('Failed to update favorites. Please try again later.')
   }
 }
 
+// export const handleToggleFavorite = async (cardId) => {
+//   if (!user) return
+
+//   try {
+//     if (favoriteIds.includes(cardId)) {
+//       await removeFavoriteCard(user.uid, cardId)
+//       // setFavoriteIds(favoriteIds.filter((id) => id !== cardId))
+//     } else {
+//       await addFavoriteCard(user.uid, cardId)
+//       // setFavoriteIds([...favoriteIds, cardId])
+//     }
+//   } catch {
+//     // console.error('Error updating favoritecards:', error)
+//     toast.error('Failed to update favoritecards. Please try again later.')
+//   }
+// }
+
+//===================================================================================
 // export const addFavoriteCard = async (userId, cardId) => {
 //   try {
 //     const userRef = doc(db, 'users', userId)
@@ -110,18 +149,37 @@ export const removeFavoriteCard = async (userId, cardId) => {
     console.error(
       'userId or cardId is undefined or empty in removeFavoriteCard'
     )
-    return // або throw error; якщо хочете обробляти помилку вище
+    return
   }
+
   try {
     const userRef = doc(db, 'users', userId)
     await updateDoc(userRef, {
-      favoriteCards: arrayRemove(cardId),
+      favoriteCards: arrayRemove(cardId.toString()), // Преобразование cardId в строку
     })
   } catch (error) {
     console.error('Error removing from favorites:', error)
-    throw error // Пробрасываем ошибку
+    throw error
   }
 }
+
+// export const removeFavoriteCard = async (userId, cardId) => {
+//   if (!userId || !cardId) {
+//     console.error(
+//       'userId or cardId is undefined or empty in removeFavoriteCard'
+//     )
+//     return // або throw error; якщо хочете обробляти помилку вище
+//   }
+//   try {
+//     const userRef = doc(db, 'users', userId)
+//     await updateDoc(userRef, {
+//       favoriteCards: arrayRemove(cardId),
+//     })
+//   } catch (error) {
+//     console.error('Error removing from favorites:', error)
+//     throw error // Пробрасываем ошибку
+//   }
+// }
 
 export const getFavoriteCards = async (userId) => {
   try {

@@ -9,6 +9,7 @@ import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import toast from 'react-hot-toast'
 import { TbArrowBigUpLinesFilled } from 'react-icons/tb'
 import { useAuth } from '/src/AuthProvider'
+import { handleToggleFavorite } from '/src/data/firebase.js'
 
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([])
@@ -147,13 +148,13 @@ export default function TeachersPage() {
     })
   }
 
-  const handleToggleFavorite = (id) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(id)
-        ? prevFavorites.filter((favId) => favId !== id)
-        : [...prevFavorites, id]
-    )
-  }
+  // const handleToggleFavorite = (id) => {
+  //   setFavorites((prevFavorites) =>
+  //     prevFavorites.includes(id)
+  //       ? prevFavorites.filter((favId) => favId !== id)
+  //       : [...prevFavorites, id]
+  //   )
+  // }
 
   const handleLogOut = () => {
     localStorage.removeItem('userToken')

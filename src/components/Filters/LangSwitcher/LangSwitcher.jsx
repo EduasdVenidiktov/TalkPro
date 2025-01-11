@@ -3,7 +3,16 @@ import css from './LangSwitcher.module.css'
 
 export function LangSwitcher({ setFilters }) {
   const [selectedLanguage, setSelectedLanguage] = useState('')
-  const languages = ['English', 'Spanish', 'French', 'German', 'Italian']
+  const languages = [
+    'English',
+    'French',
+    'German',
+    'Italian',
+    'Korean',
+    'Mandarin Chinese',
+    'Spanish',
+    'Vietnamese',
+  ]
 
   const handleLanguageChange = (e) => {
     const language = e.target.value
