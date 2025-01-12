@@ -23,21 +23,7 @@ export default function TeachersPage() {
   ) // Авторизація
   const [hasShownPriceMessage, setHasShownPriceMessage] = useState(false)
 
-  // const [showMessage, setShowMessage] = useState(false) // Стан для перевірки повідомлення
-
   const { isNewUser } = useAuth() // Достаємо isNewUser з контексту
-
-  // useEffect(() => {
-  //   const fetchTeachers = () => {
-  //     const teachersArray = getTeachersData.map((teacher, index) => ({
-  //       id: index + 1,
-  //       ...teacher,
-  //     }))
-  //     setTeachers(teachersArray)
-  //     setFilteredTeachers(teachersArray)
-  //   }
-  //   fetchTeachers()
-  // }, [])
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -59,34 +45,6 @@ export default function TeachersPage() {
     }
     fetchTeachers()
   }, []) // Порожній масив залежностей означає, що викликається один раз після першого рендеру
-
-  // useEffect(() => {
-  //   const applyFilters = () => {
-  //     const filtered = teachers.filter((teacher) => {
-  //       const matchesLanguage = filters.language
-  //         ? teacher.languages.includes(filters.language)
-  //         : true
-  //       const matchesLevel = filters.level
-  //         ? teacher.levels.includes(filters.level)
-  //         : true
-  //       const matchesPrice = filters.price
-  //         ? teacher.price_per_hour <= parseInt(filters.price)
-  //         : true
-
-  //       return matchesLanguage && matchesLevel && matchesPrice
-  //     })
-  //     setFilteredTeachers(filtered)
-
-  //     if (!isFirstRender && filtered.length === 0) {
-  //       toast.error('Please select a higher price.', {
-  //         className: 'toastError',
-  //         duration: 2000,
-  //       })
-  //     }
-  //   }
-
-  //   applyFilters()
-  // }, [teachers, filters, isFirstRender])
 
   useEffect(() => {
     const applyFilters = () => {
@@ -151,18 +109,9 @@ export default function TeachersPage() {
     })
   }
 
-  // const handleToggleFavorite = (id) => {
-  //   setFavorites((prevFavorites) =>
-  //     prevFavorites.includes(id)
-  //       ? prevFavorites.filter((favId) => favId !== id)
-  //       : [...prevFavorites, id]
-  //   )
-  // }
-
   const handleLogOut = () => {
     localStorage.removeItem('userToken')
     setIsLoggedIn(false)
-    // localStorage.removeItem('favoriteCards') // Очищаємо список улюблених
 
     setFavorites([])
   }

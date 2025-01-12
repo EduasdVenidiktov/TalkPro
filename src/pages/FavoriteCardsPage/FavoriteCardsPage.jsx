@@ -266,43 +266,6 @@ export default function FavoriteCardsPage({ levels }) {
     }
   }, [isFirstRender])
 
-  // export const handleToggleFavorite = async (cardData) => {
-  //   if (!user) return // Проверяем, авторизован ли пользователь
-
-  //   try {
-  //     const userRef = doc(db, 'users', user.uid) // Путь к пользователю в Firestore
-  //     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
-  //     const cardDocRef = doc(favoriteCardsCollectionRef, cardData.id.toString())
-
-  //     // Проверяем, существует ли карточка в избранном
-  //     const cardSnapshot = await getDoc(cardDocRef)
-
-  //     if (cardSnapshot.exists()) {
-  //       // Если карточка уже в избранном, удаляем её
-  //       await deleteDoc(cardDocRef)
-  //       toast.success('Removed from favorites!')
-  //     } else {
-  //       // Если карточки нет, добавляем её
-  //       await setDoc(cardDocRef, cardData) // cardData содержит все данные карточки
-  //       toast.success('Added to favorites!')
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating favorite cards:', error)
-  //     toast.error('Failed to update favorites. Please try again later.')
-  //   }
-  // }
-
-  // // Функція для видалення викладача з обраного
-  // const toggleFavorite = (cardId) => {
-  //   const updatedFavoriteCards = favoriteCards.filter(
-  //     (card) => card.id !== cardId
-  //   )
-
-  //   // Оновлення localStorage
-  //   localStorage.setItem('favoritecards', JSON.stringify(updatedFavoriteCards))
-  //   setFavoriteCards(updatedFavoriteCards)
-  // }
-
   return (
     <div className={css.favoritecardsPage}>
       <HomeHeader />
@@ -315,8 +278,6 @@ export default function FavoriteCardsPage({ levels }) {
               {...card}
               isFavorite={true}
               selectedLevel={selectedLevel}
-              // onToggleFavorite={() => toggleFavorite(card.id)}
-              // onToggleFavorite={() => handleToggleFavorite(card.id)}
             />
           ))
         ) : (
