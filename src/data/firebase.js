@@ -113,79 +113,78 @@ export const addUserToFirestore = async (user, name) => {
 
 console.log('database перед вызовом:', database)
 
-export const handleToggleFavorite = async (
-  userId,
-  database,
-  isFavorite,
-  setIsFavorite
-) => {
+export const handleToggleFavorite = async (userId, teacherData) => {
   try {
-    if (!database || !database.id) {
-      throw new Error('Invalid card data provided.')
-    }
+    const userRef = doc(db, 'users', userId)
+    const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
 
-    // Ссылка на коллекцию favoriteCards внутри документа пользователя
-    const favoriteCardsCollectionRef = collection(
-      doc(db, 'users', userId),
-      'favoriteCards'
+    // Check if the card already exists in favorites
+    const q = query(
+      favoriteCardsCollectionRef,
+      where('id', '==', teacherData.id)
     )
+    const querySnapshot = await getDocs(q)
 
-    if (isFavorite) {
-      // Удаление карточки из коллекции favoriteCards
-      const q = query(
-        favoriteCardsCollectionRef,
-        where('id', '==', database.id)
-      )
-      const querySnapshot = await getDocs(q)
-
-      if (!querySnapshot.empty) {
-        // Удаляем найденные документы
-        for (const docSnapshot of querySnapshot.docs) {
-          await deleteDoc(docSnapshot.ref)
-        }
-        toast.error('Removed from favorites!')
+    if (!querySnapshot.empty) {
+      // Remove card from favorites
+      for (const docSnapshot of querySnapshot.docs) {
+        await deleteDoc(docSnapshot.ref)
       }
+      toast.error('Removed from favorites!')
     } else {
-      // Добавление карточки в коллекцию favoriteCards
-      await addDoc(favoriteCardsCollectionRef, database)
+      // Add card to favorites
+      await addDoc(favoriteCardsCollectionRef, teacherData)
       toast.success('Added to favorites!')
     }
-
-    // Меняем состояние избранного
-    setIsFavorite(!isFavorite)
   } catch (error) {
     console.error('Error updating favorites:', error)
     toast.error('Failed to update favorites. Please try again later.')
   }
 }
 
-// export const handleToggleFavorite = async (cardId) => {
-//   if (!user) return
-
+// export const handleToggleFavorite = async (
+//   userId,
+//   database,
+//   isFavorite,
+//   setIsFavorite
+// ) => {
 //   try {
-//     if (favoriteIds.includes(cardId)) {
-//       await removeFavoriteCard(user.uid, cardId)
-//       // setFavoriteIds(favoriteIds.filter((id) => id !== cardId))
-//     } else {
-//       await addFavoriteCard(user.uid, cardId)
-//       // setFavoriteIds([...favoriteIds, cardId])
+//     if (!database || !database.id) {
+//       throw new Error('Invalid card data provided.')
 //     }
-//   } catch {
-//     // console.error('Error updating favoritecards:', error)
-//     toast.error('Failed to update favoritecards. Please try again later.')
-//   }
-// }
 
-//===================================================================================
-// export const addFavoriteCard = async (userId, cardId) => {
-//   try {
-//     const userRef = doc(db, 'users', userId)
-//     await updateDoc(userRef, {
-//       favoritecards: arrayUnion(cardId),
-//     })
+//     // Ссылка на коллекцию favoriteCards внутри документа пользователя
+//     const favoriteCardsCollectionRef = collection(
+//       doc(db, 'users', userId),
+//       'favoriteCards'
+//     )
+
+//     if (isFavorite) {
+//       // Удаление карточки из коллекции favoriteCards
+//       const q = query(
+//         favoriteCardsCollectionRef,
+//         where('id', '==', database.id)
+//       )
+//       const querySnapshot = await getDocs(q)
+
+//       if (!querySnapshot.empty) {
+//         // Удаляем найденные документы
+//         for (const docSnapshot of querySnapshot.docs) {
+//           await deleteDoc(docSnapshot.ref)
+//         }
+//         toast.error('Removed from favorites!')
+//       }
+//     } else {
+//       // Добавление карточки в коллекцию favoriteCards
+//       await addDoc(favoriteCardsCollectionRef, database)
+//       toast.success('Added to favorites!')
+//     }
+
+//     // Меняем состояние избранного
+//     setIsFavorite(!isFavorite)
 //   } catch (error) {
-//     console.error('Error adding to favoritecards:', error)
-//     throw error // Пробрасываем ошибку для обработки в компоненте
+//     console.error('Error updating favorites:', error)
+//     toast.error('Failed to update favorites. Please try again later.')
 //   }
 // }
 
@@ -234,14 +233,19 @@ export const getFavoriteCards = async (userId) => {
   try {
     const userRef = doc(db, 'users', userId)
     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
+    // console.log('favoriteCardsCollectionRef:', favoriteCardsCollectionRef)
+
     const querySnapshot = await getDocs(favoriteCardsCollectionRef)
-    console.log('querySnapshot', querySnapshot)
+    // console.log('querySnapshot', querySnapshot)
 
     const favoriteCards = []
     querySnapshot.forEach((doc) => {
-      console.log('Data from Firestore:', doc.data()) // Добавьте эту строку для отладки
+      // console.log('Data from Firestore:', doc.data()) // Добавьте эту строку для отладки
       favoriteCards.push(doc.data())
+      // console.log('favoriteCards after:', favoriteCards)
     })
+    console.log('favoriteCards', favoriteCards)
+
     return favoriteCards
   } catch (error) {
     console.error('Error getting favorite cards:', error)

@@ -42,6 +42,8 @@ export default function TeachersPage() {
   useEffect(() => {
     const fetchTeachers = async () => {
       const teachersArray = await getTeachersData() // Викликаємо асинхронну функцію
+      console.log('teachersArray', teachersArray)
+
       if (Array.isArray(teachersArray)) {
         // Перевіряємо, чи це масив
         const teachersWithId = teachersArray.map((teacher, index) => ({
@@ -50,6 +52,7 @@ export default function TeachersPage() {
         }))
         setTeachers(teachersWithId) // Оновлюємо стан для вчителів
         setFilteredTeachers(teachersWithId) // Оновлюємо стан для відфільтрованих вчителів
+        console.log('List of all teachers:', teachersWithId)
       } else {
         console.error('Отримані дані не є масивом')
       }

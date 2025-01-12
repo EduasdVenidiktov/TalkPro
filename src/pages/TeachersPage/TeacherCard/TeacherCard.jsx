@@ -57,83 +57,24 @@ export function TeacherCard({
     checkFavoriteStatus()
   }, [user, id, loading])
 
-  // const handleHeartClick = async () => {
-  //   console.log('Card ID:', id) // Перевірте, чи id існує та має значення
-  //   // if (!card) {
-  //   //   console.error('Card data is missing!')
-  //   //   return // Виходимо з функції, якщо дані відсутні
-  //   // }
-  //   if (loading) return // Захист від кліків під час завантаження
-  //   if (!user) {
-  //     setShowModal(true) // Показуємо модальне вікно, якщо не залогінений
-  //     return
-  //   }
-
-  //   try {
-  //     if (isFavorite) {
-  //       await removeFavoriteCard(user.uid, id)
-  //       toast.error('Removed from favorites!')
-  //     } else {
-  //       const cardData = {
-  //         id: id,
-  //         name: name,
-  //         surname: surname,
-  //         languages: languages,
-  //         levels: levels,
-  //         rating: rating,
-  //         price_per_hour: price_per_hour,
-  //         avatar_url: avatar_url,
-  //         lessons_done: lessons_done,
-  //         lesson_info: lesson_info,
-  //         conditions: conditions,
-  //         experience: experience,
-  //         reviews: reviews,
-  //         selectedLevel: selectedLevel,
-  //       }
-  //       await addFavoriteCard(user.uid, cardData)
-  //       toast.success('Added to favorites!')
-  //     }
-  //     setIsFavorite(!isFavorite)
-  //   } catch {
-  //     toast.error('Failed to update favorites. Please try again later.') // Повідомлення про помилку
-  //   }
-  // }
-
-  // const handleHeartClick = async () => {
-  //   if (loading) return // Захист від кліків під час завантаження
-  //     if (!user) {
-  //       setShowModal(true) // Показуємо модальне вікно, якщо не залогінений
-  //       return
-  //   }
-
-  //  try {
-  //     if (isFavorite) {
-  //       await handleToggleFavorite(user.uid, id)
-  //       toast.error('Removed from favorites!')
-  //     } else {
-  // }
-
   const handleHeartClick = async () => {
     if (!user) {
       setShowModal(true)
     } else {
       try {
-        const favoriteCards = await getFavoriteCards(user.uid) // Получаем всех учителей
-        console.log('favoriteCards:', favoriteCards) // Отобразит массив преподавателей
-
-        const teacherData = favoriteCards.find((card) => card.id === id)
-        console.log('teacherData', teacherData)
-
-        if (!teacherData) {
-          console.error('Преподаватель с указанным ID не найден')
-          toast.error('Invalid teacher data. Cannot update favorites.')
-          return
-        }
-
-        // Вызываем функцию для добавления/удаления избранного
-        handleToggleFavorite(user.uid, teacherData, isFavorite, setIsFavorite)
+        await handleToggleFavorite(user.uid, {
+          id,
+          name,
+          surname,
+          languages,
+          levels,
+          rating,
+          price_per_hour,
+          avatar_url,
+        })
+        setIsFavorite((prev) => !prev)
       } catch (error) {
-        console.error('Ошибка при обработке:', error)
+        console.error('Error processing:', error)
       }
     }
   }
