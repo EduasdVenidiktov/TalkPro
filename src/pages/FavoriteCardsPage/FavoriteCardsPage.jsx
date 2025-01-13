@@ -1,4 +1,190 @@
 // import { useEffect, useState } from 'react'
+// import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
+// import css from './FavoriteCardsPage.module.css'
+// import toast from 'react-hot-toast'
+// import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
+// import { getFavoriteCards } from '/src/data/firebase.js'
+// import { useAuth } from '/src/AuthProvider'
+// import Loader from '/src/components/Loader/Loader'
+
+// export default function FavoriteCardsPage({ levels }) {
+//   const { user } = useAuth() // Отримуємо user з контексту
+
+//   const [favoriteCards, setFavoriteCards] = useState([])
+//   const [isFirstRender, setIsFirstRender] = useState(true)
+//   const [isLoading, setIsLoading] = useState(true) // Нове стан для завантаження
+//   const selectedLevel = localStorage.getItem('selectedLevel') || ''
+
+//   useEffect(() => {
+//     const fetchFavoriteCards = async () => {
+//       if (user) {
+//         setIsLoading(true) // Починаємо завантаження
+//         try {
+//           const favoriteCardsData = await getFavoriteCards(user.uid)
+//           console.log('Favorite Cards Data:', favoriteCardsData) // Додано для відлагодження
+
+//           setFavoriteCards(favoriteCardsData)
+//         } catch (error) {
+//           console.error('Error fetching favorite cards:', error)
+//           toast.error(
+//             'Failed to load favorite cards. Please try again later.',
+//             {
+//               className: 'toastError',
+//               duration: 1500,
+//             }
+//           )
+//         } finally {
+//           setIsLoading(false) // Завершуємо завантаження
+//         }
+//       }
+//     }
+
+//     fetchFavoriteCards() // Викликаємо функцію після отримання user.uid
+//   }, [user])
+
+//   // useEffect(() => {
+//   //   if (!isFirstRender && favoriteCards.length === 0) {
+//   //     setTimeout(() => {
+//   //       toast.error('Please select a card in Teachers.', {
+//   //         className: 'toastError',
+//   //         duration: 1500,
+//   //       })
+//   //     }, 1400)
+//   //   }
+//   // }, [favoriteCards, isFirstRender])
+
+//   useEffect(() => {
+//     if (isFirstRender) {
+//       setIsFirstRender(false)
+//     }
+//   }, [isFirstRender])
+
+//   return (
+//     <div className={css.favoritecardsPage}>
+//       <HomeHeader />
+
+//       <div>
+//         {isLoading ? ( // Умова для відображення Loader
+//           <Loader />
+//         ) : favoriteCards.length > 0 ? (
+//           favoriteCards.map((card) => (
+//             <TeacherCard
+//               key={card.id} // Add the key prop here with the card's id
+//               {...card}
+//               isFavorite={true}
+//               selectedLevel={selectedLevel}
+//             />
+//           ))
+//         ) : (
+//           <p className={css.textMessage}>
+//             You don&apos;t have any favorite teachers yet.
+//           </p>
+//         )}
+//       </div>
+//       {(levels || []).map((level, index) => (
+//         <p
+//           key={index}
+//           className={level === selectedLevel ? css.selectedLevel : ''}
+//         >
+//           {level}
+//         </p>
+//       ))}
+//     </div>
+//   )
+// }
+
+//=============================== 2 =================================================
+import { useEffect, useState } from 'react'
+import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
+import css from './FavoriteCardsPage.module.css'
+import toast from 'react-hot-toast'
+import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
+import { getFavoriteCards } from '/src/data/firebase.js'
+import { useAuth } from '/src/AuthProvider'
+import Loader from '/src/components/Loader/Loader'
+// import { handleToggleFavorite } from '/src/data/firebase.js'
+
+export default function FavoriteCardsPage({ levels }) {
+  const { user } = useAuth() // Отримуємо user з контексту
+
+  const [favoriteCards, setFavoriteCards] = useState([])
+  const [isFirstRender, setIsFirstRender] = useState(true)
+  const selectedLevel = localStorage.getItem('selectedLevel') || ''
+
+  useEffect(() => {
+    const fetchFavoriteCards = async () => {
+      if (user) {
+        try {
+          const favoriteCardsData = await getFavoriteCards(user.uid)
+          console.log('Favorite Cards Data:', favoriteCardsData) // Добавьте эту строку для отладки
+
+          setFavoriteCards(favoriteCardsData) // Або фільтруйте дані з TeacherCard за цими id
+        } catch (error) {
+          console.error('Error fetching favorite cards:', error)
+          toast.error('Failed to load favoritecards. Please try again later.', {
+            className: 'toastError',
+            duration: 1500,
+          })
+        }
+      }
+    }
+
+    fetchFavoriteCards() // Викличте функцію після отримання user.uid
+  }, [user])
+
+  useEffect(() => {
+    // Логіка для відображення повідомлення
+    if (!isFirstRender && favoriteCards.length === 0) {
+      setTimeout(() => {
+        toast.error('Please select a card in Teachers.', {
+          className: 'toastError',
+          duration: 1500, // Продолжительность тостера
+        })
+      }, 1400) // Задержка 1000 миллисекунд
+    }
+  }, [favoriteCards, isFirstRender])
+
+  useEffect(() => {
+    // Після першого рендеру змінюємо isFirstRender на false
+    if (isFirstRender) {
+      setIsFirstRender(false)
+    }
+  }, [isFirstRender])
+
+  return (
+    <div className={css.favoritecardsPage}>
+      <HomeHeader />
+
+      <div>
+        {favoriteCards.length > 0 ? (
+          favoriteCards.map((card) => (
+            <TeacherCard
+              key={card.id} // Add the key prop here with the card's id
+              {...card}
+              isFavorite={true}
+              selectedLevel={selectedLevel}
+            />
+          ))
+        ) : (
+          <p className={css.textMessage}>
+            You don&apos;t have any favorite teachers yet.
+          </p>
+        )}
+      </div>
+      {(levels || []).map((level, index) => (
+        <p
+          key={index}
+          className={level === selectedLevel ? css.selectedLevel : ''}
+        >
+          {level}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+//==============================================================================
+// import { useEffect, useState } from 'react'
 // import toast from 'react-hot-toast'
 // import { useAuth } from '/src/AuthProvider'
 // import {
@@ -204,99 +390,6 @@
 //     </div>
 //   )
 // }
-
-//=============================== 2 =================================================
-import { useEffect, useState } from 'react'
-import { TeacherCard } from '/src/pages/TeachersPage/TeacherCard/TeacherCard'
-import css from './FavoriteCardsPage.module.css'
-import toast from 'react-hot-toast'
-import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
-import { getFavoriteCards } from '/src/data/firebase.js'
-import { useAuth } from '/src/AuthProvider'
-// import { handleToggleFavorite } from '/src/data/firebase.js'
-
-export default function FavoriteCardsPage({ levels }) {
-  const { user } = useAuth() // Отримуємо user з контексту
-
-  const [favoriteCards, setFavoriteCards] = useState([])
-  const [isFirstRender, setIsFirstRender] = useState(true)
-  const selectedLevel = localStorage.getItem('selectedLevel') || ''
-
-  useEffect(() => {
-    const fetchFavoriteCards = async () => {
-      if (user) {
-        try {
-          const favoriteCardsData = await getFavoriteCards(user.uid)
-          console.log('Favorite Cards Data:', favoriteCardsData) // Добавьте эту строку для отладки
-
-          setFavoriteCards(favoriteCardsData) // Або фільтруйте дані з TeacherCard за цими id
-        } catch (error) {
-          console.error('Error fetching favorite cards:', error)
-          toast.error('Failed to load favoritecards. Please try again later.')
-        }
-      }
-    }
-
-    fetchFavoriteCards() // Викличте функцію після отримання user.uid
-  }, [user])
-
-  // useEffect(() => {
-  //   // Отримуємо обраних викладачів з localStorage
-  //   const storedFavoriteCards =
-  //     JSON.parse(localStorage.getItem('favoriteCards')) || []
-  //   setFavoriteCards(storedFavoriteCards)
-  // }, [])
-
-  useEffect(() => {
-    // Логіка для відображення повідомлення
-    if (!isFirstRender && favoriteCards.length === 0) {
-      setTimeout(() => {
-        toast.error('Please select a card in Teachers.', {
-          className: 'toastError',
-          duration: 1500, // Продолжительность тостера
-        })
-      }, 1400) // Задержка 1000 миллисекунд
-    }
-  }, [favoriteCards, isFirstRender])
-
-  useEffect(() => {
-    // Після першого рендеру змінюємо isFirstRender на false
-    if (isFirstRender) {
-      setIsFirstRender(false)
-    }
-  }, [isFirstRender])
-
-  return (
-    <div className={css.favoritecardsPage}>
-      <HomeHeader />
-
-      <div>
-        {favoriteCards.length > 0 ? (
-          favoriteCards.map((card) => (
-            <TeacherCard
-              key={card.id} // Add the key prop here with the card's id
-              {...card}
-              isFavorite={true}
-              selectedLevel={selectedLevel}
-            />
-          ))
-        ) : (
-          <p className={css.textMessage}>
-            You don&apos;t have any favorite teachers yet.
-          </p>
-        )}
-      </div>
-      {(levels || []).map((level, index) => (
-        <p
-          key={index}
-          className={level === selectedLevel ? css.selectedLevel : ''}
-        >
-          {level}
-        </p>
-      ))}
-    </div>
-  )
-}
 
 //=========================================================================================
 // import { useEffect, useState } from 'react'

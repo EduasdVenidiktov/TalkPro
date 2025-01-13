@@ -24,13 +24,22 @@ export const signInWithGoogle = async () => {
         // Добавьте другие поля пользователя, которые вам нужны
         favoriteCards: [], // Инициализируем массив избранных карточек
       })
-      toast.success('User registered successfully!', { duration: 1500 })
+      toast.success('User registered successfully!', {
+        className: 'toastSuccess',
+        duration: 1500,
+      })
     } else {
-      toast.success('User logged in successfully!', { duration: 1500 })
+      toast.success('User logged in successfully!', {
+        className: 'toastSuccess',
+        duration: 1500,
+      })
     }
   } catch (error) {
     console.error('Error signing in with Google', error)
-    toast.error('Google sign-in failed.', { duration: 1500 })
+    toast.error('Google sign-in failed.', {
+      className: 'toastError',
+      duration: 1500,
+    })
   }
 }
 
