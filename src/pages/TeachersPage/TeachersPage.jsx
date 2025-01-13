@@ -6,10 +6,11 @@ import { getTeachersData } from '/src/data/firebase.js'
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
-import toast from 'react-hot-toast'
+// import toast from 'react-hot-toast'
 import { TbArrowBigUpLinesFilled } from 'react-icons/tb'
 import { useAuth } from '/src/AuthProvider'
 import { handleToggleFavorite } from '/src/data/firebase.js'
+import Loader from '/src/components/Loader/Loader'
 
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([])
@@ -21,12 +22,16 @@ export default function TeachersPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem('userToken')
   ) // Авторизація
-  const [hasShownPriceMessage, setHasShownPriceMessage] = useState(false)
+
+  // const [hasShownPriceMessage, setHasShownPriceMessage] = useState(false)
+  const [isLoading, setIsLoading] = useState(true) // Стан для відображення Loader'а
 
   const { isNewUser } = useAuth() // Достаємо isNewUser з контексту
 
   useEffect(() => {
     const fetchTeachers = async () => {
+      setIsLoading(true)
+
       const teachersArray = await getTeachersData() // Викликаємо асинхронну функцію
       console.log('teachersArray', teachersArray)
 
@@ -42,6 +47,7 @@ export default function TeachersPage() {
       } else {
         console.error('Отримані дані не є масивом')
       }
+      setIsLoading(false)
     }
     fetchTeachers()
   }, []) // Порожній масив залежностей означає, що викликається один раз після першого рендеру
@@ -63,17 +69,17 @@ export default function TeachersPage() {
       })
       setFilteredTeachers(filtered)
 
-      if (!isFirstRender && filtered.length === 0 && !hasShownPriceMessage) {
-        toast.error('Please select a higher price.', {
-          className: 'toastError',
-          duration: 1500,
-        })
-        setHasShownPriceMessage(true) // Оновлюємо стан, щоб повідомлення показалося тільки один раз
-      }
+      // if (!isFirstRender && filtered.length === 0 && !hasShownPriceMessage) {
+      //   toast.error('Please select a higher price.', {
+      //     className: 'toastError',
+      //     duration: 1500,
+      //   })
+      //   setHasShownPriceMessage(true) // Оновлюємо стан, щоб повідомлення показалося тільки один раз
+      // }
     }
 
     applyFilters()
-  }, [teachers, filters, isFirstRender, hasShownPriceMessage])
+  }, [teachers, filters, isFirstRender])
 
   useEffect(() => {
     if (isFirstRender) {
@@ -121,22 +127,32 @@ export default function TeachersPage() {
       <HomeHeader isLoggedIn={isLoggedIn} onLogOut={handleLogOut} />
       <Filters setFilters={setFilters} />
 
-      {filteredTeachers.slice(0, visibleTeachers).map((teacher) => (
-        <TeacherCard
-          key={teacher.id}
-          {...teacher}
-          selectedLevel={filters.level}
-          onToggleFavorite={handleToggleFavorite}
-          isFavorite={favorites.includes(teacher.id)}
-          isNewUser={isNewUser}
-        />
-      ))}
-      {filteredTeachers.length === 0 ? (
+      {isLoading ? (
+        <div className={css.loaderContainer}>
+          <Loader />
+        </div>
+      ) : filteredTeachers.length === 0 ? (
         <p className={css.commentFilters}>
           No teachers match the selected filters.
         </p>
       ) : (
         <>
+          {filteredTeachers.slice(0, visibleTeachers).map((teacher) => (
+            <TeacherCard
+              key={teacher.id}
+              {...teacher}
+              selectedLevel={filters.level}
+              onToggleFavorite={handleToggleFavorite}
+              isFavorite={favorites.includes(teacher.id)}
+              isNewUser={isNewUser}
+            />
+          ))}
+          {/* {filteredTeachers.length === 0 ? (
+        <p className={css.commentFilters}>
+          No teachers match the selected filters.
+        </p>
+      ) : (
+        <> */}
           {visibleTeachers < filteredTeachers.length ? (
             <button onClick={handleLoadMore} className={css.btnLoadMore}>
               Load more

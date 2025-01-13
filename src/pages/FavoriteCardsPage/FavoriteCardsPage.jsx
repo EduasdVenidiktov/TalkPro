@@ -213,6 +213,7 @@ import toast from 'react-hot-toast'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import { getFavoriteCards } from '/src/data/firebase.js'
 import { useAuth } from '/src/AuthProvider'
+import Loader from '/src/components/Loader/Loader'
 // import { handleToggleFavorite } from '/src/data/firebase.js'
 
 export default function FavoriteCardsPage({ levels }) {
@@ -221,9 +222,11 @@ export default function FavoriteCardsPage({ levels }) {
   const [favoriteCards, setFavoriteCards] = useState([])
   const [isFirstRender, setIsFirstRender] = useState(true)
   const selectedLevel = localStorage.getItem('selectedLevel') || ''
+  const [isLoading, setIsLoading] = useState(true) // Стан для відображення Loader'а
 
   useEffect(() => {
     const fetchFavoriteCards = async () => {
+      setIsLoading(true)
       if (user) {
         try {
           const favoriteCardsData = await getFavoriteCards(user.uid)
@@ -236,6 +239,8 @@ export default function FavoriteCardsPage({ levels }) {
             className: 'toastError',
             duration: 1500,
           })
+        } finally {
+          setIsLoading(false)
         }
       }
     }
@@ -251,33 +256,36 @@ export default function FavoriteCardsPage({ levels }) {
   // }, [])
 
   useEffect(() => {
-    // Логіка для відображення повідомлення
-    if (!isFirstRender && favoriteCards.length === 0) {
-      setTimeout(() => {
-        toast.error('Please select a card in Teachers.', {
-          className: 'toastError',
-          duration: 1500, // Продолжительность тостера
-        })
-      }, 1400) // Задержка 1000 миллисекунд
-    }
-  }, [favoriteCards, isFirstRender])
-
-  useEffect(() => {
     // Після першого рендеру змінюємо isFirstRender на false
     if (isFirstRender) {
       setIsFirstRender(false)
     }
   }, [isFirstRender])
 
+  // useEffect(() => {
+  //   // Логіка для відображення повідомлення
+  //   if (!isFirstRender && favoriteCards.length === 0) {
+  //     setTimeout(() => {
+  //       toast.error('Please select a card in Teachers.', {
+  //         className: 'toastError',
+  //         duration: 1500, // Продолжительность тостера
+  //       })
+  //     }, 1400) // Задержка 1000 миллисекунд
+  //   }
+  // }, [favoriteCards, isFirstRender])
+
   return (
     <div className={css.favoritecardsPage}>
       <HomeHeader />
-
       <div>
-        {favoriteCards.length > 0 ? (
+        {isLoading ? (
+          <div className={css.loaderContainer}>
+            <Loader />
+          </div>
+        ) : favoriteCards.length > 0 ? (
           favoriteCards.map((card) => (
             <TeacherCard
-              key={card.id} // Add the key prop here with the card's id
+              key={card.id} // Уникальный ключ для каждого элемента
               {...card}
               isFavorite={true}
               selectedLevel={selectedLevel}
