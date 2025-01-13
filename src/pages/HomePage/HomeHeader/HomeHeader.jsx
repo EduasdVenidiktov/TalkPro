@@ -48,7 +48,10 @@ export function HomeHeader() {
         },
         (error) => {
           console.error('Error fetching favorites:', error)
-          toast.error('Error fetching favorites')
+          toast.error('Error fetching favorites', {
+            className: 'toastError',
+            duration: 1500,
+          })
         }
       )
     } else {
@@ -110,10 +113,16 @@ export function HomeHeader() {
       // Записываем данные пользователя в Firestore
       await setDoc(userDocRef, userData, { merge: true }) // Используем merge, чтобы не перезаписать существующие поля
 
-      toast.success('You are successfully logged in!')
+      toast.success('You are successfully logged in!', {
+        className: 'toastSuccess',
+        duration: 1500,
+      })
     } catch (error) {
       console.error('Error saving user data to Firestore:', error)
-      toast.error('Error during log in. Please try again later.')
+      toast.error('Error during log in. Please try again later.', {
+        className: 'toastError',
+        duration: 1500,
+      })
     }
   }
 

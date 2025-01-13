@@ -190,7 +190,10 @@ export function Registration({ onClose }) {
     try {
       await signInWithGoogle()
     } catch {
-      toast.error('Google sign-in failed.', { duration: 1500 })
+      toast.error('Google sign-in failed.', {
+        className: 'toastError',
+        duration: 1500,
+      })
     }
   }
 

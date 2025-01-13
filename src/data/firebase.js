@@ -130,15 +130,24 @@ export const handleToggleFavorite = async (userId, teacherData) => {
       for (const docSnapshot of querySnapshot.docs) {
         await deleteDoc(docSnapshot.ref)
       }
-      toast.error('Removed from favorites!')
+      toast.error('Removed from favorites!', {
+        className: 'toastError',
+        duration: 1500,
+      })
     } else {
       // Add card to favorites
       await addDoc(favoriteCardsCollectionRef, teacherData)
-      toast.success('Added to favorites!')
+      toast.success('Added to favorites!', {
+        className: 'toastSuccess',
+        duration: 1500,
+      })
     }
   } catch (error) {
     console.error('Error updating favorites:', error)
-    toast.error('Failed to update favorites. Please try again later.')
+    toast.error('Failed to update favorites. Please try again later.', {
+      className: 'toastError',
+      duration: 1500,
+    })
   }
 }
 

@@ -48,7 +48,10 @@ export function TeacherCard({
           setIsFavorite(favoriteCards.some((card) => card.id === id))
         } catch (error) {
           console.error('Error fetching favorites:', error)
-          toast.error('Failed to load favorites. Please try again later.') // Повідомлення про помилку
+          toast.error('Failed to load favorites. Please try again later.', {
+            className: 'toastError',
+            duration: 1500,
+          }) // Повідомлення про помилку
         }
       } else {
         setIsFavorite(false)

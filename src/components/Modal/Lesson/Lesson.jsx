@@ -44,12 +44,15 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
         )
         const user = userCredential.user
         await updateProfile(user, { displayName: data.name })
-        toast.success('User registered successfully!')
+        toast.success('User registered successfully!', {
+          className: 'toastSuccess',
+          duration: 1500,
+        })
         navigate('/logIn')
       } else {
         toast.success('Booking trial lesson!', {
           className: 'toastSuccess',
-          duration: 2000, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
         })
       }
       onClose()

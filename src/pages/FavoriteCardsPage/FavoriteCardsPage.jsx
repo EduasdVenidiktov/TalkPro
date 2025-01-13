@@ -232,7 +232,10 @@ export default function FavoriteCardsPage({ levels }) {
           setFavoriteCards(favoriteCardsData) // Або фільтруйте дані з TeacherCard за цими id
         } catch (error) {
           console.error('Error fetching favorite cards:', error)
-          toast.error('Failed to load favoritecards. Please try again later.')
+          toast.error('Failed to load favoritecards. Please try again later.', {
+            className: 'toastError',
+            duration: 1500,
+          })
         }
       }
     }

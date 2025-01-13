@@ -66,7 +66,7 @@ export default function TeachersPage() {
       if (!isFirstRender && filtered.length === 0 && !hasShownPriceMessage) {
         toast.error('Please select a higher price.', {
           className: 'toastError',
-          duration: 2000,
+          duration: 1500,
         })
         setHasShownPriceMessage(true) // Оновлюємо стан, щоб повідомлення показалося тільки один раз
       }
