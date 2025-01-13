@@ -135,18 +135,17 @@ export const handleToggleFavorite = async (userId, teacherData) => {
         duration: 1500,
       })
     } else {
-      // Add card to favorites
       await addDoc(favoriteCardsCollectionRef, teacherData)
       toast.success('Added to favorites!', {
         className: 'toastSuccess',
-        duration: 1500,
+        duration: 1000,
       })
     }
   } catch (error) {
     console.error('Error updating favorites:', error)
     toast.error('Failed to update favorites. Please try again later.', {
       className: 'toastError',
-      duration: 1500,
+      duration: 1000,
     })
   }
 }

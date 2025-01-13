@@ -74,6 +74,12 @@ export function TeacherCard({
           rating,
           price_per_hour,
           avatar_url,
+          lessons_done,
+          lesson_info,
+          conditions,
+          experience,
+          reviews,
+          selectedLevel,
         })
         setIsFavorite((prev) => !prev)
       } catch (error) {

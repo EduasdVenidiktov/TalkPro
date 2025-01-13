@@ -23,7 +23,6 @@ export default function TeachersPage() {
     !!localStorage.getItem('userToken')
   ) // Авторизація
 
-  // const [hasShownPriceMessage, setHasShownPriceMessage] = useState(false)
   const [isLoading, setIsLoading] = useState(true) // Стан для відображення Loader'а
 
   const { isNewUser } = useAuth() // Достаємо isNewUser з контексту
@@ -43,9 +42,7 @@ export default function TeachersPage() {
         }))
         setTeachers(teachersWithId) // Оновлюємо стан для вчителів
         setFilteredTeachers(teachersWithId) // Оновлюємо стан для відфільтрованих вчителів
-        console.log('List of all teachers:', teachersWithId)
       } else {
-        console.error('Отримані дані не є масивом')
       }
       setIsLoading(false)
     }

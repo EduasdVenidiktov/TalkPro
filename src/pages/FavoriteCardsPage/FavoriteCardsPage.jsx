@@ -230,7 +230,6 @@ export default function FavoriteCardsPage({ levels }) {
       if (user) {
         try {
           const favoriteCardsData = await getFavoriteCards(user.uid)
-          console.log('Favorite Cards Data:', favoriteCardsData) // Добавьте эту строку для отладки
 
           setFavoriteCards(favoriteCardsData) // Або фільтруйте дані з TeacherCard за цими id
         } catch (error) {
