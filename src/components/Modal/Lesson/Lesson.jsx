@@ -52,14 +52,14 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
       } else {
         toast.success('Booking trial lesson!', {
           className: 'toastSuccess',
-          duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
+          duration: 1500,
         })
       }
       onClose()
     } catch (error) {
       toast.error('Error during registration or booking: ' + error.message, {
         className: 'toastError',
-        duration: 1500, // Продолжительность в миллисекундах (1500 = 1.5 секунды)
+        duration: 1500,
       })
       reset({
         fullName: '',

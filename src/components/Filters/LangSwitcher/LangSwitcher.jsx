@@ -1,18 +1,9 @@
 import { useState } from 'react'
 import css from './LangSwitcher.module.css'
+import { languages } from '/src/data/options'
 
 export function LangSwitcher({ setFilters }) {
   const [selectedLanguage, setSelectedLanguage] = useState('')
-  const languages = [
-    'English',
-    'French',
-    'German',
-    'Italian',
-    'Korean',
-    'Mandarin Chinese',
-    'Spanish',
-    'Vietnamese',
-  ]
 
   const handleLanguageChange = (e) => {
     const language = e.target.value

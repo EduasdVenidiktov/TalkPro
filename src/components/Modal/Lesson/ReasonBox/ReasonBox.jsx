@@ -1,14 +1,7 @@
 import { useState } from 'react'
 import radioButton from '/src/assets/icons/sprite.svg'
 import css from './ReasonBox.module.css'
-
-const options = [
-  { value: 'career', label: 'Career and business' },
-  { value: 'kids', label: 'Lessons for kids' },
-  { value: 'abroad', label: 'Living abroad' },
-  { value: 'exams', label: 'Exams and coursework' },
-  { value: 'culture', label: 'Culture, travel, or hobby' },
-]
+import { options } from '/src/data/options'
 
 export function ReasonBox() {
   const [reason, setReason] = useState('')

@@ -15,7 +15,7 @@ export const HeartModal = ({
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
-        setActiveComponent(null) // Возврат к выбору
+        setActiveComponent(null)
         onClose()
       }
     }
@@ -31,13 +31,13 @@ export const HeartModal = ({
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
-      setActiveComponent(null) // Возврат к выбору
+      setActiveComponent(null)
       onClose()
     }
   }
 
   const handleClose = () => {
-    setActiveComponent(null) // Возврат к выбору
+    setActiveComponent(null)
     onClose()
   }
 

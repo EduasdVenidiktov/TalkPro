@@ -1,7 +1,15 @@
 #root {
-  max-width: 1184px;
   margin: 0 auto;
 }
+
+#root.homepage {
+  max-width: 1312px;
+}
+
+#root.otherpages {
+  max-width: 1184px;
+}
+
 body {
   height: 100%;
 }

@@ -95,10 +95,6 @@ export function TeacherCard({
 
   const handleReadMore = () => setShowMore((prev) => !prev)
 
-  // if (loading) {
-  //   return <div>Loading...</div> // Або інший індикатор завантаження
-  // }
-
   return (
     <div className={css.teacherCard}>
       <div className={css.teacherImageBox}>
@@ -136,8 +132,6 @@ export function TeacherCard({
             className={css.btnHeart}
             onClick={handleHeartClick} // Передаем функцию как обработчик
           >
-            {/* {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'} */}
-
             {user && isFavorite ? (
               <FaHeart className={`${css.heartIcon} ${css.favorited}`} />
             ) : (

@@ -1,16 +1,8 @@
 import { useState, useEffect } from 'react'
 import css from './LevelOfKnowledge.module.css'
+import { levels } from '/src/data/options'
 
 export function LevelOfKnowledge({ setFilters }) {
-  const levels = [
-    'A1 Beginner',
-    'A2 Elementary',
-    'B1 Intermediate',
-    'B2 Upper-Intermediate',
-    'C1 Advanced',
-    'C2 Proficient',
-  ]
-
   // State for the selected level
   const [selectedLevel, setSelectedLevel] = useState(null)
 
@@ -24,7 +16,6 @@ export function LevelOfKnowledge({ setFilters }) {
     }
   }, [])
 
-  // Save level to localStorage when it changes
   useEffect(() => {
     if (selectedLevel) {
       localStorage.setItem('selectedLevel', selectedLevel)
