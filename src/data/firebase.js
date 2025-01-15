@@ -100,7 +100,11 @@ export const addUserToFirestore = async (user, name) => {
 //   }
 // }
 
-export const handleToggleFavorite = async (userId, teacherData) => {
+export const handleToggleFavorite = async (
+  userId,
+  teacherData,
+  onToggleFavorite
+) => {
   try {
     const userRef = doc(db, 'users', userId)
     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
@@ -122,6 +126,10 @@ export const handleToggleFavorite = async (userId, teacherData) => {
         className: 'toastError',
         duration: 1500,
       })
+
+      if (onToggleFavorite) {
+        onToggleFavorite(teacherData)
+      }
     } else {
       await addDoc(favoriteCardsCollectionRef, teacherData)
 

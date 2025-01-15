@@ -32,6 +32,7 @@ export function TeacherCard({
   experience,
   reviews = [],
   selectedLevel,
+  onToggleFavorite,
 }) {
   const [showMore, setShowMore] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
@@ -65,22 +66,26 @@ export function TeacherCard({
       setShowModal(true)
     } else {
       try {
-        await handleToggleFavorite(user.uid, {
-          id,
-          name,
-          surname,
-          languages,
-          levels,
-          rating,
-          price_per_hour,
-          avatar_url,
-          lessons_done,
-          lesson_info,
-          conditions,
-          experience,
-          reviews,
-          selectedLevel,
-        })
+        await handleToggleFavorite(
+          user.uid,
+          {
+            id,
+            name,
+            surname,
+            languages,
+            levels,
+            rating,
+            price_per_hour,
+            avatar_url,
+            lessons_done,
+            lesson_info,
+            conditions,
+            experience,
+            reviews,
+            selectedLevel,
+          },
+          onToggleFavorite
+        )
         setIsFavorite((prev) => !prev)
       } catch (error) {
         console.error('Error processing:', error)

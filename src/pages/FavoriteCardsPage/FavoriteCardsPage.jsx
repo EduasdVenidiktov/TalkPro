@@ -288,6 +288,11 @@ export default function FavoriteCardsPage({ levels }) {
               {...card}
               isFavorite={true}
               selectedLevel={selectedLevel}
+              onToggleFavorite={(updatedCard) => {
+                setFavoriteCards((prevCards) =>
+                  prevCards.filter((c) => c.id !== updatedCard.id)
+                )
+              }}
             />
           ))
         ) : (
