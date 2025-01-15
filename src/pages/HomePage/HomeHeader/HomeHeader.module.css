@@ -2,14 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 64px;
-
+  padding: 20px 0;
+  /* margin: 20px 64px; */
+  /* margin: 0 64px; */
+  width: 1312px;
+  padding-left: 64px;
   position: relative;
+  /* padding-left: 64px; */
 }
 
 .navigator {
-  align-items: center;
-  justify-content: space-between;
+  /* align-items: center; */
+  /* justify-content: space-between; */
   margin-bottom: 20px;
 }
 
@@ -43,13 +47,14 @@
   gap: 28px;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 50%; /* Переміщує блок по горизонталі до середини */
+  /* position: absolute; */
   transform: translateX(-50%);
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   color: #121417;
+  margin-left: 226px;
+  margin-top: 20px;
 }
 
 .headerMenu li {
@@ -63,13 +68,10 @@
 .regAuthMenu {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Змінено на flex-end для вирівнювання по правому краю */
-  margin-left: auto;
   gap: 8px;
 }
 
 .logOut {
-  width: 20px;
   height: 20px;
   stroke: #f4c550;
   fill: white;

@@ -1,3 +1,7 @@
+.statContainer {
+  max-width: 1312px;
+}
+
 .statItem {
   display: flex;
   align-items: center;
@@ -29,10 +33,12 @@
   display: flex;
   padding: 40px 122px;
   gap: 100px;
+  width: 1312px;
 }
 
 .logOutStyle {
   background-image: url('/src/assets/Images/RectangleLogOut.png'); /* Шлях до вашого PNG контурного зображення */
+  width: 1312px;
 }
 
 .statText {

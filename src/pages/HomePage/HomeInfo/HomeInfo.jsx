@@ -16,10 +16,10 @@ export function HomeInfo() {
   return (
     <div className={css.infoSection}>
       <h1 className={css.title}>
+        <div className={`${css.backgroundDiv} ${logOutClass}`}></div>
         Unlock your potential with the best
         <span className={css.spanWord}> language </span>
         <span className={css.spanWordEnd}>tutors</span>
-        <div className={`${css.backgroundDiv} ${logOutClass}`}></div>
       </h1>
       <p className={css.infoText}>
         Embark on an Exciting Language Journey with Expert Language Tutors:

@@ -6,7 +6,7 @@ import ukraine from '../../../assets/icons/sprite.svg'
 import logOut from '../../../assets/icons/sprite.svg'
 import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
 import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
-import { Link, NavLink, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom' // Імпорт Link для навігації
 import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 
@@ -22,6 +22,13 @@ export function HomeHeader() {
   // const { isLoggedIn, logout, isNewUser } = useAuth()
   // const { isLoggedIn, user, loading, logout } = useAuth()
   const { user, logout } = useAuth()
+
+  const location = useLocation()
+
+  const isSpecialPage =
+    location.pathname === '/teachers' || location.pathname === '/favorite'
+  const ulStyle = isSpecialPage ? { paddingRight: '128px' } : {}
+  const navStyle = user ? { paddingLeft: '170px' } : {}
 
   const statClass = user ? css.authenticated : css.logOutStyle
   const logInClass = !user ? css.logOutText : ''
@@ -142,7 +149,7 @@ export function HomeHeader() {
           </Link>
         </h2>
       </div>
-      <nav className={css.navigator}>
+      <nav className={css.navigator} style={navStyle}>
         <ul className={css.headerMenu}>
           <li>
             <NavLink to="/" end className={buildLinkClass}>
@@ -166,7 +173,7 @@ export function HomeHeader() {
         </ul>
       </nav>
 
-      <ul className={css.regAuthMenu}>
+      <ul className={css.regAuthMenu} style={ulStyle}>
         {user ? (
           <li>
             <svg
