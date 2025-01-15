@@ -9,15 +9,17 @@ export function HomeInfo() {
   const handleGetStartedClick = () => {
     navigate('/teachers')
   }
-  const logOutClass = clsx(user ? css.authenticated : css.logOutStyle)
+  const logOutClass = clsx(
+    user ? css.authenticated : css.logOutStyle && css.logOutBtnStyle
+  )
 
   return (
     <div className={css.infoSection}>
       <h1 className={css.title}>
         Unlock your potential with the best
         <span className={css.spanWord}> language </span>
+        <span className={css.spanWordEnd}>tutors</span>
         <div className={`${css.backgroundDiv} ${logOutClass}`}></div>
-        tutors
       </h1>
       <p className={css.infoText}>
         Embark on an Exciting Language Journey with Expert Language Tutors:

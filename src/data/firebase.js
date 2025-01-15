@@ -16,6 +16,7 @@ import {
   deleteDoc,
   query,
 } from 'firebase/firestore'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
 const firebaseConfig = {
@@ -27,18 +28,6 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID,
 }
-
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyCPA9oF26HyhwskD8CNDauOE7kzE1lzfbQ',
-//   authDomain: 'talkpro - ce5a4.firebaseapp.com',
-//   databaseURL: 'https://talkpro-ce5a4-default-rtdb.firebaseio.com',
-//   projectId: 'talkpro-ce5a4',
-//   storageBucket: 'talkpro-ce5a4.appspot.com',
-//   messagingSenderId: '255413950810',
-//   appId: '1:255413950810:web:0b152b3d7c10f36dae3b63',
-// }
-
-console.log('Firebase config:', firebaseConfig) // ВАЖНО: добавьте эту строку!
 
 const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
@@ -111,8 +100,6 @@ export const addUserToFirestore = async (user, name) => {
 //   }
 // }
 
-console.log('database перед вызовом:', database)
-
 export const handleToggleFavorite = async (userId, teacherData) => {
   try {
     const userRef = doc(db, 'users', userId)
@@ -130,12 +117,14 @@ export const handleToggleFavorite = async (userId, teacherData) => {
       for (const docSnapshot of querySnapshot.docs) {
         await deleteDoc(docSnapshot.ref)
       }
+
       toast.error('Removed from favorites!', {
         className: 'toastError',
         duration: 1500,
       })
     } else {
       await addDoc(favoriteCardsCollectionRef, teacherData)
+
       toast.success('Added to favorites!', {
         className: 'toastSuccess',
         duration: 1000,

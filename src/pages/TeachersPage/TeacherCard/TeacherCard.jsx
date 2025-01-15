@@ -90,9 +90,9 @@ export function TeacherCard({
 
   const handleReadMore = () => setShowMore((prev) => !prev)
 
-  if (loading) {
-    return <div>Loading...</div> // Або інший індикатор завантаження
-  }
+  // if (loading) {
+  //   return <div>Loading...</div> // Або інший індикатор завантаження
+  // }
 
   return (
     <div className={css.teacherCard}>
