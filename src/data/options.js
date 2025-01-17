@@ -1,3 +1,16 @@
+import { useLocation } from 'react-router-dom'
+
+export const usePageStyles = (user) => {
+  const location = useLocation()
+  const isTeachersPage = location.pathname === '/teachers'
+  const isFavoritePage = location.pathname === '/favorite'
+
+  return {
+    isSpecialPage: user && (isTeachersPage || isFavoritePage),
+    isTeachersWithoutUser: !user && isTeachersPage,
+  }
+}
+
 export const levels = [
   'A1 Beginner',
   'A2 Elementary',

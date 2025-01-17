@@ -214,6 +214,7 @@ import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import { getFavoriteCards } from '/src/data/firebase.js'
 import { useAuth } from '/src/AuthProvider'
 import Loader from '/src/components/Loader/Loader'
+import { useNavigate } from 'react-router-dom'
 // import { handleToggleFavorite } from '/src/data/firebase.js'
 
 export default function FavoriteCardsPage({ levels }) {
@@ -223,6 +224,7 @@ export default function FavoriteCardsPage({ levels }) {
   const [isFirstRender, setIsFirstRender] = useState(true)
   const selectedLevel = localStorage.getItem('selectedLevel') || ''
   const [isLoading, setIsLoading] = useState(true) // Стан для відображення Loader'а
+  const navigate = useNavigate() // Ініціалізуємо useNavigate
 
   useEffect(() => {
     const fetchFavoriteCards = async () => {
@@ -239,14 +241,18 @@ export default function FavoriteCardsPage({ levels }) {
             duration: 1500,
           })
         } finally {
-          setIsLoading(false)
+          setIsLoading(false) // Вимикаємо Loader
         }
+      } else {
+        // Якщо user відсутній, очищаємо стан і вимикаємо Loader
+        setFavoriteCards([])
+        setIsLoading(false)
+        navigate('/teachers') // Перенаправляємо на TeacherPage
       }
     }
 
-    fetchFavoriteCards() // Викличте функцію після отримання user.uid
-  }, [user])
-
+    fetchFavoriteCards() // Викликаємо функцію при зміні user
+  }, [user, navigate])
   // useEffect(() => {
   //   // Отримуємо обраних викладачів з localStorage
   //   const storedFavoriteCards =

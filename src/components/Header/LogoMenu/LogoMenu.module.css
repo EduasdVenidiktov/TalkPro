@@ -1,0 +1,24 @@
+.logoHeaderBox {
+  display: flex;
+  gap: 8px;
+}
+
+.logoImg {
+  width: 28px;
+  height: 28px;
+}
+
+.grayCircle {
+  width: 28px;
+  height: 28px;
+  background-color: #8a8a89;
+  border-radius: 50%;
+}
+
+.logoName {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #121417;
+}
