@@ -98,7 +98,7 @@ export default function TeachersPage() {
         })
       } else {
         window.scrollBy({
-          top: 580,
+          top: 496,
           behavior: 'smooth',
         })
       }
@@ -144,12 +144,7 @@ export default function TeachersPage() {
               isNewUser={isNewUser}
             />
           ))}
-          {/* {filteredTeachers.length === 0 ? (
-        <p className={css.commentFilters}>
-          No teachers match the selected filters.
-        </p>
-      ) : (
-        <> */}
+
           {visibleTeachers < filteredTeachers.length ? (
             <button onClick={handleLoadMore} className={css.btnLoadMore}>
               Load more

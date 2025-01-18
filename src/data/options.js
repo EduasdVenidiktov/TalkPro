@@ -48,3 +48,55 @@ export const options = [
   { value: 'exams', label: 'Exams and coursework' },
   { value: 'culture', label: 'Culture, travel, or hobby' },
 ]
+
+export const customStyles = {
+  control: (provided) => ({
+    ...provided,
+    borderRadius: '14px',
+    height: '48px',
+    paddingLeft: '10px',
+    paddingRight: '2px',
+    margin: '0',
+    color: '#121417',
+    backgroundColor: '#fff',
+    border: 'none',
+    outline: 'none',
+    boxShadow: 'none',
+    ':focus': {
+      border: 'none',
+      outline: 'none',
+      boxShadow: 'none',
+      color: '#121417',
+    },
+    ':active': {
+      border: 'none',
+      boxShadow: 'none',
+      color: '#121417',
+    },
+  }),
+  menu: (provided) => ({
+    ...provided,
+    borderRadius: '14px',
+    padding: '14px 0 14px 10px',
+    border: 'none',
+    boxShadow: 'none',
+    zIndex: '1900',
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isSelected ? '#121417' : 'rgba(18, 20, 23, 0.2)',
+    ':active': {
+      backgroundColor: 'transparent',
+    },
+    ':focus': {
+      backgroundColor: 'transparent',
+    },
+    fontWeight: '500',
+    fontSize: '18px',
+    backgroundColor: '#ffffff',
+    cursor: 'pointer',
+  }),
+  indicatorSeparator: () => ({
+    display: 'none',
+  }),
+}

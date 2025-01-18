@@ -47,12 +47,12 @@ export function TeacherCard({
           const favoriteCards = await getFavoriteCards(user.uid)
           // setIsFavorite(favoriteCards.includes(id))
           setIsFavorite(favoriteCards.some((card) => card.id === id))
-        } catch (error) {
-          console.error('Error fetching favorites:', error)
-          toast.error('Failed to load favorites. Please try again later.', {
-            className: 'toastError',
-            duration: 1500,
-          }) // Повідомлення про помилку
+        } catch {
+          // console.error('Error fetching favorites:', error)
+          // toast.error('Failed to load favorites. Please try again later.', {
+          //   className: 'toastError',
+          //   duration: 1500,
+          // }) // Повідомлення про помилку
         }
       } else {
         setIsFavorite(false)
