@@ -54,6 +54,8 @@ export const customStyles = {
     ...provided,
     borderRadius: '14px',
     height: '48px',
+    fontWeight: '500',
+    fontSize: '18px',
     paddingLeft: '10px',
     paddingRight: '2px',
     margin: '0',

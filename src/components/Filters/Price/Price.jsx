@@ -29,7 +29,8 @@ export function Price({ setFilters }) {
         options={prices}
         onChange={handlePriceChange}
         styles={customStyles}
-        getOptionLabel={(option) => option.label} // Убираем символ доллара здесь
+        placeholder="Select price"
+        getOptionLabel={(option) => option.label}
       />
     </div>
   )

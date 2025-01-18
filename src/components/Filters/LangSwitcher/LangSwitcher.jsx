@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import css from './LangSwitcher.module.css'
-import { languages } from '/src/data/options'
+import { languages, customStyles } from '/src/data/options'
+import Select from 'react-select'
 
 export function LangSwitcher({ setFilters }) {
   const [selectedLanguage, setSelectedLanguage] = useState('')
 
-  const handleLanguageChange = (e) => {
-    const language = e.target.value
-    setSelectedLanguage(language)
-    setFilters((prevFilters) => ({ ...prevFilters, language }))
+  const handleLanguageChange = (selectedOption) => {
+    setSelectedLanguage(selectedOption.value)
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      language: selectedOption.value,
+    }))
   }
 
   return (
@@ -16,21 +19,18 @@ export function LangSwitcher({ setFilters }) {
       <label htmlFor="languages" className={css.textLabel}>
         Languages
       </label>
-      <select
+      <Select
         id="languages"
-        value={selectedLanguage}
+        value={
+          selectedLanguage
+            ? { value: selectedLanguage, label: selectedLanguage }
+            : null
+        }
+        options={languages.map((lang) => ({ value: lang, label: lang }))}
         onChange={handleLanguageChange}
-        className={css.selectValue}
-      >
-        <option value="" disabled>
-          Select a language
-        </option>
-        {languages.map((language, index) => (
-          <option key={index} value={language}>
-            {language}
-          </option>
-        ))}
-      </select>
+        styles={customStyles}
+        placeholder="Select a language"
+      />
     </div>
   )
 }

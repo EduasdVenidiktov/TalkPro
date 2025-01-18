@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
 import css from './LevelOfKnowledge.module.css'
-import { levels } from '/src/data/options'
+import { levels, customStyles } from '/src/data/options'
+import Select from 'react-select'
 
 export function LevelOfKnowledge({ setFilters }) {
-  // State for the selected level
   const [selectedLevel, setSelectedLevel] = useState(null)
 
-  // Load state from localStorage on component mount
   useEffect(() => {
     const savedLevel = localStorage.getItem('selectedLevel')
     if (savedLevel) {
       setSelectedLevel(savedLevel)
     } else {
-      setSelectedLevel(levels[0]) // Default to the first level if no saved level
+      setSelectedLevel(levels[0])
     }
   }, [])
 
@@ -23,9 +22,12 @@ export function LevelOfKnowledge({ setFilters }) {
     }
   }, [selectedLevel, setFilters])
 
-  const handleLevelChange = (e) => {
-    const level = e.target.value
-    setSelectedLevel(level)
+  const handleLevelChange = (selectedOption) => {
+    setSelectedLevel(selectedOption.value)
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      level: selectedOption.value,
+    }))
   }
 
   return (
@@ -33,22 +35,16 @@ export function LevelOfKnowledge({ setFilters }) {
       <label htmlFor="levelOfKnowledge" className={css.textLabel}>
         Level of Knowledge
       </label>
-      <select
+      <Select
         id="levelOfKnowledge"
-        value={selectedLevel || ''}
+        value={
+          selectedLevel ? { value: selectedLevel, label: selectedLevel } : null
+        }
+        options={levels.map((level) => ({ value: level, label: level }))}
         onChange={handleLevelChange}
-        className={css.selectValue}
-      >
-        {levels.map((level, index) => (
-          <option
-            key={index}
-            value={level}
-            className={level === selectedLevel ? css.selectedLevel : ''}
-          >
-            {level}
-          </option>
-        ))}
-      </select>
+        styles={customStyles}
+        getOptionLabel={(option) => option.label}
+      />
     </div>
   )
 }
