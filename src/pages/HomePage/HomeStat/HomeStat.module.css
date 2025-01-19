@@ -2,6 +2,17 @@
   max-width: 1312px;
 }
 
+.statSection {
+  background-image: url('/src/assets/Images/Rectangle.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 20px;
+  display: flex;
+  padding: 40px 122px;
+  gap: 100px;
+  width: 1312px;
+}
+
 .statItem {
   display: flex;
   align-items: center;
@@ -25,22 +36,6 @@
   margin-right: 16px;
 }
 
-.statSection {
-  background-image: url('/src/assets/Images/Rectangle.png'); /* Шлях до вашого PNG контурного зображення */
-  background-repeat: no-repeat;
-  background-size: contain; /* Зображення підлаштується до розміру контейнера */
-  padding: 20px; /* Залишає простір між вмістом і контуром */
-  display: flex;
-  padding: 40px 122px;
-  gap: 100px;
-  width: 1312px;
-}
-
-.logOutStyle {
-  background-image: url('/src/assets/Images/RectangleLogOut.png'); /* Шлях до вашого PNG контурного зображення */
-  width: 1312px;
-}
-
 .statText {
   align-items: center;
   justify-content: center;
@@ -49,4 +44,9 @@
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.02em;
+}
+
+.logOutStyle {
+  background-image: url('/src/assets/Images/RectangleLogOut.png');
+  width: 1312px;
 }

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { registrationValidationSchema } from '/src/validation/validationSchema' // Import your validation schema here
+import { registrationValidationSchema } from '/src/validation/validationSchema'
 import { handleEscapeKey, handleBackdropClick } from '/src/data/options.js'
 import css from './Registration.module.css'
 import close from '/src/assets/icons/sprite.svg'
@@ -10,10 +10,10 @@ import { LuEyeOff } from 'react-icons/lu'
 import { toast } from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
 
-import { signInWithGoogle } from '/src/data/registrationGoogle.js' // Шлях до вашої функції
+import { signInWithGoogle } from '/src/data/registrationGoogle.js'
 import { useAuth } from '/src/AuthProvider'
 
-import { db } from '/src/data/firebase.js' // Імпортуйте ініціалізований Firestore
+import { db } from '/src/data/firebase.js'
 import { doc, setDoc } from 'firebase/firestore'
 import { auth } from '/src/data/firebase.js'
 

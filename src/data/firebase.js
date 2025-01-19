@@ -4,8 +4,6 @@ import { getDatabase, ref, get, child } from 'firebase/database'
 import {
   getFirestore,
   doc,
-  updateDoc,
-  arrayRemove,
   setDoc,
   collection,
   getDocs,
@@ -39,13 +37,13 @@ export const addUserToFirestore = async (user, name) => {
   try {
     const userRef = doc(db, 'users', user.uid)
     await setDoc(userRef, {
-      name: name, // Використовуємо передане name
+      name: name,
       email: user.email,
       createdAt: new Date().toISOString(),
     })
   } catch (error) {
     console.error('Error adding user to Firestore:', error)
-    throw error // Важливо прокидати помилку далі для обробки в компоненті
+    throw error
   }
 }
 
@@ -58,7 +56,6 @@ export const handleToggleFavorite = async (
     const userRef = doc(db, 'users', userId)
     const favoriteCardsCollectionRef = collection(userRef, 'favoriteCards')
 
-    // Check if the card already exists in favorites
     const q = query(
       favoriteCardsCollectionRef,
       where('id', '==', teacherData.id)
@@ -66,7 +63,6 @@ export const handleToggleFavorite = async (
     const querySnapshot = await getDocs(q)
 
     if (!querySnapshot.empty) {
-      // Remove card from favorites
       for (const docSnapshot of querySnapshot.docs) {
         await deleteDoc(docSnapshot.ref)
       }
@@ -89,25 +85,6 @@ export const handleToggleFavorite = async (
     }
   } catch {}
 }
-
-// export const removeFavoriteCard = async (userId, cardId) => {
-//   if (!userId || !cardId) {
-//     console.error(
-//       'userId or cardId is undefined or empty in removeFavoriteCard'
-//     )
-//     return
-//   }
-
-//   try {
-//     const userRef = doc(db, 'users', userId)
-//     await updateDoc(userRef, {
-//       favoriteCards: arrayRemove(cardId.toString()), // Преобразование cardId в строку
-//     })
-//   } catch (error) {
-//     console.error('Error removing from favorites:', error)
-//     throw error
-//   }
-// }
 
 export const getFavoriteCards = async (userId) => {
   if (!userId) {
@@ -133,13 +110,12 @@ export const getFavoriteCards = async (userId) => {
   }
 }
 
-// Функція для отримання даних про вчителів з Firebase
 export const getTeachersData = async () => {
   const dbRef = ref(database, '/teachers')
   try {
     const snapshot = await get(dbRef)
     if (snapshot.exists()) {
-      const teachersArray = Object.values(snapshot.val()) // Перетворює об'єкт на масив
+      const teachersArray = Object.values(snapshot.val())
       return teachersArray
     } else {
       console.log('Дані не знайдено')

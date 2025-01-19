@@ -7,29 +7,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* Значение выше других элементов */
-  background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон */
-  box-sizing: border-box; /* Учитываем padding в ширину/высоту */
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
 }
 
 .lessonSection {
-  transform: scale(0.62); /* Уменьшаем масштаб на 90% */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Разделяет содержимое на верхнюю и нижнюю части */
+  justify-content: space-between;
   max-width: 600px;
   background-color: white;
   border-radius: 30px;
   padding: 64px;
   color: #121417cc;
+  transform: scale(0.62);
 }
 
 .closeIcon {
   width: 32px;
   height: 32px;
   position: absolute;
-  top: 20px; /* Расстояние от верхнего края */
-  right: 20px; /* Расстояние от правого края */
+  top: 20px;
+  right: 20px;
   cursor: pointer;
   stroke: #121417;
 }
@@ -98,16 +98,16 @@
 }
 
 .inputField:focus {
-  border: 1px solid #5081f4; /* Цвет рамки при фокусе */
-  outline: none; /* Убираем стандартное выделение */
-  box-shadow: 0 0 5px rgba(80, 129, 244, 0.5); /* Добавляем тень для выделения */
+  border: 1px solid #5081f4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(80, 129, 244, 0.5);
 }
 
 .btnSignIn {
   width: 100%;
   background-color: #f4c550;
   border-radius: 12px;
-  padding: 16px 0; /* Выровнял паддинг */
+  padding: 16px 0;
   border: none;
   color: #121417;
   font-size: 18px;
@@ -120,25 +120,6 @@
 .btnSignIn:hover,
 .btnSignIn:active {
   background: #fbe9ba;
-}
-
-.passwordContainer {
-  position: relative; /* Батьківський елемент для позиціонування іконки */
-}
-
-.eyeIcon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.eyeIcon svg {
-  width: 20px;
-  height: 20px;
 }
 
 .error {

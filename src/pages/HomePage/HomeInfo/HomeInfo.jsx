@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import css from './HomeInfo.module.css' // Імпортуєш модульні стилі для інших елементів
+import css from './HomeInfo.module.css'
 import { useAuth } from '/src/AuthProvider'
 import clsx from 'clsx'
 

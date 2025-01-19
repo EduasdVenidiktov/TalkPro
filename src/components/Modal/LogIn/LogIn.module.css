@@ -1,3 +1,15 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
 .modalSection {
   max-width: 565px;
   border-radius: 30px;
@@ -11,8 +23,8 @@
   width: 32px;
   height: 32px;
   position: absolute;
-  top: 20px; /* Расстояние от верхнего края */
-  right: 20px; /* Расстояние от правого края */
+  top: 20px;
+  right: 20px;
   cursor: pointer;
   stroke: #121417;
 }
@@ -51,8 +63,32 @@
 }
 
 .inputField:focus {
-  border: 1px solid #5081f4; /* Цвет рамки при фокусе */
-  outline: none; /* Убираем стандартное выделение */
+  border: 1px solid #5081f4;
+  outline: none;
+}
+
+.error {
+  color: red;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eyeIcon svg {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
 }
 
 .btnLogin {
@@ -72,49 +108,4 @@
 .btnLogin:hover,
 .btnLogin:active {
   background: #fbe9ba;
-}
-
-.passwordContainer {
-  position: relative; /* Батьківський елемент для позиціонування іконки */
-}
-
-.eyeIcon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.eyeIcon svg {
-  width: 20px;
-  height: 20px;
-  color: currentColor; /* Колір тексту */
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* значення, що вище за інші елементи */
-}
-
-.error {
-  color: red;
-}
-
-/* Общий стиль для сообщений */
-.react-hot-toast {
-  font-size: 24px;
-  border-radius: 8px;
-  padding: 12px 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  color: #fff; /* Белый текст */
 }

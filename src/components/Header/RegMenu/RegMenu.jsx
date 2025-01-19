@@ -1,24 +1,20 @@
 import { useState, useEffect } from 'react'
-
 import css from './RegMenu.module.css'
 import logOutIcon from '/src/assets/icons/sprite.svg'
 import { LogIn } from '/src/components/Modal/LogIn/LogIn'
-import { Registration } from '/src/components/Modal/Registration/Registration' // Імпортуємо компонент Registration
+import { Registration } from '/src/components/Modal/Registration/Registration'
 import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 
 import { db } from '/src/data/firebase.js'
-import { doc, setDoc, collection, query, onSnapshot } from 'firebase/firestore' // Імпорт потрібних методів
+import { doc, setDoc, collection, query, onSnapshot } from 'firebase/firestore'
 import { usePageStyles } from '/src/data/options'
 
 export function RegMenu() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
-
   const { user, logout } = useAuth()
-
   const { isSpecialPage, isTeachersWithoutUser } = usePageStyles(user)
-
   const ulStyle = {
     paddingLeft: isSpecialPage
       ? '124px'
@@ -26,10 +22,8 @@ export function RegMenu() {
         ? '144px'
         : '104px',
   }
-
   const statClass = user ? css.authenticated : css.logOutStyle
   const logInClass = !user ? css.logOutText : ''
-
   const handleClick = () => {
     logout()
     handleLogOut()
@@ -72,18 +66,15 @@ export function RegMenu() {
 
   const handleLogInSuccess = async (user) => {
     try {
-      // Создаем ссылку на документ пользователя в Firestore
       const userDocRef = doc(db, 'users', user.uid)
 
-      // Объект данных пользователя для сохранения в Firestore
       const userData = {
         uid: user.uid,
         email: user.email,
         displayName: user.displayName || null,
       }
 
-      // Записываем данные пользователя в Firestore
-      await setDoc(userDocRef, userData, { merge: true }) // Используем merge, чтобы не перезаписать существующие поля
+      await setDoc(userDocRef, userData, { merge: true })
 
       toast.success('You are successfully logged in!', {
         className: 'toastSuccess',
@@ -131,7 +122,6 @@ export function RegMenu() {
         )}
       </ul>
 
-      {/* Відкриваємо модальні вікна */}
       {isLogInOpen && (
         <div className={css.modalOverlay}>
           <LogIn onClose={closeModal} onLogInSuccess={handleLogInSuccess} />

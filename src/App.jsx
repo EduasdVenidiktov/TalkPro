@@ -4,7 +4,6 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { PrivateRoute } from './components/routes/PrivateRoute'
 import { Toaster } from 'react-hot-toast'
 import Loader from '/src/components/Loader/Loader'
-// import { getFavoriteCards, saveFavoriteCards } from './utils/utils'
 import { useAuth } from './AuthProvider'
 import { getFavoriteCards } from '/src/data/firebase.js'
 import { handleToggleFavorite } from '/src/data/firebase.js'
@@ -20,11 +19,11 @@ const TeacherDetail = lazy(
 )
 
 export default function App() {
-  const { isLoggedIn, isNewUser, localId } = useAuth() // Контекст авторизации
+  const { isLoggedIn, isNewUser, localId } = useAuth()
   const [favoriteCards, setFavoriteCards] = useState([])
 
-  const [backgroundColor, setBackgroundColor] = useState('#fff') // Состояние для фона
-  const location = useLocation() // Получение текущего маршрута
+  const [backgroundColor, setBackgroundColor] = useState('#fff')
+  const location = useLocation()
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -32,14 +31,12 @@ export default function App() {
     } else {
       setBackgroundColor('#f8f8f8')
     }
-  }, [location]) // Срабатывает при изменении маршрута
+  }, [location])
 
   useEffect(() => {
-    // Применяем стиль фона к body
     document.body.style.backgroundColor = backgroundColor
-  }, [backgroundColor]) // Срабатывает при изменении цвета в состоянии
+  }, [backgroundColor])
 
-  // Загрузка данных при входе
   useEffect(() => {
     if (isLoggedIn && localId) {
       ;(async () => {
@@ -77,7 +74,7 @@ export default function App() {
             element={
               <HomePage
                 favoriteCards={favoriteCards}
-                onToggleFavorite={handleToggleFavorite} // Передаём функцию как пропс
+                onToggleFavorite={handleToggleFavorite}
               />
             }
           />
@@ -93,7 +90,7 @@ export default function App() {
                 <PrivateRoute>
                   <FavoriteCardsPage
                     favoriteCards={favoriteCards}
-                    onToggleFavorite={handleToggleFavorite} // Передаём функцию как пропс
+                    onToggleFavorite={handleToggleFavorite}
                   />
                 </PrivateRoute>
               }

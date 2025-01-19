@@ -1,3 +1,15 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
 .modalSection {
   max-width: 565px;
   background-color: white;
@@ -5,15 +17,15 @@
   padding: 64px;
   color: #121417cc;
   position: relative;
-  transform: scale(0.8); /* Уменьшаем масштаб на 90% */
+  transform: scale(0.8);
 }
 
 .closeIcon {
   width: 32px;
   height: 32px;
   position: absolute;
-  top: 20px; /* Расстояние от верхнего края */
-  right: 20px; /* Расстояние от правого края */
+  top: 20px;
+  right: 20px;
   cursor: pointer;
   stroke: #121417;
 }
@@ -43,7 +55,6 @@
 .inputField {
   width: 100%;
   padding: 16px;
-  /* box-sizing: border-box;  */
   border: 1px solid #1214171a;
   border-radius: 12px;
   font-size: 16px;
@@ -56,6 +67,30 @@
   border: 1px solid #5081f4; /* Цвет рамки при фокусе */
   outline: none; /* Убираем стандартное выделение */
   box-shadow: 0 0 5px rgba(80, 129, 244, 0.5); /* Добавляем тень для выделения */
+}
+
+.error {
+  color: red;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eyeIcon svg {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
 }
 
 .btnSignIn {
@@ -78,55 +113,19 @@
   background: #fbe9ba;
 }
 
-.passwordContainer {
-  position: relative; /* Батьківський елемент для позиціонування іконки */
-}
-
-.eyeIcon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.eyeIcon svg {
-  width: 20px;
-  height: 20px;
-  color: currentColor;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* значення, що вище за інші елементи */
-}
-
-.error {
-  color: red;
-}
-
 .googleWrapper {
   display: flex;
-  flex-direction: column; /* Розташування елементів вертикально */
-  align-items: center; /* Вирівнювання по центру */
-  gap: 16px; /* Відступ між елементами */
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   text-align: center;
 }
 
 .googleWrapper p {
-  width: 100%; /* Щоб лінії займали всю ширину контейнера */
-  border-top: 1px solid #ccc; /* Лінія зверху */
-  line-height: 0.1em; /* Компактне розташування тексту */
-  margin: 20px 0; /* Відступи зверху і знизу */
+  width: 100%;
+  border-top: 1px solid #ccc;
+  line-height: 0.1em;
+  margin: 20px 0;
   color: #333;
 }
 
@@ -134,11 +133,11 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  display: flex; /* Щоб іконка та текст були на одній лінії */
-  gap: 8px; /* Відстань між іконкою та текстом */
+  display: flex;
+  gap: 8px;
   padding: 16px 64px;
   border: none;
-  background-color: #dedcdc; /* Білий фон кнопки */
+  background-color: #dedcdc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   cursor: pointer;
@@ -147,9 +146,9 @@
 }
 
 .googleWrapper button:hover {
-  background-color: #f0f0f0; /* Світліший фон при наведенні */
+  background-color: #f0f0f0;
 }
 
 .googleIcon {
-  font-size: 20px; /* Розмір іконки */
+  font-size: 20px;
 }

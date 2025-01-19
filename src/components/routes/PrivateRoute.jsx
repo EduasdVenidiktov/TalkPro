@@ -4,21 +4,19 @@ import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
 import css from './PrivateRoute.module.css'
 
 export function PrivateRoute({ children, onFavoriteAction }) {
-  const isAuthenticated = !!localStorage.getItem('userToken') // Проверка авторизации
+  const isAuthenticated = !!localStorage.getItem('userToken')
   const [showHeartModal, setShowHeartModal] = useState(false)
 
-  // Используем useEffect для открытия модального окна только один раз
   useEffect(() => {
     if (!isAuthenticated && !showHeartModal) {
-      setShowHeartModal(true) // Открытие модального окна при неавторизованном пользователе
+      setShowHeartModal(true)
     }
   }, [isAuthenticated])
 
   const handleModalClose = () => {
-    setShowHeartModal(false) // Закрытие модального окна
+    setShowHeartModal(false)
   }
 
-  // Отображение модального окна, если не авторизован
   if (!isAuthenticated && showHeartModal) {
     return (
       <>
@@ -28,7 +26,7 @@ export function PrivateRoute({ children, onFavoriteAction }) {
         </p>
         <HeartModal
           isOpen={showHeartModal}
-          onClose={handleModalClose} // Передаем функцию закрытия
+          onClose={handleModalClose}
           isAuthenticated={isAuthenticated}
           onFavoriteAction={onFavoriteAction}
         />

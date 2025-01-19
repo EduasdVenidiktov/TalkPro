@@ -18,7 +18,7 @@ export function Navigation() {
       ? '316px'
       : isTeachersWithoutUser
         ? '316px'
-        : '380px', // Значение по умолчанию
+        : '380px',
     paddingRight: isSpecialPage || isTeachersWithoutUser ? '0px' : '94px',
   }
 

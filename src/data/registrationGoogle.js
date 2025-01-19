@@ -1,6 +1,6 @@
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { auth, db } from '/src/data/firebase' // Импортируйте auth и db
+import { auth, db } from '/src/data/firebase'
 import toast from 'react-hot-toast'
 
 const provider = new GoogleAuthProvider()
@@ -10,19 +10,16 @@ export const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider)
     const user = result.user
 
-    // Проверяем, существует ли уже документ пользователя в Firestore
     const userDocRef = doc(db, 'users', user.uid)
     const userDocSnap = await getDoc(userDocRef)
 
     if (!userDocSnap.exists()) {
-      // Если документа нет, создаем его
       await setDoc(userDocRef, {
         uid: user.uid,
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        // Добавьте другие поля пользователя, которые вам нужны
-        favoriteCards: [], // Инициализируем массив избранных карточек
+        favoriteCards: [],
       })
       toast.success('User registered successfully!', { duration: 1500 })
     } else {

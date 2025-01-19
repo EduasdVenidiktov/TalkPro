@@ -13,18 +13,19 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .closeIcon {
   width: 32px;
   height: 32px;
   position: absolute;
-  top: 20px; /* Расстояние от верхнего края */
-  right: 20px; /* Расстояние от правого края */
+  top: 20px;
+  right: 20px;
   cursor: pointer;
   stroke: #121417;
 }
@@ -52,27 +53,8 @@
 }
 
 .modalButton:hover {
-  transition: background-color 0.5s ease; /* Плавний перехід */
+  transition: background-color 0.5s ease;
   background-color: #ffdc86;
-}
-
-.modalSection {
-  max-width: 565px;
-  border-radius: 30px;
-  padding: 64px;
-  color: #121417cc;
-  position: relative;
-  background-color: white;
-}
-
-.closeIcon {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: 20px; /* Расстояние от верхнего края */
-  right: 20px; /* Расстояние от правого края */
-  cursor: pointer;
-  stroke: #121417;
 }
 
 .titleLogin {
@@ -109,9 +91,9 @@
 }
 
 .inputField:focus {
-  border: 1px solid #5081f4; /* Цвет рамки при фокусе */
-  outline: none; /* Убираем стандартное выделение */
-  box-shadow: 0 0 5px rgba(80, 129, 244, 0.5); /* Добавляем тень для выделения */
+  border: 1px solid #5081f4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(80, 129, 244, 0.5);
 }
 
 .btnLogin {
@@ -134,7 +116,7 @@
 }
 
 .passwordContainer {
-  position: relative; /* Батьківський елемент для позиціонування іконки */
+  position: relative;
 }
 
 .eyeIcon {
@@ -150,19 +132,7 @@
 .eyeIcon svg {
   width: 20px;
   height: 20px;
-  color: currentColor; /* Колір тексту */
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* значення, що вище за інші елементи */
+  color: currentColor;
 }
 
 .error {

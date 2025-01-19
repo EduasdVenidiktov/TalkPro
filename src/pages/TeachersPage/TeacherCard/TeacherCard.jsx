@@ -30,11 +30,11 @@ export function TeacherCard({
   const [showMore, setShowMore] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const [showModal, setShowModal] = useState(false)
-  const { user, loading } = useAuth() // Отримуємо user та loading з контексту
+  const { user, loading } = useAuth()
 
   useEffect(() => {
     const checkFavoriteStatus = async () => {
-      if (loading) return // Важливо! Захист від помилок під час завантаження
+      if (loading) return
       if (user) {
         try {
           const favoriteCards = await getFavoriteCards(user.uid)
@@ -114,10 +114,7 @@ export function TeacherCard({
               <span className={css.priceValue}>{price_per_hour}$</span>
             </p>
           </div>
-          <p
-            className={css.btnHeart}
-            onClick={handleHeartClick} // Передаем функцию как обработчик
-          >
+          <p className={css.btnHeart} onClick={handleHeartClick}>
             {user && isFavorite ? (
               <FaHeart className={`${css.heartIcon} ${css.favorited}`} />
             ) : (

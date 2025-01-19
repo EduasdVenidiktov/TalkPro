@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false)
     })
 
-    return () => unsubscribe() // Відписка від слухача
+    return () => unsubscribe()
   }, [])
 
   const login = async (token) => {
@@ -29,23 +29,18 @@ export const AuthProvider = ({ children }) => {
     try {
       const userCredential = await signInWithCustomToken(auth, token)
       setUser(userCredential.user)
-
-      // setUser(userCredential.user); // Встановлюємо користувача в стан
-    } catch {
-      // Тут можна додати обробку помилок
-    }
+    } catch {}
   }
 
   const logout = async () => {
-    // Функція logout
     try {
-      await signOut(auth) // Використовуємо Firebase signOut
+      await signOut(auth)
     } catch (error) {
       console.error('Error signing out:', error)
     }
   }
 
-  const value = { user, loading, login, logout } // Передаємо user та loading
+  const value = { user, loading, login, logout }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -15,8 +15,8 @@ export const HeartModal = ({
 
   useEffect(() => {
     const handleEscape = handleEscapeKey(() => {
-      setActiveComponent(null) // Действие при нажатии Escape
-      onClose() // Закрытие
+      setActiveComponent(null)
+      onClose()
     })
 
     if (isOpen) {

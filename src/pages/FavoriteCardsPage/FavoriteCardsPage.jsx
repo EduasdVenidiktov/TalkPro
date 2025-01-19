@@ -9,13 +9,13 @@ import Loader from '/src/components/Loader/Loader'
 import { useNavigate } from 'react-router-dom'
 
 export default function FavoriteCardsPage({ levels }) {
-  const { user } = useAuth() // Отримуємо user з контексту
+  const { user } = useAuth()
 
   const [favoriteCards, setFavoriteCards] = useState([])
   const [isFirstRender, setIsFirstRender] = useState(true)
   const selectedLevel = localStorage.getItem('selectedLevel') || ''
-  const [isLoading, setIsLoading] = useState(true) // Стан для відображення Loader'а
-  const navigate = useNavigate() // Ініціалізуємо useNavigate
+  const [isLoading, setIsLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchFavoriteCards = async () => {
@@ -24,7 +24,7 @@ export default function FavoriteCardsPage({ levels }) {
         try {
           const favoriteCardsData = await getFavoriteCards(user.uid)
 
-          setFavoriteCards(favoriteCardsData) // Або фільтруйте дані з TeacherCard за цими id
+          setFavoriteCards(favoriteCardsData)
         } catch (error) {
           console.error('Error fetching favorite cards:', error)
           toast.error('Failed to load favoritecards. Please try again later.', {
@@ -32,20 +32,18 @@ export default function FavoriteCardsPage({ levels }) {
             duration: 1500,
           })
         } finally {
-          setIsLoading(false) // Вимикаємо Loader
+          setIsLoading(false)
         }
       } else {
-        // Якщо user відсутній, очищаємо стан і вимикаємо Loader
         setFavoriteCards([])
         setIsLoading(false)
-        navigate('/teachers') // Перенаправляємо на TeacherPage
+        navigate('/teachers')
       }
     }
 
-    fetchFavoriteCards() // Викликаємо функцію при зміні user
+    fetchFavoriteCards()
   }, [user, navigate])
   useEffect(() => {
-    // Після першого рендеру змінюємо isFirstRender на false
     if (isFirstRender) {
       setIsFirstRender(false)
     }
@@ -62,7 +60,7 @@ export default function FavoriteCardsPage({ levels }) {
         ) : favoriteCards.length > 0 ? (
           favoriteCards.map((card) => (
             <TeacherCard
-              key={card.id} // Уникальный ключ для каждого элемента
+              key={card.id}
               {...card}
               isFavorite={true}
               selectedLevel={selectedLevel}

@@ -16,20 +16,20 @@ export default function TeachersPage() {
   const [visibleTeachers, setVisibleTeachers] = useState(4)
   const [filters, setFilters] = useState({ language: '', level: '', price: '' })
   const [isFirstRender, setIsFirstRender] = useState(true)
-  const [favorites, setFavorites] = useState([]) // Стан для обраних викладачів
+  const [favorites, setFavorites] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem('userToken')
-  ) // Авторизація
+  )
 
-  const [isLoading, setIsLoading] = useState(true) // Стан для відображення Loader'а
+  const [isLoading, setIsLoading] = useState(true)
 
-  const { isNewUser } = useAuth() // Достаємо isNewUser з контексту
+  const { isNewUser } = useAuth()
 
   useEffect(() => {
     const fetchTeachers = async () => {
       setIsLoading(true)
 
-      const teachersArray = await getTeachersData() // Викликаємо асинхронну функцію
+      const teachersArray = await getTeachersData()
       console.log('teachersArray', teachersArray)
 
       if (Array.isArray(teachersArray)) {
@@ -38,8 +38,8 @@ export default function TeachersPage() {
           id: index + 1,
           ...teacher,
         }))
-        setTeachers(teachersWithId) // Оновлюємо стан для вчителів
-        setFilteredTeachers(teachersWithId) // Оновлюємо стан для відфільтрованих вчителів
+        setTeachers(teachersWithId)
+        setFilteredTeachers(teachersWithId)
       } else {
       }
       setIsLoading(false)

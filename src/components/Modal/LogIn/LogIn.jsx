@@ -41,9 +41,8 @@ export function LogIn({ onClose }) {
         values.email,
         values.password
       )
-      const user = userCredential.user // Отримуємо об'єкт користувача
-      const uid = user.uid // Отримуємо UID користувача
-      console.log('User UID:', uid) // Тепер ви використовуєте значення
+      const user = userCredential.user
+      const uid = user.uid
 
       toast.success(
         <strong>

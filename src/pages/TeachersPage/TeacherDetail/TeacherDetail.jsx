@@ -4,7 +4,7 @@ import star from '/src/assets/icons/sprite.svg'
 import { Lesson } from '/src/components/Modal/Lesson/Lesson'
 
 export function TeacherDetail({
-  reviews = [], // Убедитесь, что по умолчанию это массив
+  reviews = [],
   experience,
   levels,
   selectedLevel,
@@ -18,7 +18,7 @@ export function TeacherDetail({
   const closeModal = () => setIsModalOpen(false)
 
   return (
-    <div className={css.additionalInfo}>
+    <div>
       <p className={css.experienceContent}>{experience}</p>
       {reviews.length > 0 ? (
         reviews.map((review, index) => (
@@ -38,7 +38,7 @@ export function TeacherDetail({
                 <svg className={css.teacherIcon} aria-label="star">
                   <use href={`${star}#star`} />
                 </svg>
-                <p className={css.ratingValue}>{review.reviewer_rating}.0</p>
+                <p>{review.reviewer_rating}.0</p>
               </div>
             </div>
             <p className={css.reviewComment}>{review.comment}</p>

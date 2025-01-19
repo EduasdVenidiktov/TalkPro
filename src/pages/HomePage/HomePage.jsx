@@ -10,8 +10,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Симулируем загрузку данных
-    setIsLoading(false) // Устанавливаем isLoading в false через 2 секунды
+    setIsLoading(false)
   }, [])
 
   if (isLoading) {

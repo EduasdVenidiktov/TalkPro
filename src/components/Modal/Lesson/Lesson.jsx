@@ -86,12 +86,12 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
             alt="Teacher's avatar"
             className={css.teacherImage}
           />
-          <div className={css.teacherInfo}>
+          <div>
             <p className={css.titleTeacher}>Your teacher</p>
             <p className={css.nameTeacher}>{`${name} ${surname}`}</p>
           </div>
         </div>
-        <div className={css.reasonBox}>
+        <div>
           <ReasonBox />
         </div>
         <form onSubmit={handleSubmit(handleRegisterOrLogin)}>
