@@ -88,7 +88,7 @@ export default function TeachersPage() {
         })
       } else {
         window.scrollBy({
-          top: 496,
+          top: 536,
           behavior: 'smooth',
         })
       }
