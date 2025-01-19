@@ -13,7 +13,7 @@
 }
 
 .lessonSection {
-  transform: scale(0.7); /* Уменьшаем масштаб на 90% */
+  transform: scale(0.62); /* Уменьшаем масштаб на 90% */
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Разделяет содержимое на верхнюю и нижнюю части */
@@ -114,6 +114,7 @@
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .btnSignIn:hover,

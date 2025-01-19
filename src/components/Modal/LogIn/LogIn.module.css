@@ -66,6 +66,7 @@
   font-weight: 700;
   line-height: 28px;
   cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .btnLogin:hover,

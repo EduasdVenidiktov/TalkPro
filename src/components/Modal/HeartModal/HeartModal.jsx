@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import close from '../../../assets/icons/sprite.svg'
+import close from '/src/assets/icons/sprite.svg'
 import css from './HeartModal.module.css'
 import { LogIn } from '../LogIn/LogIn'
 import { Registration } from '../Registration/Registration'
+import { handleEscapeKey } from '/src/data/options'
 
 export const HeartModal = ({
   isOpen,
@@ -13,12 +14,10 @@ export const HeartModal = ({
   const [activeComponent, setActiveComponent] = useState(null)
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        setActiveComponent(null)
-        onClose()
-      }
-    }
+    const handleEscape = handleEscapeKey(() => {
+      setActiveComponent(null) // Действие при нажатии Escape
+      onClose() // Закрытие
+    })
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape)

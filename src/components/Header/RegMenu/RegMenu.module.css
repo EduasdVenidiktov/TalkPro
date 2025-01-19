@@ -145,3 +145,20 @@
   background-color: #f4f4f4;
   padding: 10px;
 }
+
+.buttonReg {
+  transition: background-color 0.5s ease;
+}
+.loginText {
+  transition: color 0.5s ease;
+}
+
+.buttonReg:hover,
+.buttonReg:active {
+  background: #121417;
+}
+
+.loginText:hover,
+.loginText:active {
+  color: #121417;
+}

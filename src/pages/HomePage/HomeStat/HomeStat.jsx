@@ -4,7 +4,6 @@ import { useAuth } from '/src/AuthProvider'
 
 export function HomeStat() {
   const { user } = useAuth()
-  // const statClass = user ? css.authenticated : css.logOutStyle
   const statClass = clsx(user ? css.authenticated : css.logOutStyle)
 
   return (

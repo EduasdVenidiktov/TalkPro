@@ -7,13 +7,14 @@ import {
 } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { handleEscapeKey } from '../../../utils/utils'
+import { handleEscapeKey } from '/src/data/options.js'
 import css from './Lesson.module.css'
 import close from '/src/assets/icons/sprite.svg'
 import { ReasonBox } from './ReasonBox/ReasonBox'
-import { lessonValidationSchema } from '../../../validation/validationSchema'
+import { lessonValidationSchema } from '/src/validation/validationSchema'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { handleBackdropClick } from '/src/data/options'
 
 export function Lesson({ onClose, avatar_url, name, surname }) {
   const auth = getAuth()
@@ -27,12 +28,6 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
       document.removeEventListener('keydown', handleEscape)
     }
   }, [onClose])
-
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      onClose()
-    }
-  }
 
   const handleRegisterOrLogin = async (data) => {
     try {
@@ -56,11 +51,7 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
         })
       }
       onClose()
-    } catch (error) {
-      toast.error('Error during registration or booking: ' + error.message, {
-        className: 'toastError',
-        duration: 1500,
-      })
+    } catch {
       reset({
         fullName: '',
         email: '',
@@ -79,7 +70,7 @@ export function Lesson({ onClose, avatar_url, name, surname }) {
   })
 
   return (
-    <div className={css.backdrop} onClick={handleBackdropClick}>
+    <div className={css.backdrop} onClick={handleBackdropClick(onClose)}>
       <div className={css.lessonSection}>
         <svg className={css.closeIcon} onClick={onClose}>
           <use href={`${close}#close`} />

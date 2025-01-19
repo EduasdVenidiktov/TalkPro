@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import { TeacherCard } from './TeacherCard/TeacherCard'
-// import teachersData from '../../data/teachers.json' // Імпорт JSON
 import { getTeachersData } from '/src/data/firebase.js'
 
 import { Filters } from '/src/components/Filters/Filters'
 import css from './TeachersPage.module.css'
 import { HomeHeader } from '/src/pages/HomePage/HomeHeader/HomeHeader'
-// import toast from 'react-hot-toast'
 import { TbArrowBigUpLinesFilled } from 'react-icons/tb'
 import { useAuth } from '/src/AuthProvider'
 import { handleToggleFavorite } from '/src/data/firebase.js'
@@ -47,7 +45,7 @@ export default function TeachersPage() {
       setIsLoading(false)
     }
     fetchTeachers()
-  }, []) // Порожній масив залежностей означає, що викликається один раз після першого рендеру
+  }, [])
 
   useEffect(() => {
     const applyFilters = () => {
@@ -65,14 +63,6 @@ export default function TeachersPage() {
         return matchesLanguage && matchesLevel && matchesPrice
       })
       setFilteredTeachers(filtered)
-
-      // if (!isFirstRender && filtered.length === 0 && !hasShownPriceMessage) {
-      //   toast.error('Please select a higher price.', {
-      //     className: 'toastError',
-      //     duration: 1500,
-      //   })
-      //   setHasShownPriceMessage(true) // Оновлюємо стан, щоб повідомлення показалося тільки один раз
-      // }
     }
 
     applyFilters()

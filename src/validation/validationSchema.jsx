@@ -2,47 +2,47 @@ import * as Yup from 'yup'
 
 export const loginValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Невірний формат електронної пошти')
-    .required('Обов’язкове поле')
-    .min(5, 'Електронна пошта повинна містити не менше 5 символів')
-    .max(50, 'Електронна пошта повинна містити не більше 50 символів'),
+    .email('Invalid email format')
+    .required('Required field')
+    .min(5, 'Email must be at least 5 characters long')
+    .max(50, 'Email must be at most 50 characters long'),
   password: Yup.string()
-    .required('Обов’язкове поле')
-    .min(8, 'Пароль повинен містити не менше 8 символів')
-    .max(20, 'Пароль повинен містити не більше 20 символів'),
+    .required('Required field')
+    .min(8, 'Password must be at least 8 characters long')
+    .max(20, 'Password must be at most 20 characters long'),
 })
 
 export const registrationValidationSchema = Yup.object().shape({
   name: Yup.string()
-    .required('Обов’язкове поле')
-    .min(2, "Ім'я повинно містити не менше 2 символів")
+    .required('Required field')
+    .min(2, 'Name must be at least 2 characters long')
     .trim(),
   email: Yup.string()
-    .email('Невірний формат електронної пошти')
-    .required('Обов’язкове поле')
-    .min(5, 'Електронна пошта повинна містити не менше 5 символів')
-    .max(50, 'Електронна пошта повинна містити не більше 50 символів')
+    .email('Invalid email format')
+    .required('Required field')
+    .min(5, 'Email must be at least 5 characters long')
+    .max(50, 'Email must be at most 50 characters long')
     .trim(),
   password: Yup.string()
-    .required('Обов’язкове поле')
-    .min(8, 'Пароль повинен містити не менше 8 символів')
-    .max(20, 'Пароль повинен містити не більше 20 символів'),
+    .required('Required field')
+    .min(8, 'Password must be at least 8 characters long')
+    .max(20, 'Password must be at most 20 characters long'),
 })
 
 export const lessonValidationSchema = Yup.object().shape({
   fullName: Yup.string()
-    .required('Обов’язкове поле')
-    .min(2, "Повне ім'я повинно містити не менше 2 символів")
+    .required('Required field')
+    .min(2, 'Name must be at least 2 characters long')
     .matches(
       /^[A-Za-zА-Яа-яІіЇїЄєҐґ]{2,} [A-Za-zА-Яа-яІіЇїЄєҐґ]{2,}$/,
-      "Введіть ім'я та прізвище"
+      'Please enter your first and last name'
     ), // Проверка на имя и фамилию
   email: Yup.string()
-    .email('Невірний формат електронної пошти')
-    .required('Обов’язкове поле')
-    .min(5, 'Електронна пошта повинна містити не менше 5 символів')
-    .max(50, 'Електронна пошта повинна містити не більше 50 символів'),
+    .email('Invalid email format')
+    .required('Required field')
+    .min(5, 'Email must be at least 5 characters long')
+    .max(50, 'Email must be at most 50 characters long'),
   phoneNumber: Yup.string()
-    .required('Обов’язкове поле')
-    .matches(/^\+?[0-9]{10,15}$/, 'Невірний формат номера телефону'), // Проверка на формат номера телефона
+    .required('Required field')
+    .matches(/^\+?[0-9]{10,15}$/, 'Invalid phone number format'), // Проверка на формат номера телефона
 })

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
 import css from './RegMenu.module.css'
-import logOutIcon from '../../../assets/icons/sprite.svg'
-import { LogIn } from '../../../components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
-import { Registration } from '../../../components/Modal/Registration/Registration' // Імпортуємо компонент Registration
+import logOutIcon from '/src/assets/icons/sprite.svg'
+import { LogIn } from '/src/components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
+import { Registration } from '/src/components/Modal/Registration/Registration' // Імпортуємо компонент Registration
 import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 
@@ -15,7 +15,7 @@ export function RegMenu() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
 
-  const [hasFavoriteCards, setHasFavoriteCards] = useState(false)
+  // const [hasFavoriteCards, setHasFavoriteCards] = useState(false)
 
   const { user, logout } = useAuth()
 
@@ -46,11 +46,10 @@ export function RegMenu() {
 
       unsubscribe = onSnapshot(
         q,
-        (snapshot) => {
-          setHasFavoriteCards(snapshot.size > 0) // Перевіряємо кількість документів в снапшоті
+        () => {
+          // setHasFavoriteCards(snapshot.size > 0) // Перевіряємо кількість документів в снапшоті
         },
-        (error) => {
-          console.error('Error fetching favorites:', error)
+        () => {
           toast.error('Error fetching favorites', {
             className: 'toastError',
             duration: 1500,
@@ -58,7 +57,7 @@ export function RegMenu() {
         }
       )
     } else {
-      setHasFavoriteCards(false)
+      // setHasFavoriteCards(false)
     }
 
     return () => {
@@ -90,7 +89,7 @@ export function RegMenu() {
     localStorage.removeItem('filters') // Очищення вибраних фільтрів
     sessionStorage.clear() // Очищення тимчасових даних
 
-    setHasFavoriteCards(false) // Оновлюємо стан hasFavoriteCards, щоб хедер більше не відображав "Favorite"
+    // setHasFavoriteCards(false) // Оновлюємо стан hasFavoriteCards, щоб хедер більше не відображав "Favorite"
     setIsLogInOpen(false)
     setIsRegistrationOpen(false)
   }
@@ -114,8 +113,7 @@ export function RegMenu() {
         className: 'toastSuccess',
         duration: 1500,
       })
-    } catch (error) {
-      console.error('Error saving user data to Firestore:', error)
+    } catch {
       toast.error('Error during log in. Please try again later.', {
         className: 'toastError',
         duration: 1500,

@@ -51,8 +51,6 @@
 
 .logOutStyle {
   background-color: #8a8a89;
-  /* top: 162px;
-  left: 176px; */
 }
 
 .infoText {
@@ -74,6 +72,7 @@
   line-height: 28px;
   color: #121417;
   cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .buttonStyle:hover,

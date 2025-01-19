@@ -49,6 +49,18 @@ export const options = [
   { value: 'culture', label: 'Culture, travel, or hobby' },
 ]
 
+export const handleEscapeKey = (onClose) => (e) => {
+  if (e.key === 'Escape') {
+    onClose()
+  }
+}
+
+export const handleBackdropClick = (onClose) => (e) => {
+  if (e.target === e.currentTarget) {
+    onClose()
+  }
+}
+
 export const customStyles = {
   control: (provided) => ({
     ...provided,

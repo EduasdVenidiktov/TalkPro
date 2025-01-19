@@ -5,6 +5,7 @@
   padding: 64px;
   color: #121417cc;
   position: relative;
+  transform: scale(0.8); /* Уменьшаем масштаб на 90% */
 }
 
 .closeIcon {
@@ -69,6 +70,7 @@
   line-height: 28px;
   cursor: pointer;
   margin-bottom: 20px;
+  transition: background-color 0.5s ease;
 }
 
 .btnSignIn:hover,
@@ -141,6 +143,7 @@
   border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.5s ease;
 }
 
 .googleWrapper button:hover {

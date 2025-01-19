@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { registrationValidationSchema } from '../../../validation/validationSchema' // Import your validation schema here
-import { handleEscapeKey, handleBackdropClick } from '../../../utils/utils'
+import { registrationValidationSchema } from '/src/validation/validationSchema' // Import your validation schema here
+import { handleEscapeKey, handleBackdropClick } from '/src/data/options.js'
 import css from './Registration.module.css'
-import close from '../../../assets/icons/sprite.svg'
+import close from '/src/assets/icons/sprite.svg'
 import { LuEyeOff } from 'react-icons/lu'
 import { toast } from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
@@ -54,27 +54,13 @@ export function Registration({ onClose }) {
       const user = userCredential.user
       await updateProfile(user, { displayName: values.name })
 
-      console.log('Firestore path:', `users/${user.uid}`)
-      console.log('User data:', {
-        name: user.displayName,
-        email: values.email,
-        createdAt: new Date().toISOString(),
-      })
-
       await setDoc(doc(db, 'users', user.uid), {
         name: values.name,
         email: values.email,
         createdAt: new Date().toISOString(),
       })
-      console.log('User added to Firestore:', {
-        uid: user.uid,
-        name: values.name,
-        email: values.email,
-      })
 
       const token = await user.getIdToken()
-
-      console.log(token)
 
       login(token)
 
@@ -95,7 +81,7 @@ export function Registration({ onClose }) {
           'This email is already registered. Please use a different one.',
           {
             className: 'toastError',
-            duration: 1500,
+            duration: 2500,
           }
         )
       } else {
