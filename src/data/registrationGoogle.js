@@ -7,7 +7,7 @@ const provider = new GoogleAuthProvider()
 
 export const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, provider)
+    const result = await signInWithRedirect(auth, provider)
     const user = result.user
 
     const userDocRef = doc(db, 'users', user.uid)

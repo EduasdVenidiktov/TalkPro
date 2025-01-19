@@ -1,136 +1,106 @@
-Language Learning Platform
-This project is a web application for a company offering online language learning services. The application includes several pages, a user authentication system, and the ability to filter and save favorite tutors.
+## Project Name: TalkPro
 
-Table of Contents
-Project Overview
-Features
-Technologies Used
-Installation
-Usage
-Firebase Setup
-Project Structure
-License
-Project Overview
-The application consists of three main pages:
+**Project Description:**
 
-Home Page: A landing page with company advantages and a link to start using the app, redirecting users to the Teachers page.
-Teachers Page: Displays a list of available teachers that users can filter by language, level, and hourly price. Users can load more cards by clicking a "Load more" button.
-Favorites Page: A private page where authorized users can view a list of their favorite teachers.
-Features
-User Authentication:
+TalkPro is a user-friendly web application designed to connect language learners with qualified tutors online. It empowers users to:
 
-Sign-up and login with Firebase authentication.
-Users can register, log in, log out, and retrieve user data.
-Session persistence with Firebase and localStorage.
-Registration and Login Forms:
+- Discover the benefits of learning a new language with a professional instructor.
+- Explore a comprehensive catalog of experienced language tutors.
+- Refine their search using various filters to find the perfect match based on learning goals and budget.
+- Build a personalized list of favorite tutors for easy access.
 
-Forms for registration and login with validation using react-hook-form and yup.
-Modal window behavior: close when clicking on a "close" button, backdrop, or pressing the "Esc" key.
-Firebase Database:
+**Key Features:**
 
-Use Firebase Realtime Database to store teacher data.
-Each teacher entry contains:
-name, surname, languages, levels, rating, reviews, price_per_hour, lessons_done, avatar_url, lesson_info, conditions, experience.
-Teachers are loaded dynamically from Firebase and displayed in cards.
-Teacher Cards:
+**Pages:**
 
-Display teacher details in cards with a "Read more" button to reveal more information.
-Users can "favorite" teachers by clicking on a heart icon. If not logged in, a message prompts them to log in.
-Favorites:
+- **Home Page:**
+  - Captures user attention with a compelling introduction to the platform's value proposition.
+  - Features a clear call to action, encouraging users to explore the available tutors.
+  - Showcases a modern and engaging design inspired by the provided prototype or custom styling for a unique look.
+- **Teachers Page:**
+  - Presents a well-organized list of language tutors.
+  - Offers intuitive filtering options based on teaching language, student proficiency level, and hourly rate.
+  - Implements a "Load More" button to dynamically fetch additional teacher profiles from the database.
+- **Favorites Page:**
+  - A private haven accessible only to registered users.
+  - Provides a personalized list of favorite tutors, maintaining a consistent style with the "Teachers" page.
 
-Logged-in users can add teachers to their favorites.
-Favorites persist across page reloads using Firebase or localStorage.
-Users can remove teachers from their favorites by clicking on the heart icon again.
-Trial Booking:
+**Functionalities:**
 
-Users can click on a "Book trial lesson" button to open a booking form for trial lessons.
-The form includes validation and closes on "close" button click, backdrop click, or pressing "Esc".
-Private Favorites Page:
+**Authentication:**
 
-Available only for logged-in users.
-Displays a list of teachers added to the favorites.
-Routing:
+- Seamless user registration, login, logout, and data retrieval powered by Firebase Authentication.
+- Registration and login forms built with react-hook-form for a smooth user experience.
+- yup integration for robust form validation, ensuring data accuracy.
+- Modal dialogs for authentication forms, closing on user interaction (button click, backdrop click, or Esc key press).
 
-React Router is used for navigating between Home, Teachers, and Favorites pages.
-Teacher Filters:
+**Teacher Management:**
 
-Users can filter teachers by language, knowledge level, and hourly rate.
-Technologies Used
-React: The main framework for building the user interface.
-Firebase: For user authentication and data storage.
-React Router: For navigation between pages.
-react-hook-form: For handling form validation.
-yup: For schema-based validation of forms.
-CSS Modules: For scoped and modular styles.
-Vite: A build tool for fast development.
-Installation
-To get started with this project:
+- Leverages Firebase Realtime Database to store comprehensive teacher data, including:
+  - Name
+  - Surname
+  - Languages Offered
+  - Student Levels Taught
+  - Rating and Reviews
+  - Price per Hour
+  - Additional relevant information
+- Teacher cards display essential details with interactive options:
+  - Favorite: Effortlessly add/remove tutors from the favorites list, persisting across page refreshes.
+  - Read More: Expand the card to reveal detailed information and student reviews.
+  - Book Trial Lesson: Opens a modal form for booking a trial lesson, complete with mandatory field validation.
 
-Clone the repository:
+**Favorites Handling:**
 
-bash
-Копировать код
-git clone https://github.com/your-username/teacher-platform.git
-cd teacher-platform
-Install the dependencies:
+- Non-registered users attempting to favorite a teacher are presented with a clear notification or modal, prompting them to log in.
+- Registered users can manage their favorites list using either localStorage or Firebase for data persistence.
 
-bash
-Копировать код
-npm install
-Set up Firebase:
+**Routing:**
 
-Create a Firebase project on the Firebase Console.
-Enable Firebase Authentication (Email/Password method).
-Set up Firebase Realtime Database.
-Replace the Firebase config in the code with your Firebase credentials.
-Run the app locally:
+- Implemented with React Router, providing clear navigation paths:
+  - `/`: Home Page https://talk-pro.vercel.app/
+  - `/teachers`: Teachers Page https://talk-pro.vercel.app/teachers
+  - `/favorites`: Favorites Page https://talk-pro.vercel.app/favorite
 
-bash
-Копировать код
-npm run dev
-Open the app in your browser at http://localhost:3000.
+**Interactive Features:**
 
-Usage
-Home Page: Introduces the company and provides a link to start using the app.
-Teachers Page: Browse and filter tutors, view detailed profiles, and add tutors to your favorites.
-Favorites Page: For logged-in users, this page shows a list of all favorite tutors.
-Firebase Setup
-Firebase Authentication:
+- Dynamic loading of teacher cards for efficient data retrieval.
+- Persistent favorite state across page reloads, ensuring a seamless user experience.
+- Responsive UI that adapts to different screen sizes and includes interactive modal dialogs.
 
-Enable email/password authentication in Firebase Console.
-Realtime Database:
+**Technical Requirements:**
 
-Set up the Firebase Realtime Database.
-Use the provided teachers.json file to populate the database with teacher data.
-Firebase Configuration:
+- Frontend: React, JavaScript, CSS, HTML
+- State Management: **Context API (for efficient component state management)**
+- Routing: React Router
+- Styling: CSS Modules
+- Backend: Firebase
+  - Authentication (user login/logout)
+  - Realtime Database (for storing and managing teacher data)
+  - Firestore (to store a list of users' favorite teachers)
+- Validation: react-hook-form & yup (for robust form validation)
+- Build Tool: Vite (for efficient development and build process)
+- Deployment: Hosted on Vercel
 
-Replace the Firebase config object in the src/firebaseConfig.js file with your Firebase credentials.
-Project Structure
-plaintext
-Копировать код
-├── public
-│ ├── index.html
-│ └── ...
-├── src
-│ ├── components
-│ │ ├── HomePage.jsx
-│ │ ├── TeachersPage.jsx
-│ │ ├── FavoritesPage.jsx
-│ │ ├── TeacherCard.jsx
-│ │ ├── LoginModal.jsx
-│ │ └── ...
-│ ├── firebaseConfig.js
-│ ├── App.jsx
-│ └── index.js
-├── styles
-│ ├── HomePage.module.css
-│ ├── TeachersPage.module.css
-│ ├── FavoritesPage.module.css
-│ └── ...
-├── package.json
-├── README.md
-└── ...
-License
-This project is licensed under the MIT License.
+**Dependencies:**
 
-This README is designed to help developers and users understand how to set up and use the Language Learning Platform application. If you encounter any issues or need additional help, feel free to open an issue in the repository.
+... (List your dependencies here) ...
+
+**Installation Instructions:**
+
+1. Clone the repository: git clone: https://github.com/EduasdVenidiktov/TalkPro
+2. Navigate to the project directory: cd TalkPro
+3. Install dependencies: npm install
+4. Start the development server: npm start
+5. Open the app in your browser at http://localhost:3000.
+
+**Useful Links:**
+
+- Figma Design Prototype (link if applicable)
+- Technical Requirements (link to a separate document or section within the README)
+- Live Demo (link to the deployed application, if available)
+
+**Author:**
+
+- Name: Eduard Venidiktov
+- Email: edven7777777@gmail.com
+- GitHub: https://github.com/EduasdVenidiktov/TalkPro
