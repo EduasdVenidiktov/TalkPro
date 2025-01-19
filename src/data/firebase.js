@@ -101,7 +101,6 @@ export const getFavoriteCards = async (userId) => {
     querySnapshot.forEach((doc) => {
       favoriteCards.push(doc.data())
     })
-    console.log('favoriteCards', favoriteCards)
 
     return favoriteCards
   } catch (error) {
@@ -118,7 +117,6 @@ export const getTeachersData = async () => {
       const teachersArray = Object.values(snapshot.val())
       return teachersArray
     } else {
-      console.log('Дані не знайдено')
       return []
     }
   } catch (error) {

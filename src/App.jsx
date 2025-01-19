@@ -42,8 +42,7 @@ export default function App() {
         try {
           const cards = await getFavoriteCards(localId)
           setFavoriteCards(cards || [])
-        } catch (error) {
-          console.error('Ошибка при загрузке карточек:', error)
+        } catch  {
         }
       })()
     }

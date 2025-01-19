@@ -30,7 +30,6 @@ export default function TeachersPage() {
       setIsLoading(true)
 
       const teachersArray = await getTeachersData()
-      console.log('teachersArray', teachersArray)
 
       if (Array.isArray(teachersArray)) {
         // Перевіряємо, чи це масив
