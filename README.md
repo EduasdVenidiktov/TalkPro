@@ -58,8 +58,8 @@ TalkPro is a user-friendly web application designed to connect language learners
 
 - Implemented with React Router, providing clear navigation paths:
   - `/`: Home Page https://talk-pro.vercel.app/
-  - `/teachers`: Teachers Page https://talk-pro.vercel.app/teachers
-  - `/favorites`: Favorites Page https://talk-pro.vercel.app/favorite
+  - `/teachers`: Teachers Page
+  - `/favorites`: Favorites Page
 
 **Interactive Features:**
 
@@ -83,7 +83,29 @@ TalkPro is a user-friendly web application designed to connect language learners
 
 **Dependencies:**
 
-... (List your dependencies here) ...
+"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+"@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+"@hookform/resolvers": "^3.9.1",
+"clsx": "^2.1.1",
+"cors": "^2.8.5",
+"dotenv": "^16.4.7",
+"express": "^4.21.2",
+"firebase": "^11.1.0",
+"firebase-admin": "^13.0.2",
+"google-auth-library": "^7.14.1",
+"modern-normalize": "^3.0.1",
+"react": "^18.3.0",
+"react-dom": "^18.3.0",
+"react-firebase-hooks": "^5.1.1",
+"react-hook-form": "^7.54.2",
+"react-hot-toast": "^2.4.1",
+"react-icons": "^5.4.0",
+"react-loader-spinner": "^6.1.6",
+"react-router-dom": "^7.1.1",
+"react-select": "^5.9.0",
+"rollup-plugin-node-polyfills": "^0.2.1",
+"vite-plugin-node-polyfills": "^0.22.0",
+"yup": "^1.6.1"
 
 **Installation Instructions:**
 
