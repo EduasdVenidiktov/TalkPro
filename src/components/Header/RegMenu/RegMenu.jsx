@@ -2,20 +2,18 @@ import { useState, useEffect } from 'react'
 
 import css from './RegMenu.module.css'
 import logOutIcon from '/src/assets/icons/sprite.svg'
-import { LogIn } from '/src/components/Modal/LogIn/LogIn' // Імпортуємо компонент LogIn
+import { LogIn } from '/src/components/Modal/LogIn/LogIn'
 import { Registration } from '/src/components/Modal/Registration/Registration' // Імпортуємо компонент Registration
 import toast from 'react-hot-toast'
 import { useAuth } from '/src/AuthProvider'
 
-import { db } from '/src/data/firebase.js' // Імпорт вашої конфігурації Firestore
+import { db } from '/src/data/firebase.js'
 import { doc, setDoc, collection, query, onSnapshot } from 'firebase/firestore' // Імпорт потрібних методів
 import { usePageStyles } from '/src/data/options'
 
 export function RegMenu() {
   const [isLogInOpen, setIsLogInOpen] = useState(false)
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false)
-
-  // const [hasFavoriteCards, setHasFavoriteCards] = useState(false)
 
   const { user, logout } = useAuth()
 
@@ -39,32 +37,12 @@ export function RegMenu() {
 
   useEffect(() => {
     let unsubscribe
-
     if (user) {
-      const favoritesCollection = collection(db, 'users', user.uid, 'favorites') // Шлях до колекції favorites
-      const q = query(favoritesCollection) // Запит без додаткових умов поки що
-
-      unsubscribe = onSnapshot(
-        q,
-        () => {
-          // setHasFavoriteCards(snapshot.size > 0) // Перевіряємо кількість документів в снапшоті
-        },
-        () => {
-          toast.error('Error fetching favorites', {
-            className: 'toastError',
-            duration: 1500,
-          })
-        }
-      )
-    } else {
-      // setHasFavoriteCards(false)
+      const favoritesCollection = collection(db, 'users', user.uid, 'favorites')
+      const q = query(favoritesCollection)
+      unsubscribe = onSnapshot(q)
     }
-
-    return () => {
-      if (unsubscribe) {
-        unsubscribe() // Відписка від слухача при розмонтуванні компонента або зміні user
-      }
-    }
+    return () => unsubscribe && unsubscribe()
   }, [user])
 
   const handleLogInClick = () => {
@@ -83,13 +61,11 @@ export function RegMenu() {
   const handleLogOut = () => {
     toast.error('Buy, see you again!', {
       className: 'toastError',
-      duration: 1500, // Продолжительность в миллисекундах (5000 = 5 секунд)
+      duration: 1500,
     })
 
-    localStorage.removeItem('filters') // Очищення вибраних фільтрів
-    sessionStorage.clear() // Очищення тимчасових даних
-
-    // setHasFavoriteCards(false) // Оновлюємо стан hasFavoriteCards, щоб хедер більше не відображав "Favorite"
+    localStorage.removeItem('filters')
+    sessionStorage.clear()
     setIsLogInOpen(false)
     setIsRegistrationOpen(false)
   }
