@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { PrivateRoute } from './components/routes/PrivateRoute'
+// import { PrivateRoute } from './components/routes/PrivateRoute'
 import { Toaster } from 'react-hot-toast'
 import Loader from '/src/components/Loader/Loader'
 import { useAuth } from './AuthProvider'
@@ -87,12 +87,12 @@ export default function App() {
             <Route
               path="/favorite"
               element={
-                <PrivateRoute>
-                  <FavoriteCardsPage
-                    favoriteCards={favoriteCards}
-                    onToggleFavorite={handleToggleFavorite}
-                  />
-                </PrivateRoute>
+                // <PrivateRoute>
+                <FavoriteCardsPage
+                  favoriteCards={favoriteCards}
+                  onToggleFavorite={handleToggleFavorite}
+                />
+                // </PrivateRoute>
               }
             />
           )}
